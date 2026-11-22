@@ -18,6 +18,14 @@
 --   anim:Land()                               -- landing, then back to locomotion
 --   anim:PlayIdleVariant(name?)               -- play an idle variant now (random one if name is nil)
 --   anim:SetIdleVariantDelay(min, max)        -- seconds of plain Idle between variants (default 6-12; nil = off)
+--
+-- Face (eyelids and pupils, see DogAnimations.face): the dog blinks on its own every 2-6 s (sometimes twice) and its
+-- pupils widen when it runs or jumps. Override with:
+--   anim:Blink()                              -- blink now
+--   anim:SetAutoBlink(enabled)                -- turn the automatic blinking on / off
+--   anim:SetEyelids(amount?)                  -- hold the lids at 0 (open) .. 1 (shut), e.g. sleepy 0.6; nil = auto
+--   anim:SetPupil(size?)                      -- 0 narrow (bright light) .. 0.5 normal .. 1 wide (dark, excited);
+--                                                nil = automatic
 --   anim:Step(dt)                             -- advance and write the bones
 --   anim:Destroy()                            -- bones back to rest
 
@@ -29,6 +37,9 @@ local IDLE_BELOW = 0.35      -- studs/s (at the native scale) below which the do
 local FADE = 0.18            -- seconds for locomotion cross-fades
 local VARIANT_FADE = 0.35    -- softer blend into and out of idle variants (sit, sniff, shake...)
 local VARIANT_DELAY = { 6, 12 } -- seconds of plain Idle before the next variant
+local BLINK_GAP = { 2, 6 }   -- seconds between automatic blinks
+local DOUBLE_BLINK = 0.2     -- chance that a blink is followed by a second one
+local PUPIL_RATE = 4         -- how fast the pupils follow their target (1/s)
 
 -- ------------------------------------------------------------------ quaternions as plain numbers (x, y, z, w)
 local function qget(arr, frame)
@@ -47,6 +58,16 @@ end
 
 local function vec(t)
 	return Vector3.new(t[1], t[2], t[3])
+end
+
+local function axisAngle(a, angle: number): CFrame
+	local s = math.sin(angle / 2)
+	return CFrame.new(0, 0, 0, a[1] * s, a[2] * s, a[3] * s, math.cos(angle / 2))
+end
+
+local function ease(x: number): number
+	x = math.clamp(x, 0, 1)
+	return 0.5 - 0.5 * math.cos(math.pi * x)
 end
 
 -- ------------------------------------------------------------------ construction
@@ -142,6 +163,14 @@ function DogAnimator.fromBones(bones: { any }, data)
 	self.idleClock = 0
 	self.nextVariantAt = self:_rollDelay()
 
+	-- face layer state
+	self.faceData = data.face
+	self.autoBlink = true
+	self.nextBlink = BLINK_GAP[1] + math.random() * (BLINK_GAP[2] - BLINK_GAP[1])
+	self.blinkTime = nil -- seconds into the current blink (negative = waiting for a double blink)
+	self.lid = 0
+	self.pupil = 0.5
+
 	self.tracks = {}
 	self.mode = "ground" -- ground | crouch | jump | air | land
 	self.locoName = nil
@@ -216,6 +245,99 @@ function DogAnimator:_advance(dt)
 		end
 	end
 	self.tracks = keep
+end
+
+-- ------------------------------------------------------------------ face: eyelids and pupils
+function DogAnimator:Blink()
+	if not self.blinkTime or self.blinkTime < 0 then
+		self.blinkTime = 0
+	end
+end
+
+function DogAnimator:SetAutoBlink(enabled: boolean)
+	self.autoBlink = enabled ~= false
+end
+
+function DogAnimator:SetEyelids(amount: number?)
+	self.lidOverride = amount and math.clamp(amount, 0, 1) or nil
+end
+
+function DogAnimator:SetPupil(size: number?)
+	self.pupilOverride = size and math.clamp(size, 0, 1) or nil
+end
+
+function DogAnimator:_stepFace(dt: number)
+	local f = self.faceData
+	if not f then
+		return
+	end
+	if self.autoBlink and not self.blinkTime then
+		self.nextBlink -= dt
+		if self.nextBlink <= 0 then
+			self.blinkTime = 0
+			self.doubleBlink = math.random() < DOUBLE_BLINK
+			self.nextBlink = BLINK_GAP[1] + math.random() * (BLINK_GAP[2] - BLINK_GAP[1])
+		end
+	end
+	local lid = 0
+	local t = self.blinkTime
+	if t then
+		local b = f.blink
+		if t < 0 then
+			lid = 0
+		elseif t < b.close then
+			lid = ease(t / b.close)
+		elseif t < b.close + b.hold then
+			lid = 1
+		elseif t < b.close + b.hold + b.open then
+			lid = 1 - ease((t - b.close - b.hold) / b.open)
+		end
+		t += dt
+		if t >= b.close + b.hold + b.open then
+			if self.doubleBlink then
+				self.doubleBlink = false
+				t = -0.08
+			else
+				t = nil
+			end
+		end
+		self.blinkTime = t
+	end
+	self.lid = lid
+	-- pupils: wide while running or in the air, normal otherwise (or what the game asked for)
+	local target = self.pupilOverride
+	if not target then
+		if self.mode ~= "ground" then
+			target = 0.85
+		elseif self.locoName == "Run" then
+			target = 0.75
+		else
+			target = 0.5
+		end
+	end
+	self.pupil += (target - self.pupil) * (1 - math.exp(-dt * PUPIL_RATE))
+end
+
+-- face bones turn about their own axis on top of the head's motion: D = D_head * Q(axis, angle)
+function DogAnimator:_faceRot(rot)
+	local f = self.faceData
+	if not f then
+		return
+	end
+	local head = rot.Head or CFrame.identity
+	local lid = math.max(self.lid, self.lidOverride or 0)
+	for name, l in f.lids do
+		if self.byName[name] then
+			rot[name] = head * axisAngle(l.axis, l.closed * lid)
+		end
+	end
+	local p = self.pupilOverride or self.pupil
+	for name, q in f.pupils do
+		if self.byName[name] then
+			local a = if p < 0.5 then q.narrow * (1 - p / 0.5) else q.wide * ((p - 0.5) / 0.5)
+			rot[name] = head * axisAngle(q.axis, a)
+		end
+	end
 end
 
 -- ------------------------------------------------------------------ idle variants
@@ -453,6 +575,7 @@ function DogAnimator:_blend()
 	local rot = {}
 	local rx, ry, rz = 0, 0, 0
 	if total <= 1e-4 then
+		self:_faceRot(rot)
 		return rot, Vector3.zero
 	end
 	local norm = math.max(total, 1) -- weights below 1 in total blend toward the rest pose
@@ -485,6 +608,7 @@ function DogAnimator:_blend()
 			rz += z * k
 		end
 	end
+	self:_faceRot(rot)
 	return rot, Vector3.new(rx, ry, rz)
 end
 
@@ -520,6 +644,7 @@ function DogAnimator:Step(dt: number)
 		end
 	end
 	self:_advance(dt)
+	self:_stepFace(dt)
 	local rot, root = self:_blend()
 	self:_apply(rot, root)
 end

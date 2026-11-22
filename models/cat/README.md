@@ -16,10 +16,10 @@ A stylised tuxedo cat built in Blender 5.3 from measured photo references, with 
 | Bounds (rest pose) | 0.16 m wide × 0.76 m long × 0.47 m tall (tail up) |
 | Shoulder height | ~0.32 m |
 | Nose to tail base | ~0.57 m |
-| Triangles | 12,210 (9,454 fur body + 2,756 face details) |
-| Vertices | 6,151 |
+| Triangles | 13,420 (8,536 fur body + 4,884 face details: eyeballs, pupils, eyelids, ears, nose, mouth, whiskers) |
+| Vertices | 6,782 |
 | Materials | 7, no textures; the tuxedo markings are vertex colours (`COLOR_0`) |
-| Rig | 25 bones: `Root` + 24 deform bones, at most 4 influences per vertex |
+| Rig | 37 bones: `Root` + 24 body deform bones + 12 face bones; at most 4 influences per vertex |
 | Frame rate | 24 fps |
 | Forward | −Y in Blender, +Z in glTF |
 
@@ -36,10 +36,14 @@ The v3 rebuild compares the cat against openly licensed photos and a skeleton (s
 - **Head:** carried above the back on a neck that rises at about 40°. It has wide
   cheeks, a short muzzle with two whisker pads and a chin, and a nose bridge.
 - **Eyes:** large and forward-facing (20° outward), set about one eye-width apart.
-  Each has a dark rim, a gold iris, a vertical slit pupil and a catch light.
+  Each is a gold eyeball with black eyelids, a vertical slit pupil and a catch light,
+  rigged to blink and to widen or narrow the pupil (see **Face rig**).
 - **Ears:** large, with wide bases, cupped and pink inside, leaning outward from the
   corners of the skull.
-- **Paws:** compact and round, about 5 cm long (they were about 9 cm before).
+- **Legs:** slim, tapering from upper leg to wrist and hock. The upper arm is about 3.7 cm
+  across and the forearm about 2.5 cm. The v3.0 legs were about 25% thicker than the
+  references.
+- **Paws:** compact and round, about 4.6 cm long (they were about 9 cm before v3).
 - **Tail:** keeps its thickness to a rounded tip.
 - **Markings:** a classic tuxedo. The cap and ears are black. The white areas are an
   inverted-V blaze between the eyes, the muzzle and chin, the throat and chest bib
@@ -66,6 +70,46 @@ frame.
 | `IdleStretch` | 1–121 | 5.0 s | no | steps the front paws out, chest down with the rump up, holds with a tremble, steps back |
 | `IdleSit` | 1–193 | 8.0 s | no | sits down, curls the tail round the paws, looks about, stands up |
 | `IdleGroom` | 1–169 | 7.0 s | no | sits, lifts a front paw to lick it, wipes it over the face twice, stands up |
+| `FaceDemo` | 1–121 | 5.0 s | yes | face rig only: blink, double blink, pupils wide, pupils narrow, slow blink |
+
+The clips also carry the face: blinks during Idle, a slow "cat kiss" blink in `IdleSit`,
+eyes squinting through the stretch and half-closed while grooming, and pupils that
+flare when `IdleLook` hears something or the cat runs or jumps.
+
+## Face rig
+
+Each eye has six bones at the eyeball's centre, children of `Head`:
+
+| Bone | Turns about | What it does |
+|---|---|---|
+| `EyeLidUp.L/R` | its X axis | upper lid. **−1.13 rad** shuts it. |
+| `EyeLidLow.L/R` | its X axis | lower lid. **+0.42 rad** shuts it. |
+| `PupilW1.L/R`, `PupilW2.L/R` | Z axis, opposite angles | pupil width |
+| `PupilH1.L/R`, `PupilH2.L/R` | X axis, opposite angles | pupil height |
+
+- **Eyelids** are black shells round the eyeball. Turning a lid slides its edge over the
+  eye like a real eyelid, so a blink is one rotation per lid.
+- **Pupil** vertices are weighted to all four pupil bones by their position. Turning
+  `W1` by +a and `W2` by −a scales the slit's width evenly, and `H1`/`H2` do the same
+  for its height. The rig uses rotations rather than scale because Roblox bones can't
+  scale. At size 0 the slit is thin (bright light); at 1 it is nearly round (dark or
+  excited). `cat_anim.face(pose, blink, pupil)` turns those two numbers into bone angles.
+- **Code:** the eye geometry and the maths are in `models/shared/face_rig.py`, shared with
+  the dog. To drive the face from game code, rotate the bones directly or play
+  `FaceDemo` on a face-only layer.
+
+## Skin weights
+
+Automatic (bone-heat) weights let a front leg's upper-arm bone drag the chest. When a
+leg swung forward the white bib tore and dark wedges appeared in it, which showed up as
+"scrambled" frames. `16_rig_anim_v3.py` now masks the leg bones:
+
+- **Front legs** own only the skin below the shoulder joint, away from the midline,
+  and ahead of the ribs.
+- **Hind legs** own only the skin below the hip joint and behind the belly.
+- **Face and ears** stay rigid separate parts.
+
+The weights are then smoothed over the surface six times, so joints bend in soft folds.
 
 How the motion is built (the same approach as the dog's):
 
@@ -95,14 +139,15 @@ one of the `Idle*` variants once, then return to `Idle`. The dog's Roblox animat
 | File | Use |
 |---|---|
 | `out/Cat.blend` | final scene, `Idle` active; all clips are in the Action editor and stashed in NLA tracks |
-| `out/Cat.glb` | main asset: skinned mesh + 8 animations, metres, vertex colours |
+| `out/Cat.glb` | main asset: skinned mesh + 9 animations, metres, vertex colours |
 | `out/Cat.roblox.glb` | same asset pre-scaled to 4.5 studs per metre (about 3.4 studs long, 2.1 tall) |
 | `out/Cat.fbx` | same rig and clips for DCC/FBX pipelines |
-| `out/preview_*.mp4` | 640×640 previews per clip; `preview_all.mp4` is the combined showcase |
+| `out/preview_*.mp4` | 640×640 previews per clip; `preview_face.mp4` is a head close-up of `FaceDemo`; `preview_all.mp4` is the combined showcase |
 | `out/cat_hero.png`, `cat_front.png`, `cat_side.png`, `cat_rear.png`, `cat_head.png` | stills |
 | `out/strip_*.png` | 8-frame review sheets per clip |
 | `blender/cat_spec.py` | measured anatomy, eye/ear placement, marking shapes, colours |
-| `blender/cat_anim.py` | the clips: gait timing, leg solver, idle variants, contact report |
+| `blender/cat_anim.py` | the clips: gait timing, leg solver, idle variants, blinks / pupils, contact report |
+| `../shared/face_rig.py` | eyeball, pupil and eyelid geometry and the pupil / lid angle maths (cat and dog) |
 | `refs/sources.txt` | reference photos, authors, licences and what each was used for |
 
 ## Using it
@@ -111,7 +156,7 @@ one of the `Idle*` variants once, then return to `Idle`. The dog's Roblox animat
 Dope Sheet → Action Editor.
 
 **glTF / three.js / Godot / Unity:** import `out/Cat.glb`. It has one skinned mesh,
-one skin and eight named animations. The mesh uses vertex colours, so use a material
+one skin and nine named animations. The mesh uses vertex colours, so use a material
 that supports `COLOR_0` (three.js does by default).
 
 **Roblox:** import `out/Cat.roblox.glb` with the 3D Importer. It is pre-scaled to

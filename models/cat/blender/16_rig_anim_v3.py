@@ -68,6 +68,7 @@ def bone(name, head, tail, parent=None, connect=False, roll=None, deform=True):
 
 
 SPINE_ROLL, TAIL_ROLL, LEG_ROLL = (0, 0, -1), (0, -1, 0), (0, 1, 0)
+FACE_BONES = ("EyeLidUp", "EyeLidLow", "PupilW1", "PupilW2", "PupilH1", "PupilH2")
 neck_a, neck_b = S.NECK[0], S.NECK[1]
 nose = (0.0, S.NOSE_BRIDGE[1][1] - 0.012, S.NOSE_BRIDGE[1][2])
 bone("Root", (0, 0, 0), (0, 0.10, 0), roll=(0, 0, 1), deform=False)
@@ -91,6 +92,11 @@ for s, sx in (("L", 1), ("R", -1)):
     bone(f"Foot.{s}", m(H["hock"]), m(H["toe"]), f"Shin.{s}", True, LEG_ROLL)
     ear = bpy.data.objects[f"Ear_{s}"]
     bone(f"Ear.{s}", tuple(ear["ear_base"]), tuple(ear["ear_tip"]), "Head", False, (0, 1, 0))
+    # face rig (shared/face_rig.py): lids and pupil bones sit at the eyeball centre, Y = gaze, Z = eye up
+    eye = bpy.data.objects[f"Eye_{s}"]["eye"]
+    c, d, z = Vector(eye["centre"]), Vector(eye["dir"]), Vector(eye["up"])
+    for nm in FACE_BONES:
+        bone(f"{nm}.{s}", c, c + d * eye["r"], "Head", False, z)
 bpy.ops.object.mode_set(mode="OBJECT")
 for pb in arm.pose.bones:
     pb.rotation_mode = "XYZ"
@@ -99,29 +105,66 @@ for pb in arm.pose.bones:
 activate(arm, [body])
 bpy.ops.object.parent_set(type="ARMATURE_AUTO")
 names = {vg.index: vg.name for vg in body.vertex_groups}
+
+
+def smoothstep(e0, e1, x):
+    t = max(0.0, min(1.0, (x - e0) / (e1 - e0)))
+    return t * t * (3 - 2 * t)
+
+
+def region(n, co):
+    """How much bone n may move a body vertex. Bone heat lets an upper arm drag the chest (the white bib
+    tore when a front leg swung) and a thigh drag the belly; legs only own the skin below the shoulder /
+    hip joint and away from the midline, the face and ears are separate rigid parts."""
+    x, y, z = co
+    if n.startswith(("Ear.", "EyeLid", "Pupil")):
+        return 0.0
+    if n.endswith(".L") and x < 0.010:
+        return 0.0
+    if n.endswith(".R") and x > -0.010:
+        return 0.0
+    ax = abs(x)
+    if n.startswith(("UpperArm", "Forearm", "Paw")):
+        return (1 - smoothstep(0.195, 0.235, z)) * smoothstep(0.014, 0.030, ax) * (1 - smoothstep(-0.07, -0.03, y))
+    if n.startswith(("Thigh", "Shin", "Foot")):
+        return (1 - smoothstep(0.205, 0.250, z)) * smoothstep(0.014, 0.030, ax) * smoothstep(0.06, 0.10, y)
+    return 1.0
+
+
+me_b = body.data
+W = []
+for v in me_b.vertices:
+    W.append({names[g.group]: g.weight * region(names[g.group], v.co) for g in v.groups if g.weight > 1e-4})
+# smooth the weights over the surface so joints bend in soft folds instead of creases
+nbrs = [[] for _ in me_b.vertices]
+for e in me_b.edges:
+    a, b = e.vertices
+    nbrs[a].append(b)
+    nbrs[b].append(a)
+for _ in range(6):
+    new = []
+    for vi, ws in enumerate(W):
+        acc = {k: 0.5 * w for k, w in ws.items()}
+        nb = nbrs[vi]
+        for o in nb:
+            for k, w in W[o].items():
+                acc[k] = acc.get(k, 0.0) + 0.5 * w / len(nb)
+        new.append(acc)
+    W = [{k: w * region(k, me_b.vertices[vi].co) for k, w in ws.items()} for vi, ws in enumerate(new)]
 fixed = 0
-for v in body.data.vertices:
-    ws = {}
-    for g in v.groups:
-        n = names[g.group]
-        if g.weight < 1e-4 or n.startswith("Ear."):
-            continue
-        if v.co.x > 0.010 and n.endswith(".R"):
-            continue
-        if v.co.x < -0.010 and n.endswith(".L"):
-            continue
-        ws[n] = g.weight
-    ws = dict(sorted(ws.items(), key=lambda kv: -kv[1])[:4])
+for vi, ws in enumerate(W):
+    v = me_b.vertices[vi]
+    ws = dict(sorted(((k, w) for k, w in ws.items() if w > 0.01), key=lambda kv: -kv[1])[:4])
     total = sum(ws.values())
     for g in list(v.groups):
-        body.vertex_groups[g.group].remove([v.index])
+        body.vertex_groups[g.group].remove([vi])
     if total <= 1e-6:
         fixed += 1
         continue
     for n, w in ws.items():
-        body.vertex_groups[n].add([v.index], w / total, "REPLACE")
+        body.vertex_groups[n].add([vi], w / total, "REPLACE")
 if fixed:
-    # any vertex bone heat missed copies its nearest weighted neighbour
+    # any vertex left without weights copies its nearest weighted neighbour
     weighted = [v for v in body.data.vertices if v.groups]
     for v in body.data.vertices:
         if v.groups:
@@ -133,13 +176,15 @@ print("SKIN_BODY", {"unweighted_fixed": fixed})
 
 # ---------------------------------------------------------------- rigid parts, join
 for ob in parts:
+    if ob["bone"] == "__custom__":
+        continue                       # pupils carry their own four-bone weights
     vg = ob.vertex_groups.new(name=ob["bone"])
     vg.add([v.index for v in ob.data.vertices], 1.0, "REPLACE")
 activate(body, parts)
 bpy.ops.object.join()
 cat = bpy.context.view_layer.objects.active
 cat.name = "Cat"
-for k in ("bone", "ear_base", "ear_tip"):
+for k in ("bone", "ear_base", "ear_tip", "eye"):
     if k in cat:
         del cat[k]
 missing = [b.name for b in arm.data.bones if b.use_deform and not cat.vertex_groups.get(b.name)]

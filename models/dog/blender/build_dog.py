@@ -284,22 +284,47 @@ def ellipsoid_bm(center, radii, rot=None, segs=12, rings=8):
 
 
 def make_eyes(bvh):
+    """Eyeball (iris sphere), a round pupil skinned to four pupil bones, a catch light and two eyelid shells
+    coloured like the surrounding coat. The eye frames go to the rig step through body["eye_bones"]."""
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(HERE)), "shared"))
+    import face_rig as FR
     parts = []
     eyes = {}
+    frames = {}
     for side, sx in (("L", 1), ("R", -1)):
         d = Vector((0.55 * sx, 0.78, 0.22)).normalized()
         p, n = hit(bvh, (0.0, 0.430, 0.712), d)
-        c = p - n * 0.004
-        r = 0.0155
-        eye = ellipsoid_bm(c, (r, r, r), segs=12, rings=8)
-        parts.append(mesh_object(f"Eye_{side}", eye, S.swatch_u("eye")))
-        # catch-light: a small bead on the upper outer front of the eyeball
-        shine_dir = (n + Vector((0.15 * sx, 0.25, 0.45))).normalized()
-        s = c + shine_dir * (r * 0.92)
-        parts.append(mesh_object(f"EyeShine_{side}", ellipsoid_bm(s, (0.0042, 0.0042, 0.0042), segs=6, rings=4),
-                                 S.swatch_u("shine")))
+        r = S.EYE_R
+        c = p - d * (r - S.EYE_PROTRUDE)
+        # rig_dog rolls every bone so local Z = world X x bone direction: build the eye frame the same way
+        X, Z, U, V = FR.frame(d, Vector((1, 0, 0)).cross(d))
+        bm = bmesh.new()
+        FR.sphere(bm, c, r, 20, 14)
+        parts.append(mesh_object(f"Eye_{side}", bm, S.swatch_u("eye")))
+        bm = bmesh.new()
+        uv = FR.pupil(bm, c, d, U, V, r, S.PUPIL_HALF[0], S.PUPIL_HALF[1], lift=0.0008, rings=3, segs=20)
+        bm.verts.index_update()
+        weights = [(vv.index, FR.pupil_weights((a, b))) for vv, a, b in uv]
+        pup = mesh_object(f"Pupil_{side}", bm, S.swatch_u("nose"))
+        for role in ("W1", "W2", "H1", "H2"):
+            vg = pup.vertex_groups.new(name=f"Pupil{role}_{side}")
+            for vi, w in weights:
+                vg.add([vi], w[role], "REPLACE")
+        parts.append(pup)
+        # catch-light: a flat bead on the upper outer front of the eyeball, under the lids when they close
+        sdir = (d + V * 0.42 + U * (0.25 if U.x * sx > 0 else -0.25)).normalized()   # upper outer front
+        rot = sdir.to_track_quat("Z", "Y").to_matrix()
+        parts.append(mesh_object(f"EyeShine_{side}", ellipsoid_bm(c + sdir * (r + 0.0002), (0.0032, 0.0032, 0.0009),
+                                                                  rot=rot, segs=8, rings=5), S.swatch_u("shine")))
+        for which, edge, upper in (("Up", S.LID_UP_OPEN, True), ("Low", S.LID_LOW_OPEN, False)):
+            bm = bmesh.new()
+            FR.lid(bm, c, d, X, V, r * 1.04, r * 1.10, edge, upper)
+            lid = mesh_object(f"EyeLid{which}_{side}", bm, 0.25)
+            set_uvs(lid, lambda loop, me=lid.data: coat_u(me.vertices[loop.vertex_index].co))
+            parts.append(lid)
         eyes[side] = c
-    return parts, eyes
+        frames[side] = {"centre": list(c), "dir": list(d), "r": r}
+    return parts, eyes, frames
 
 
 def make_nose(bvh):
@@ -520,7 +545,7 @@ def build():
     body, raw_faces = bake_sculpt(sculpt_body())
     colour_body(body)
     bvh = bvh_of(body)
-    eyes, eye_pos = make_eyes(bvh)
+    eyes, eye_pos, eye_frames = make_eyes(bvh)
     nose, nose_pos = make_nose(bvh)
     ears, ear_bones = make_ears(bvh)
     collar = make_collar(bvh)
@@ -528,7 +553,7 @@ def build():
         ob.data.materials.clear()
         ob.data.materials.append(mat)
     info = {"raw_faces": raw_faces, "body_faces": len(body.data.polygons), "ear_bones": ear_bones,
-            "eyes": {k: tuple(round(c, 4) for c in v) for k, v in eye_pos.items()}}
+            "eyes": {k: tuple(round(c, 4) for c in v) for k, v in eye_pos.items()}, "eye_frames": eye_frames}
     return sc, body, {"eyes": eyes, "nose": nose, "ears": ears, "collar": collar}, info
 
 
@@ -544,6 +569,7 @@ if __name__ == "__main__":
                 c.objects.unlink(ob)
             acc.objects.link(ob)
     body["ear_bones"] = {k: [list(a), list(b)] for k, (a, b) in info["ear_bones"].items()}
+    body["eye_bones"] = info.pop("eye_frames")
     bpy.ops.wm.save_as_mainfile(filepath=os.path.join(HERE, "Dog_mesh.blend"))
     if "--preview" in sys.argv:
         setup_preview(sc)

@@ -91,6 +91,8 @@ def write_animations(rig):
     summary = {}
     fixture = {}
     for name, cfg in A.CLIPS.items():
+        if cfg.get("face_demo"):
+            continue                          # the animator drives the face itself
         n = cfg["frames"]
         frames = list(range(n)) if cfg["loop"] else list(range(n + 1))
         rot, root, poses = sample_clip(rig, name, frames)
@@ -124,11 +126,40 @@ def write_animations(rig):
         picks = [0, len(frames) // 3, (2 * len(frames)) // 3, len(frames) - 1]
         fixture[name] = {fr: poses[fr] for fr in picks}
     lines.append("\t},")
+    lines += face_data(rig)
     lines.append("}")
     path = os.path.join(RBX, "DogAnimations.luau")
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines) + "\n")
     return path, summary, fixture
+
+
+def face_data(rig):
+    """Eyelid and pupil bones for DogAnimator's face layer: each turns about one axis (Blender model space,
+    through its head at the eyeball centre) by an angle scaled by the blink amount / pupil size."""
+    def axis(name, col):
+        a = rig.data.bones[name].matrix_local.to_3x3().col[col].normalized()
+        return f"{{ {num(a.x, 5)}, {num(a.y, 5)}, {num(a.z, 5)} }}"
+
+    narrow, wide = A.pupil_angles(0.0), A.pupil_angles(1.0)
+    out = ["\tface = {",
+           "\t\tblink = { close = 0.07, hold = 0.03, open = 0.12 }, -- seconds",
+           "\t\t-- lid bones turn about axis by closed * blink (0 open .. 1 shut)",
+           "\t\tlids = {"]
+    for s in ("L", "R"):
+        for nm in ("EyeLidUp", "EyeLidLow"):
+            out.append(f"\t\t\t{nm}_{s} = {{ axis = {axis(f'{nm}_{s}', 0)}, closed = {num(A.LID_CLOSE[nm], 5)} }},")
+    out.append("\t\t},")
+    out.append("\t\t-- pupil bones turn by narrow (size 0) .. 0 (size 0.5) .. wide (size 1)")
+    out.append("\t\tpupils = {")
+    for s in ("L", "R"):
+        for nm, col, k, sign in (("PupilW1", 2, 0, 1), ("PupilW2", 2, 0, -1), ("PupilH1", 0, 1, 1),
+                                 ("PupilH2", 0, 1, -1)):
+            out.append(f"\t\t\t{nm}_{s} = {{ axis = {axis(f'{nm}_{s}', col)}, narrow = {num(sign * narrow[k], 5)}, "
+                       f"wide = {num(sign * wide[k], 5)} }},")
+    out.append("\t\t},")
+    out.append("\t},")
+    return out
 
 
 def write_fixture(rig, fixture):

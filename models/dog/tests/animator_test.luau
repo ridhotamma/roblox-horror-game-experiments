@@ -213,6 +213,78 @@ check(anim.variantName == nil and anim.locoName == "Walk", "moving interrupts th
 anim:SetIdleVariantDelay(nil)
 print(("idle variants: %d played, %d hand-backs to Idle"):format(distinct, backToIdle))
 
+-- 2c. face rig: lids and pupils turn by the exported angles, auto-blink closes and reopens the eyes ------------------
+local F = DogAnimations.face
+check(F ~= nil and F.lids ~= nil and F.pupils ~= nil, "face data exported")
+local function relToHead(name)
+	local w = worldOf()
+	return w.Head:Inverse() * w[name]
+end
+local function angleBetween(a, b)
+	local m = a:Inverse() * b
+	local tr = m.r[1] + m.r[5] + m.r[9]
+	return math.acos(math.clamp((tr - 1) / 2, -1, 1))
+end
+anim.tracks = {}
+anim.mode = "ground"
+anim:SetAutoBlink(false)
+anim.lid = 0
+anim:SetEyelids(nil)
+anim:SetPupil(nil)
+anim.pupil = 0.5
+anim:Pose("Idle", 0)
+local restRel = {}
+for name in F.lids do
+	restRel[name] = relToHead(name)
+end
+for name in F.pupils do
+	restRel[name] = relToHead(name)
+end
+anim:SetEyelids(1)
+anim:Pose("Walk", 5) -- any body pose: the lids ride on the head
+for name, l in F.lids do
+	local a = angleBetween(restRel[name], relToHead(name))
+	check(math.abs(a - math.abs(l.closed)) < 2e-3, ("%s shut: turned %.4f rad, expected %.4f"):format(name, a, math.abs(l.closed)))
+end
+anim:SetEyelids(nil)
+anim:SetPupil(1)
+anim:Pose("Idle", 0)
+for name, q in F.pupils do
+	local a = angleBetween(restRel[name], relToHead(name))
+	check(math.abs(a - math.abs(q.wide)) < 2e-3, ("%s wide: turned %.4f rad, expected %.4f"):format(name, a, math.abs(q.wide)))
+end
+anim:SetPupil(0)
+anim:Pose("Idle", 0)
+for name, q in F.pupils do
+	local a = angleBetween(restRel[name], relToHead(name))
+	check(math.abs(a - math.abs(q.narrow)) < 2e-3, ("%s narrow: %.4f vs %.4f"):format(name, a, math.abs(q.narrow)))
+end
+anim:SetPupil(nil)
+-- automatic blinking over 20 s of idling: the lids shut at least a few times and are open again at the end
+anim:SetAutoBlink(true)
+anim:SetIdleVariantDelay(nil)
+anim.tracks = {}
+anim.locoName = nil
+local shut, peak = 0, 0
+local wasShut = false
+for _ = 1, 600 do
+	anim:SetLocomotion(0)
+	anim:Step(1 / 30)
+	peak = math.max(peak, anim.lid)
+	local now = anim.lid > 0.9
+	if now and not wasShut then
+		shut += 1
+	end
+	wasShut = now
+end
+check(shut >= 3, ("auto-blink shut the eyes %d times in 20 s"):format(shut))
+anim:SetAutoBlink(false)
+for _ = 1, 30 do
+	anim:Step(1 / 30)
+end
+check(anim.lid == 0, "eyes open again after blinking")
+print(("face: %d auto blinks in 20 s, lids and pupils match the exported angles"):format(shut))
+
 -- 3. Destroy puts the rest pose back ---------------------------------------------------------------------------
 anim:Destroy()
 local w = worldOf()

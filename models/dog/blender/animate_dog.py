@@ -19,6 +19,8 @@ from mathutils import Quaternion, Vector
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import dog_spec as S  # noqa: E402
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(HERE)), "shared"))
+import face_rig as FR  # noqa: E402
 
 FPS = 30
 OUT = os.path.join(os.path.dirname(HERE), "out")
@@ -37,7 +39,46 @@ CLIPS = {
     "IdleSniff": {"frames": 120, "loop": False, "speed": 0.0, "idle_variant": True},
     "IdleSit": {"frames": 210, "loop": False, "speed": 0.0, "idle_variant": True},
     "IdleShake": {"frames": 48, "loop": False, "speed": 0.0, "idle_variant": True},
+    # face rig showcase for Blender / glTF users (blink, double blink, pupils wide then narrow). Not exported to
+    # Roblox: DogAnimator blinks and sets the pupils itself (SetPupil / Blink / SetEyelids)
+    "FaceDemo": {"frames": 150, "loop": True, "speed": 0.0, "face_demo": True},
 }
+
+# ------------------------------------------------------------------ face rig angles (models/shared/face_rig.py)
+LID_CLOSE = {"EyeLidUp": FR.lid_angles(S.LID_UP_OPEN, S.LID_UP_CLOSED),
+             "EyeLidLow": FR.lid_angles(S.LID_LOW_OPEN, S.LID_LOW_CLOSED)}
+
+
+def pupil_angles(size):
+    """(W angle, H angle) for pupil size 0 (narrow) .. 0.5 (rest) .. 1 (wide)."""
+    if size < 0.5:
+        sc = [lerp(n, 1.0, size / 0.5) for n in S.PUPIL_NARROW]
+    else:
+        sc = [lerp(1.0, w, (size - 0.5) / 0.5) for w in S.PUPIL_WIDE]
+    return (FR.pupil_angle(sc[0], S.PUPIL_HALF[0], S.EYE_R), FR.pupil_angle(sc[1], S.PUPIL_HALF[1], S.EYE_R))
+
+
+def face(p, blink=0.0, pupil=0.5):
+    aw, ah = pupil_angles(max(0.0, min(1.0, pupil)))
+    b = max(0.0, min(1.0, blink))
+    for s in ("L", "R"):
+        p.pitch[f"EyeLidUp_{s}"] = LID_CLOSE["EyeLidUp"] * b
+        p.pitch[f"EyeLidLow_{s}"] = LID_CLOSE["EyeLidLow"] * b
+        p.yaw[f"PupilW1_{s}"], p.yaw[f"PupilW2_{s}"] = aw, -aw
+        p.pitch[f"PupilH1_{s}"], p.pitch[f"PupilH2_{s}"] = ah, -ah
+
+
+def blinks(sec, times, close=0.07, hold=0.03, open_=0.12):
+    v = 0.0
+    for t0 in times:
+        dt = sec - t0
+        if 0 <= dt < close:
+            v = max(v, ease(dt / close))
+        elif close <= dt < close + hold:
+            v = 1.0
+        elif close + hold <= dt < close + hold + open_:
+            v = max(v, 1 - ease((dt - close - hold) / open_))
+    return v
 
 WALK = {"stance": 0.50, "duty": 0.62, "lift_f": 0.055, "lift_h": 0.05,
         "phase": {"HL": 0.00, "FL": 0.25, "HR": 0.50, "FR": 0.75}}
@@ -545,8 +586,19 @@ def idle_shake(sk, rest, t):
     return p
 
 
+def face_demo(sk, rest, t):
+    """5 s: blink, double blink, pupils wide, pupils narrow, a slow blink, back to rest."""
+    p = standing(rest, t, 2)
+    sec = t * CLIPS["FaceDemo"]["frames"] / FPS
+    lids = max(blinks(sec, (0.4, 1.2, 1.45)), blinks(sec, (4.0,), close=0.3, hold=0.3, open_=0.4))
+    size = 0.5 + 0.5 * window(t, 0.36, 0.46, 0.52, 0.60) - 0.5 * window(t, 0.58, 0.68, 0.72, 0.80)
+    face(p, lids, size)
+    plant(p, rest)
+    return p
+
+
 CLIP_FUNCS = {"Idle": idle, "Walk": walk, "Run": run, "Jump": jump, "IdleLook": idle_look,
-              "IdleSniff": idle_sniff, "IdleSit": idle_sit, "IdleShake": idle_shake}
+              "IdleSniff": idle_sniff, "IdleSit": idle_sit, "IdleShake": idle_shake, "FaceDemo": face_demo}
 
 
 # ------------------------------------------------------------------ baking to keys

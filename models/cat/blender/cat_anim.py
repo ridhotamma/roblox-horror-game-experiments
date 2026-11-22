@@ -23,8 +23,16 @@ Walk and Run are in place: a controller moving the cat at CLIPS[...]["speed"] m/
 """
 import json
 import math
+import os
+import sys
 from math import sin, cos, pi, atan2, acos, radians
 from mathutils import Quaternion, Vector
+
+_HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, _HERE)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(_HERE)), "shared"))
+import cat_spec as S  # noqa: E402
+import face_rig as FR  # noqa: E402
 
 FPS = 24
 TAU = 2 * pi
@@ -43,6 +51,8 @@ CLIPS = {
     "IdleStretch": {"frames": 120, "loop": False, "idle_variant": True},
     "IdleSit": {"frames": 192, "loop": False, "idle_variant": True},
     "IdleGroom": {"frames": 168, "loop": False, "idle_variant": True},
+    # face rig showcase: blinks, a slow blink, pupils wide then narrow (body just breathes)
+    "FaceDemo": {"frames": 120, "loop": True, "face_demo": True},
 }
 CLIPS["Walk"]["speed"] = WALK["stance"] / (WALK["duty"] * CLIPS["Walk"]["frames"] / FPS)
 CLIPS["Run"]["speed"] = RUN["stance"] / (RUN["duty"] * CLIPS["Run"]["frames"] / FPS)
@@ -89,6 +99,53 @@ def window(t, a, b, c, d):
 
 def lerp(a, b, t):
     return a + (b - a) * t
+
+
+# ------------------------------------------------------------------ face: eyelids and pupils
+LID_UP = FR.lid_angles(S.LID_UP_OPEN, S.LID_UP_CLOSED)
+LID_LOW = FR.lid_angles(S.LID_LOW_OPEN, S.LID_LOW_CLOSED)
+
+
+def pupil_scale(size):
+    """size 0 = thin slit (bright), 0.5 = rest, 1 = wide and round (dark / excited)."""
+    if size < 0.5:
+        k = size / 0.5
+        return tuple(lerp(n, 1.0, k) for n in S.PUPIL_NARROW)
+    k = (size - 0.5) / 0.5
+    return tuple(lerp(1.0, w, k) for w in S.PUPIL_WIDE)
+
+
+def face(p, blink=0.0, pupil=0.5):
+    """Set the eyelid and pupil bones. blink 0 = open, 1 = shut."""
+    sw, sh = pupil_scale(max(0.0, min(1.0, pupil)))
+    aw = FR.pupil_angle(sw, S.PUPIL_HALF[0], S.EYE_RADIUS)
+    ah = FR.pupil_angle(sh, S.PUPIL_HALF[1], S.EYE_RADIUS)
+    b = max(0.0, min(1.0, blink))
+    for s in ("L", "R"):
+        p.pitch[f"EyeLidUp.{s}"] = LID_UP * b
+        p.pitch[f"EyeLidLow.{s}"] = LID_LOW * b
+        p.yaw[f"PupilW1.{s}"] = aw
+        p.yaw[f"PupilW2.{s}"] = -aw
+        p.pitch[f"PupilH1.{s}"] = ah
+        p.pitch[f"PupilH2.{s}"] = -ah
+
+
+def blinks(sec, times, close=0.07, hold=0.03, open_=0.12, depth=1.0):
+    """Eyelid closure at time `sec` for blinks starting at `times` (seconds): fast close, slower open."""
+    v = 0.0
+    for t0 in times:
+        dt = sec - t0
+        if 0 <= dt < close:
+            v = max(v, ease(dt / close))
+        elif close <= dt < close + hold:
+            v = 1.0
+        elif close + hold <= dt < close + hold + open_:
+            v = max(v, 1 - ease((dt - close - hold) / open_))
+    return v * depth
+
+
+def secs(name, t):
+    return t * CLIPS[name]["frames"] / FPS
 
 
 # ------------------------------------------------------------------ side-plane skeleton
@@ -259,6 +316,7 @@ def idle(sk, rest, t):
     p.pitch["Ear.R"] = ears_fwd(-22) * bump(t, 0.71, 0.025)
     p.yaw["Ear.L"] = radians(14) * bump(t, 0.27, 0.03)
     p.yaw["Ear.R"] = radians(-14) * bump(t, 0.71, 0.03)
+    face(p, blinks(secs("Idle", t), (1.10, 2.90, 3.16)), 0.45 + 0.04 * sin(TAU * t))
     plant(p, rest)
     return p
 
@@ -316,6 +374,7 @@ def run(sk, rest, t):
         p.pitch[bone] += tail_up(7) * sin(TAU * (t - 0.15 - 0.08 * i))
     p.pitch["Ear.L"] = ears_fwd(-26) + ears_fwd(6) * sin(TAU * (t - 0.32))
     p.pitch["Ear.R"] = ears_fwd(-26) + ears_fwd(6) * sin(TAU * (t - 0.36))
+    face(p, 0.0, 0.75)
     for leg, off in g["phase"].items():
         p.legs[leg] = gait_leg(rest, leg, (t - off) % 1.0, g, radians(120), radians(45),
                                reach=0.03 if leg[0] == "F" else 0.012)
@@ -347,6 +406,7 @@ def jump(sk, rest, t):
     for i, bone in enumerate(("Tail1", "Tail2", "Tail3", "Tail4")):
         p.pitch[bone] = tail_up(-10) * crouch + tail_up(-14 + 4 * i) * air + tail_up(10) * land
     p.pitch["Ear.L"] = p.pitch["Ear.R"] = ears_fwd(-8) * crouch + ears_fwd(-26) * air + ears_fwd(6) * land
+    face(p, blinks(f / FPS, (24.0 / FPS,), depth=0.7), 0.5 + 0.35 * (crouch + air - crouch * air))
     for leg in LEGS:
         r = rest[leg]
         y0, z0 = r["target"]
@@ -397,6 +457,7 @@ def idle_look(sk, rest, t):
     tail_sway(p, t, 1, amp=(2, 3, 5, 8), lag=0.7)
     p.yaw["Tail4"] += radians(22) * twitch
     p.pitch["Tail4"] += tail_up(12) * twitch
+    face(p, blinks(secs("IdleLook", t), (0.25, 3.35)), 0.45 + 0.5 * look)   # pupils flare on the sound
     return p
 
 
@@ -429,6 +490,7 @@ def idle_stretch(sk, rest, t):
     tail_sway(p, t, 1, amp=(2, 3, 4, 6), lag=0.7, lift=(22 * sink, 6 * sink, -6 * sink, -10 * sink))
     # a little tremble at full stretch
     p.pitch["Spine1"] += nose_up(0.6) * sin(TAU * 18 * t) * window(t, 0.38, 0.42, 0.56, 0.60)
+    face(p, max(0.85 * window(t, 0.26, 0.36, 0.58, 0.70), blinks(secs("IdleStretch", t), (0.6, 4.4))), 0.4)
     return p
 
 
@@ -508,6 +570,9 @@ def idle_sit(sk, rest, t):
     p.yaw["Ear.R"] = radians(-20) * window(t, 0.46, 0.50, 0.58, 0.62)
     tail_curl(sk, p, window(t, 0.08, 0.22, 0.80, 0.92))
     p.yaw["Tail4"] += radians(14) * sin(TAU * 3 * t) * hold     # the tip keeps flicking
+    sec = secs("IdleSit", t)
+    slow = blinks(sec, (3.0,), close=0.35, hold=0.45, open_=0.5)   # the slow "cat kiss" blink
+    face(p, max(slow, blinks(sec, (0.9, 5.7))), 0.4)
     return p
 
 
@@ -541,11 +606,23 @@ def idle_groom(sk, rest, t):
     p.legs["FR"] = {"target": (lerp(y0, ty, raise_), lerp(z0, tz, raise_)),
                     "angle": r["angle"] + radians(55) * raise_}
     p.roll["Chest"] = drop_left(3) * raise_                     # weight onto the left fore
+    sec = secs("IdleGroom", t)
+    face(p, max(0.55 * window(t, 0.22, 0.28, 0.46, 0.50), 0.9 * wipe, blinks(sec, (0.6, 6.2))), 0.35)
+    return p
+
+
+def face_demo(sk, rest, t):
+    """5 s: blink, double blink, pupils wide, pupils narrow, a slow blink, back to rest."""
+    p = standing(rest, t, 2)
+    sec = secs("FaceDemo", t)
+    lids = max(blinks(sec, (0.4, 1.2, 1.45)), blinks(sec, (4.0,), close=0.3, hold=0.3, open_=0.4))
+    size = 0.5 + 0.5 * window(t, 0.36, 0.46, 0.52, 0.60) - 0.5 * window(t, 0.58, 0.68, 0.72, 0.80)
+    face(p, lids, size)
     return p
 
 
 CLIP_FUNCS = {"Idle": idle, "Walk": walk, "Run": run, "Jump": jump, "IdleLook": idle_look,
-              "IdleStretch": idle_stretch, "IdleSit": idle_sit, "IdleGroom": idle_groom}
+              "IdleStretch": idle_stretch, "IdleSit": idle_sit, "IdleGroom": idle_groom, "FaceDemo": face_demo}
 
 
 # ------------------------------------------------------------------ baking

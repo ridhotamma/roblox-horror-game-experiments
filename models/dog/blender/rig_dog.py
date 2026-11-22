@@ -26,7 +26,7 @@ def deselect_all():
         o.select_set(False)
 
 
-def make_armature(ear_bones):
+def make_armature(ear_bones, eye_bones=None):
     arm = bpy.data.armatures.new("DogRig")
     arm.display_type = "STICK"
     rig = bpy.data.objects.new("DogRig", arm)
@@ -39,6 +39,11 @@ def make_armature(ear_bones):
     for side in ("L", "R"):
         head, tail = ear_bones[side]
         bones[f"Ear_{side}"] = (tuple(head), tuple(tail), "Head", True)
+    for side, eye in (eye_bones or {}).items():
+        # face rig: lids and pupil bones at the eyeball centre pointing along the gaze (shared/face_rig.py)
+        c, d = Vector(eye["centre"]), Vector(eye["dir"])
+        for nm in S.FACE_BONES:
+            bones[f"{nm}_{side}"] = (tuple(c), tuple(c + d * eye["r"]), "Head", True)
     eb = arm.edit_bones
     for name, (head, tail, _parent, deform) in bones.items():
         b = eb.new(name)
@@ -72,8 +77,8 @@ def region(bone, co):
     """How much a bone may influence a body vertex at co (0..1). Bone heat knows nothing about anatomy: it lets the
     ear bones pull the skull, a left leg pull the right side of the chest, a thigh pull the belly."""
     x, y, z = co
-    if bone.startswith("Ear_"):
-        return 0.0                                     # ears are rigid separate pieces
+    if bone.startswith(("Ear_", "EyeLid", "Pupil")):
+        return 0.0                                     # ears and the face rig are separate pieces
     m = 1.0
     if bone.endswith("_L"):
         m *= smoothstep(-0.004, 0.022, x)
@@ -130,7 +135,11 @@ def skin(rig, body, parts):
     mask_body_weights(body, rig)
     for ob in parts:
         n = ob.name
-        if n.startswith(("Eye", "Nose")):
+        if n.startswith("EyeLid"):
+            rigid_group(ob, n)                 # EyeLidUp_L ... (object and bone share the name)
+        elif n.startswith("Pupil_"):
+            pass                               # carries its own four-bone weights from build_dog.py
+        elif n.startswith(("Eye", "Nose")):
             rigid_group(ob, "Head")
         elif n.startswith("Ear_"):
             rigid_group(ob, n)                 # Ear_L / Ear_R
@@ -214,7 +223,8 @@ def main():
     body = bpy.data.objects["DogBody"]
     parts = list(bpy.data.collections["DogParts"].objects)
     ear_bones = {k: v for k, v in body["ear_bones"].items()}
-    rig, bones = make_armature(ear_bones)
+    eye_bones = {k: dict(v) for k, v in body["eye_bones"].items()} if "eye_bones" in body else None
+    rig, bones = make_armature(ear_bones, eye_bones)
     dog = skin(rig, body, parts)
     unweighted = clean_weights(dog, rig)
     coll = bpy.data.collections["DogParts"]

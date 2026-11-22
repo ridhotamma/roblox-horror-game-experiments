@@ -71,7 +71,7 @@ COAT = {
 # solid swatches in the right half of the palette texture: name -> (index, sRGB)
 SWATCHES = {
     "nose": (0, (0.035, 0.03, 0.03)),
-    "eye": (1, (0.10, 0.055, 0.03)),
+    "eye": (1, (0.36, 0.19, 0.07)),         # warm brown iris (the pupil reads against it)
     "shine": (2, (0.97, 0.97, 0.95)),
     "collar": (3, (0.72, 0.09, 0.10)),
     "tag": (4, (0.95, 0.74, 0.25)),
@@ -80,6 +80,16 @@ SWATCHES = {
     "mouth": (7, (0.30, 0.12, 0.12)),
 }
 PALETTE_W, PALETTE_H = 256, 8
+
+# ------------------------------------------------------------------ face rig (see models/shared/face_rig.py)
+EYE_R = 0.0155
+EYE_PROTRUDE = 0.0085
+LID_UP_OPEN, LID_UP_CLOSED = 52.0, -16.0       # lid edges, degrees above the gaze line
+LID_LOW_OPEN, LID_LOW_CLOSED = -58.0, -14.0
+PUPIL_HALF = (0.0042, 0.0042)                  # round pupil radius at rest (pupil = 0.5)
+PUPIL_NARROW = (0.50, 0.50)                    # scale at pupil = 0
+PUPIL_WIDE = (1.65, 1.65)                      # scale at pupil = 1
+FACE_BONES = ("EyeLidUp", "EyeLidLow", "PupilW1", "PupilW2", "PupilH1", "PupilH2")
 COAT_U_MAX = 0.49   # the coat ramp lives in u = 0 .. 0.5; 0 = cream, 0.25 = tan, 0.49 = dark
 
 

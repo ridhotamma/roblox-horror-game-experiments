@@ -46,6 +46,20 @@ for name, act_name, f0, f1 in clips:
     bpy.ops.render.render(animation=True)
     print("SEQUENCE_DONE", name, f0, f1)
 
+# face rig close-up: the FaceDemo clip framed on the head
+arm.animation_data.action = bpy.data.actions["FaceDemo"]
+scene.frame_start, scene.frame_end = 1, CA.CLIPS["FaceDemo"]["frames"]
+cam_loc, cam_rot, cam_type = cam.location.copy(), cam.rotation_euler.copy(), cam.data.type
+cam.data.type = 'ORTHO'
+cam.data.ortho_scale = 0.17
+cam.location = (0.12, -0.75, 0.40)
+cam.rotation_euler = (Vector((0.0, -0.30, 0.365)) - Vector(cam.location)).to_track_quat('-Z', 'Y').to_euler()
+os.makedirs(os.path.join(FR, "FaceClose"), exist_ok=True)
+scene.render.filepath = os.path.join(FR, "FaceClose", "")
+bpy.ops.render.render(animation=True)
+cam.location, cam.rotation_euler, cam.data.type = cam_loc, cam_rot, cam_type
+print("SEQUENCE_DONE FaceClose")
+
 # hero still
 arm.animation_data.action = bpy.data.actions["Idle"]
 scene.frame_set(1)

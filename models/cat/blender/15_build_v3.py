@@ -117,21 +117,22 @@ for sx in (1, -1):
         return (p[0] * sx, p[1], p[2])
     F, H = S.FRONT, S.HIND
     sc.ellipsoid(m(F["scapula"][0]), F["scapula"][1], rot=(-18, 0, 0))
-    sc.capsule(m(F["shoulder"]), m(F["elbow"]), 0.024)
+    FR, HR = S.FRONT_R, S.HIND_R
+    sc.capsule(m(F["shoulder"]), m(F["elbow"]), FR["upper"])
     mid = [(a + b) / 2 for a, b in zip(F["elbow"], F["wrist"])]
-    sc.capsule(m(F["elbow"]), m(mid), 0.019)
-    sc.capsule(m(mid), m(F["wrist"]), 0.016)
-    sc.capsule(m(F["wrist"]), m((F["wrist"][0], F["wrist"][1] - 0.008, 0.022)), 0.015)
+    sc.capsule(m(F["elbow"]), m(mid), FR["fore_top"])
+    sc.capsule(m(mid), m(F["wrist"]), FR["fore_low"])
+    sc.capsule(m(F["wrist"]), m((F["wrist"][0], F["wrist"][1] - 0.008, 0.021)), FR["wrist"])
     sc.ellipsoid(m(F["paw"][0]), F["paw"][1])
 
     sc.ellipsoid(m(H["thigh"][0]), H["thigh"][1], rot=(28, 0, 0))
-    sc.capsule(m(H["hip"]), m(H["knee"]), 0.024)
+    sc.capsule(m(H["hip"]), m(H["knee"]), HR["femur"])
     mid = [(a + b) / 2 for a, b in zip(H["knee"], H["hock"])]
-    sc.capsule(m(H["knee"]), m(mid), 0.019)
-    sc.capsule(m(mid), m(H["hock"]), 0.013)
+    sc.capsule(m(H["knee"]), m(mid), HR["shin_top"])
+    sc.capsule(m(mid), m(H["hock"]), HR["shin_low"])
     sc.ellipsoid(m(H["calf"][0]), H["calf"][1], rot=(-30, 0, 0))
-    sc.ellipsoid(m((H["hock"][0], H["hock"][1] + 0.004, H["hock"][2])), (0.011, 0.012, 0.012))
-    sc.capsule(m(H["hock"]), m((H["hock"][0], 0.150, 0.024)), 0.013)
+    sc.ellipsoid(m((H["hock"][0], H["hock"][1] + 0.003, H["hock"][2])), (HR["hock"], HR["hock"] + 0.001, HR["hock"] + 0.001))
+    sc.capsule(m(H["hock"]), m((H["hock"][0], 0.150, 0.023)), HR["meta"])
     sc.ellipsoid(m(H["paw"][0]), H["paw"][1])
 
 bpy.context.view_layer.update()
@@ -205,8 +206,8 @@ def white_amount(co):
         w = max(w, 1 - smoothstep(half - soft * 0.5, half + soft * 0.5, ax))
     # chin, throat and chest bib (front and underside only)
     d = seg_dist(co, *S.THROAT_MASK)
-    w = max(w, (1 - smoothstep(0.030, 0.040, d)) * smoothstep(0.035, 0.012, ax - 0.0))
-    bib = 1 - smoothstep(0.85, 1.15, ell(co, (0, -0.205, 0.235), (0.040, 0.050, 0.070)))
+    w = max(w, (1 - smoothstep(0.026, 0.044, d)) * smoothstep(0.035, 0.012, ax - 0.0))
+    bib = 1 - smoothstep(0.75, 1.25, ell(co, (0, -0.205, 0.235), (0.040, 0.050, 0.070)))
     w = max(w, bib * (1 - smoothstep(-0.215, -0.175, y - 0.0) * smoothstep(0.24, 0.27, z)))
     # belly strip
     belly = 1 - smoothstep(0.85, 1.15, ell(co, (0, -0.030, 0.165), (0.036, 0.150, 0.030)))
@@ -274,7 +275,10 @@ def look_matrix(direction, up=(0, 0, 1)):
     return (-d).to_track_quat("Y", "Z").to_matrix().to_4x4()
 
 
-# ---------------------------------------------------------------- eyes
+# ---------------------------------------------------------------- eyes + face rig parts (shared/face_rig.py)
+sys.path.insert(0, os.path.join(os.path.dirname(CAT), "shared"))
+import face_rig as FR  # noqa: E402
+
 for sx, side in ((1, "L"), (-1, "R")):
     yaw = math.radians(S.EYE_YAW) * sx
     pitch = math.radians(S.EYE_PITCH)
@@ -282,26 +286,34 @@ for sx, side in ((1, "L"), (-1, "R")):
     c0 = Vector((S.EYE_CENTRE[0] * sx, S.EYE_CENTRE[1], S.EYE_CENTRE[2]))
     hit, _ = surface(c0 + d * 0.08, -d)
     r = S.EYE_RADIUS
-    depth = 0.60
-    centre = hit - d * (r * depth - 0.0042)
-    R = look_matrix(d)
-    T = Matrix.Translation(centre)
-    # dark eyelid rim behind the eye
-    bm = sphere_bm(r * 1.14)
-    transform_bm(bm, T @ R @ Matrix.Translation((0, 0.0016, 0)) @ Matrix.Diagonal((1, 0.42, 1, 1)))
-    part(f"EyeRim_{side}", bm, "Cat_Mouth", "Head")
-    # iris
-    bm = sphere_bm(r, 20, 12)
-    transform_bm(bm, T @ R @ Matrix.Diagonal((1, depth, 1, 1)))
-    part(f"Eye_{side}", bm, "Cat_EyeAmber", "Head")
-    # vertical slit pupil sitting on the front of the iris
-    bm = sphere_bm(1.0, 12, 8)
-    transform_bm(bm, T @ R @ Matrix.Translation((0, -r * depth + 0.0006, 0)) @ Matrix.Diagonal((0.0036, 0.0016, 0.0105, 1)))
-    part(f"Pupil_{side}", bm, "Cat_Pupil", "Head")
-    # catch light, upper outer quadrant
-    bm = sphere_bm(0.0024, 8, 6)
-    transform_bm(bm, T @ R @ Matrix.Translation((0.0045 * sx, -r * depth + 0.0004, 0.0055)) @ Matrix.Diagonal((1, 0.5, 1, 1)))
+    centre = hit - d * (r - S.EYE_PROTRUDE)
+    X, Z, U, V = FR.frame(d, (0, 0, 1))
+    # iris: a whole sphere, so lids and pupil can turn about its centre
+    bm = bmesh.new()
+    FR.sphere(bm, centre, r, 24, 16)
+    eye = part(f"Eye_{side}", bm, "Cat_EyeAmber", "Head")
+    eye["eye"] = {"centre": list(centre), "dir": list(d), "up": list(Z), "r": r}
+    # slit pupil on the iris, skinned to the four pupil bones
+    bm = bmesh.new()
+    uv = FR.pupil(bm, centre, d, U, V, r, S.PUPIL_HALF[0], S.PUPIL_HALF[1], lift=0.0008)
+    bm.verts.index_update()
+    weights = [(vv.index, FR.pupil_weights((a, b))) for vv, a, b in uv]
+    pup = part(f"Pupil_{side}", bm, "Cat_Pupil", "__custom__")
+    for role in ("W1", "W2", "H1", "H2"):
+        vg = pup.vertex_groups.new(name=f"Pupil{role}.{side}")
+        for vi, w in weights:
+            vg.add([vi], w[role], "REPLACE")
+    # catch light: a flat bead on the upper outer front of the eyeball (stays put while the pupil changes)
+    sdir = (d + V * 0.42 + U * (0.26 * sx)).normalized()
+    bm = sphere_bm(1.0, 8, 6)
+    transform_bm(bm, Matrix.Translation(centre + sdir * (r + 0.0002)) @ look_matrix(sdir)
+                 @ Matrix.Diagonal((0.0023, 0.0007, 0.0023, 1)))
     part(f"EyeShine_{side}", bm, "Cat_Whisker", "Head")
+    # eyelids: black fur shells that slide over the eyeball
+    for which, edge, upper in (("Up", S.LID_UP_OPEN, True), ("Low", S.LID_LOW_OPEN, False)):
+        bm = bmesh.new()
+        FR.lid(bm, centre, d, X, V, r * 1.035, r * 1.09, edge, upper)
+        part(f"EyeLid{which}_{side}", bm, "Cat_Fur", f"EyeLid{which}.{side}")
 
 # ---------------------------------------------------------------- nose leather (rounded triangle)
 tip, tip_n = surface((0, -0.45, 0.352), (0, 1, 0))

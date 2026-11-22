@@ -44,6 +44,17 @@ EYE_CENTRE = (0.027, -0.300, 0.362)   # +x side; mirrored for the right eye
 EYE_RADIUS = 0.0150
 EYE_YAW = 20.0                        # degrees outward from straight ahead
 EYE_PITCH = 4.0                       # degrees up
+EYE_PROTRUDE = 0.0048                 # how far the eyeball's front stands out of the fur
+
+# face rig: eyelids are hemispherical shells round the eyeball that rotate about its centre;
+# the pupil is a curved disc driven by four bones (two widen it, two make it taller)
+LID_UP_OPEN = 41.0                    # upper lid edge, degrees above the gaze line
+LID_LOW_OPEN = -46.0
+LID_UP_CLOSED = -24.0                 # where the edges meet when the eye is shut
+LID_LOW_CLOSED = -22.0
+PUPIL_HALF = (0.0028, 0.0085)         # rest half width / half height of the slit (pupil = 0.5)
+PUPIL_NARROW = (0.35, 0.94)           # scale at pupil = 0 (bright light: thin slit)
+PUPIL_WIDE = (2.35, 1.10)             # scale at pupil = 1 (dark / excited: nearly round)
 EAR_BASE = (0.036, -0.252, 0.404)     # +x side; the base is pushed onto the skull
 EAR_SIZE = (0.025, 0.012, 0.058)      # half width, depth, height
 EAR_TILT = 18.0                       # outward lean
@@ -56,18 +67,23 @@ FRONT = {
     "elbow": (FRONT_X, -0.104, 0.146),
     "wrist": (FRONT_X - 0.002, -0.118, 0.040),
     "toe": (FRONT_X - 0.002, -0.150, 0.014),
-    "paw": ((FRONT_X - 0.002, -0.131, 0.016), (0.020, 0.026, 0.016)),
-    "scapula": ((FRONT_X - 0.004, -0.130, 0.246), (0.020, 0.040, 0.052)),
+    "paw": ((FRONT_X - 0.002, -0.130, 0.0155), (0.0175, 0.023, 0.0155)),
+    "scapula": ((FRONT_X - 0.006, -0.130, 0.248), (0.016, 0.036, 0.046)),
 }
 HIND = {
     "hip": (HIND_X, 0.150, 0.236),
     "knee": (HIND_X + 0.001, 0.104, 0.150),
     "hock": (HIND_X + 0.001, 0.172, 0.072),
     "toe": (HIND_X, 0.124, 0.014),
-    "paw": ((HIND_X, 0.141, 0.016), (0.019, 0.027, 0.016)),
-    "thigh": ((HIND_X - 0.003, 0.130, 0.208), (0.026, 0.054, 0.062)),
-    "calf": ((HIND_X + 0.001, 0.146, 0.112), (0.016, 0.020, 0.032)),
+    "paw": ((HIND_X, 0.140, 0.0155), (0.0165, 0.024, 0.0155)),
+    "thigh": ((HIND_X - 0.005, 0.132, 0.212), (0.021, 0.048, 0.056)),
+    "calf": ((HIND_X + 0.001, 0.146, 0.112), (0.012, 0.016, 0.028)),
 }
+
+# limb thickness (capsule radii, m). Slimmer than v3.0 (which was ~25% too thick next to the
+# references) while keeping the same taper: upper leg > forearm/shin > wrist/metatarsus.
+FRONT_R = {"upper": 0.0185, "fore_top": 0.0150, "fore_low": 0.0125, "wrist": 0.0118}
+HIND_R = {"femur": 0.0190, "shin_top": 0.0150, "shin_low": 0.0105, "hock": 0.0090, "meta": 0.0105}
 
 # -------------------------------------------------------------- tail (rest pose: low then curling up)
 TAIL = [(0.0, 0.200, 0.265), (0.0, 0.268, 0.266), (0.0, 0.324, 0.292),
