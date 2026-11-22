@@ -1,0 +1,15 @@
+# Reference photos are third-party images (some under NonCommercial / NoDerivatives licences):
+# keep them local. Each refs/**/sources.json lists the URL, author and licence to re-download them.
+models/**/refs/**/*.jpg
+models/**/refs/**/*.jpeg
+models/**/refs/**/*.png
+models/**/refs/**/*.webp
+
+# Machine-specific config (absolute paths to local tools)
+.mcp.json
+
+# Scratch files
+models/**/out/cutaway*.json
+*.blend1
+.DS_Store
+Thumbs.db

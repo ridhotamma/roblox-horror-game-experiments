@@ -1,0 +1,8192 @@
+{
+ "name": "ClassicHouse",
+ "title": "Classic cottage house",
+ "description": "Low-poly 1940s-style side-gabled cottage: white walls, dark shingle roof, arched gable porch on paired columns, red front door with sidelights, shuttered window pairs and brick chimney. Hollow, with a floor, ceiling, a front living room with a brick fireplace and two back rooms. Front and back doors are hinged and open inward. Furnished from 1940s interior references: living room with fireplace, bookcases, sofa, armchair, rug, dining set, sideboard and radio; kitchen with cabinets, sink, range, fridge and table; bedroom with bed, nightstands, dresser and wardrobe. The roof, ceiling and ceiling lights form RoofGroup, which can be hidden or lifted.",
+ "ground": true,
+ "budget": 16000,
+ "targets": [
+  "roblox",
+  "blender",
+  "threejs"
+ ],
+ "reference": {
+  "sources": [
+   {
+    "url": "https://www.flickr.com/photos/59081381@N03/",
+    "note": "refs/ref08.jpg: front view, side-gabled cottage with arched gable porch, paired columns, shuttered window pairs, chimney right of centre (CC BY-SA 2.0)",
+    "file": "refs/ref08.jpg"
+   },
+   {
+    "url": "https://www.flickr.com/photos/59081381@N03/52016327411",
+    "note": "refs/ref14.jpg: same house type from a slightly different angle",
+    "file": "refs/ref14.jpg"
+   }
+  ],
+  "dimensions": {
+   "width": 10.9,
+   "height": 7.67,
+   "tolerance": 0.06
+  },
+  "notes": "Scale from the front door (2.1 m = 121 px, ~0.0175 m/px). Wall ~10.3 m wide, eave 3.4 m above ground, ridge ~5.9 m, foundation ~0.45 m, roof span 11.0 m, chimney top ~7.4 m. Porch gable ~5 m wide rising ~1.5 m, columns paired ~0.6 m apart, ~1.3 / 1.9 m off the door centre. Windows ~0.8 x 1.55 m in pairs with ~0.45 m shutters. Depth (8 m), roof pitch (~28 deg) and the floor plan are typical for the type, not measured. Made symmetric about the door."
+ },
+ "palette": {
+  "wall": "#e9e5da",
+  "trim": "#f7f6f1",
+  "roof": "#4a5156",
+  "ridge": "#3d4347",
+  "found": "#7d8581",
+  "door": "#c0392b",
+  "doorDark": "#a3302a",
+  "backdoor": "#6b4a36",
+  "backdoorDark": "#5a3d2c",
+  "glass": "#2c3a47",
+  "shutter": "#3d4a4f",
+  "brick": "#94473a",
+  "cap": "#6a6e70",
+  "flue": "#1d1f21",
+  "concrete": "#a9aca6",
+  "leaf": "#4b7a3f",
+  "leafDark": "#2f5530",
+  "brass": "#c9a43a",
+  "oak": "#8a6a45",
+  "floor": "#6e5038",
+  "ceiling": "#e2ddd0",
+  "interior": "#b8ae98",
+  "wood": "#7a5233",
+  "woodLight": "#a07a52",
+  "woodDark": "#4f3322",
+  "fabricGreen": "#5f7a55",
+  "fabricRose": "#a0584f",
+  "cloth": "#f2efe6",
+  "gingham": "#c8524a",
+  "enamel": "#f1efe8",
+  "enamelDoor": "#e6e3da",
+  "counter": "#3f4a52",
+  "steel": "#9aa1a8",
+  "steelDark": "#4a5056",
+  "kettle": "#c8423a",
+  "canister": "#e8c46a",
+  "china": "#f4f1ea",
+  "vase": "#3f6d8c",
+  "shade": "#f3e2b3",
+  "glowWarm": "#ffcf7a",
+  "mirror": "#c9d6de",
+  "curtain": "#c7a46a",
+  "curtainBed": "#c9a0a0",
+  "carpet": "#5d6f73",
+  "rug": "#8e3b2e",
+  "lino": "#d8d2c0",
+  "linen": "#f0ece2",
+  "quilt": "#7c8fa8",
+  "grille": "#6b5a44",
+  "logBark": "#5a4030",
+  "canvas1": "#6d8a6a",
+  "canvas2": "#c49a5a",
+  "canvas3": "#8a7aa8",
+  "book1": "#7a2e2a",
+  "book2": "#2e4a6b",
+  "book3": "#3f5f3a",
+  "book4": "#b08a3e",
+  "book5": "#5a3f5f",
+  "book6": "#2f2f2f"
+ },
+ "camera": {
+  "yaw": 32,
+  "pitch": 18
+ },
+ "parts": [
+  {
+   "name": "RoofGroup",
+   "shape": "none",
+   "pivot": [
+    0,
+    3.4,
+    0
+   ],
+   "note": "hide / lift this to see inside"
+  },
+  {
+   "name": "Foundation",
+   "shape": "box",
+   "size": [
+    10.4,
+    0.45,
+    8.2
+   ],
+   "at": [
+    0,
+    0.225,
+    0
+   ],
+   "color": "found",
+   "collision": "box"
+  },
+  {
+   "name": "WallFront1",
+   "shape": "box",
+   "size": [
+    0.855,
+    2.97,
+    0.15
+   ],
+   "at": [
+    -4.672,
+    1.915,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront2",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.95,
+    0.15
+   ],
+   "at": [
+    -3.85,
+    0.905,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront3",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.53,
+    0.15
+   ],
+   "at": [
+    -3.85,
+    3.135,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront4",
+   "shape": "box",
+   "size": [
+    0.11,
+    2.97,
+    0.15
+   ],
+   "at": [
+    -3.4,
+    1.915,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront5",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.95,
+    0.15
+   ],
+   "at": [
+    -2.95,
+    0.905,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront6",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.53,
+    0.15
+   ],
+   "at": [
+    -2.95,
+    3.135,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront7",
+   "shape": "box",
+   "size": [
+    2.085,
+    2.97,
+    0.15
+   ],
+   "at": [
+    -1.513,
+    1.915,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront8",
+   "shape": "box",
+   "size": [
+    0.94,
+    0.81,
+    0.15
+   ],
+   "at": [
+    0,
+    2.995,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront9",
+   "shape": "box",
+   "size": [
+    2.085,
+    2.97,
+    0.15
+   ],
+   "at": [
+    1.513,
+    1.915,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront10",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.95,
+    0.15
+   ],
+   "at": [
+    2.95,
+    0.905,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront11",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.53,
+    0.15
+   ],
+   "at": [
+    2.95,
+    3.135,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront12",
+   "shape": "box",
+   "size": [
+    0.11,
+    2.97,
+    0.15
+   ],
+   "at": [
+    3.4,
+    1.915,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront13",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.95,
+    0.15
+   ],
+   "at": [
+    3.85,
+    0.905,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront14",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.53,
+    0.15
+   ],
+   "at": [
+    3.85,
+    3.135,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallFront15",
+   "shape": "box",
+   "size": [
+    0.855,
+    2.97,
+    0.15
+   ],
+   "at": [
+    4.672,
+    1.915,
+    3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack1",
+   "shape": "box",
+   "size": [
+    2.105,
+    2.97,
+    0.15
+   ],
+   "at": [
+    -4.047,
+    1.915,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack2",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.95,
+    0.15
+   ],
+   "at": [
+    -2.6,
+    0.905,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack3",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.53,
+    0.15
+   ],
+   "at": [
+    -2.6,
+    3.135,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack4",
+   "shape": "box",
+   "size": [
+    2.955,
+    2.97,
+    0.15
+   ],
+   "at": [
+    -0.727,
+    1.915,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack5",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.83,
+    0.15
+   ],
+   "at": [
+    1.2,
+    2.985,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack6",
+   "shape": "box",
+   "size": [
+    0.555,
+    2.97,
+    0.15
+   ],
+   "at": [
+    1.928,
+    1.915,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack7",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.95,
+    0.15
+   ],
+   "at": [
+    2.6,
+    0.905,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack8",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.53,
+    0.15
+   ],
+   "at": [
+    2.6,
+    3.135,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallBack9",
+   "shape": "box",
+   "size": [
+    2.105,
+    2.97,
+    0.15
+   ],
+   "at": [
+    4.047,
+    1.915,
+    -3.925
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallLeft1",
+   "shape": "box",
+   "size": [
+    0.15,
+    2.97,
+    3.455
+   ],
+   "at": [
+    -5.025,
+    1.915,
+    -2.122
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallLeft2",
+   "shape": "box",
+   "size": [
+    0.15,
+    0.95,
+    0.79
+   ],
+   "at": [
+    -5.025,
+    0.905,
+    0
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallLeft3",
+   "shape": "box",
+   "size": [
+    0.15,
+    0.53,
+    0.79
+   ],
+   "at": [
+    -5.025,
+    3.135,
+    0
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallLeft4",
+   "shape": "box",
+   "size": [
+    0.15,
+    2.97,
+    3.455
+   ],
+   "at": [
+    -5.025,
+    1.915,
+    2.123
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallRight1",
+   "shape": "box",
+   "size": [
+    0.15,
+    2.97,
+    3.455
+   ],
+   "at": [
+    5.025,
+    1.915,
+    -2.122
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallRight2",
+   "shape": "box",
+   "size": [
+    0.15,
+    0.95,
+    0.79
+   ],
+   "at": [
+    5.025,
+    0.905,
+    0
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallRight3",
+   "shape": "box",
+   "size": [
+    0.15,
+    0.53,
+    0.79
+   ],
+   "at": [
+    5.025,
+    3.135,
+    0
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "WallRight4",
+   "shape": "box",
+   "size": [
+    0.15,
+    2.97,
+    3.455
+   ],
+   "at": [
+    5.025,
+    1.915,
+    2.123
+   ],
+   "color": "wall",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "GableL",
+   "shape": "extrude",
+   "plane": "zy",
+   "depth": 0.15,
+   "at": [
+    -5.0249999999999995,
+    0,
+    0
+   ],
+   "mirror": "x",
+   "color": "wall",
+   "collision": "default",
+   "outline": [
+    [
+     4,
+     3.4
+    ],
+    [
+     0,
+     5.55
+    ],
+    [
+     -4,
+     3.4
+    ]
+   ],
+   "note": "gable triangle on top of the side wall",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "Roof",
+   "shape": "extrude",
+   "plane": "zy",
+   "depth": 10.899999999999999,
+   "color": "roof",
+   "collision": "default",
+   "outline": [
+    [
+     4.5,
+     3.10125
+    ],
+    [
+     4.5,
+     3.3612500000000005
+    ],
+    [
+     0,
+     5.78
+    ],
+    [
+     -4.5,
+     3.3612500000000005
+    ],
+    [
+     -4.5,
+     3.10125
+    ],
+    [
+     0,
+     5.52
+    ]
+   ],
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "RidgeCap",
+   "shape": "box",
+   "size": [
+    10.95,
+    0.14,
+    0.3
+   ],
+   "at": [
+    0,
+    5.76,
+    0
+   ],
+   "color": "ridge",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "CornerFrontL",
+   "shape": "box",
+   "size": [
+    0.18,
+    2.92,
+    0.18
+   ],
+   "at": [
+    -5.07,
+    1.92,
+    3.97
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "CornerBackL",
+   "shape": "box",
+   "size": [
+    0.18,
+    2.92,
+    0.18
+   ],
+   "at": [
+    -5.07,
+    1.92,
+    -3.97
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "FriezeFront",
+   "shape": "box",
+   "size": [
+    10,
+    0.23,
+    0.14
+   ],
+   "at": [
+    0,
+    3.295,
+    3.98
+   ],
+   "color": "trim"
+  },
+  {
+   "name": "FriezeBack",
+   "shape": "box",
+   "size": [
+    10,
+    0.23,
+    0.14
+   ],
+   "at": [
+    0,
+    3.295,
+    -3.98
+   ],
+   "color": "trim"
+  },
+  {
+   "name": "Chimney",
+   "shape": "box",
+   "size": [
+    0.85,
+    3.4,
+    0.7
+   ],
+   "at": [
+    3.6,
+    5.7,
+    -0.6
+   ],
+   "color": "brick",
+   "collision": "box",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "ChimneyCap",
+   "shape": "box",
+   "size": [
+    1,
+    0.14,
+    0.85
+   ],
+   "at": [
+    3.6,
+    7.45,
+    -0.6
+   ],
+   "color": "cap",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "ChimneyFlue",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.18,
+    0.3
+   ],
+   "at": [
+    3.6,
+    7.58,
+    -0.6
+   ],
+   "color": "flue",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "Stoop",
+   "shape": "box",
+   "size": [
+    5.2,
+    0.47,
+    1.9
+   ],
+   "at": [
+    0,
+    0.235,
+    5.05
+   ],
+   "color": "concrete",
+   "collision": "box"
+  },
+  {
+   "name": "Step1",
+   "shape": "box",
+   "size": [
+    2.2,
+    0.31,
+    0.35
+   ],
+   "at": [
+    0,
+    0.155,
+    6.175
+   ],
+   "color": "concrete",
+   "collision": "box"
+  },
+  {
+   "name": "Step2",
+   "shape": "box",
+   "size": [
+    2.2,
+    0.155,
+    0.35
+   ],
+   "at": [
+    0,
+    0.0775,
+    6.525
+   ],
+   "color": "concrete",
+   "collision": "box"
+  },
+  {
+   "name": "ColBaseInL",
+   "shape": "box",
+   "size": [
+    0.34,
+    0.1,
+    0.34
+   ],
+   "at": [
+    -1.33,
+    0.52,
+    5.55
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "ColInL",
+   "shape": "cylinder",
+   "radius": 0.12,
+   "height": 2.28,
+   "segments": 8,
+   "shading": "smooth",
+   "at": [
+    -1.33,
+    1.7,
+    5.55
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "hull"
+  },
+  {
+   "name": "ColCapInL",
+   "shape": "box",
+   "size": [
+    0.34,
+    0.13,
+    0.34
+   ],
+   "at": [
+    -1.33,
+    2.895,
+    5.55
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "ColBaseOutL",
+   "shape": "box",
+   "size": [
+    0.34,
+    0.1,
+    0.34
+   ],
+   "at": [
+    -1.93,
+    0.52,
+    5.55
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "ColOutL",
+   "shape": "cylinder",
+   "radius": 0.12,
+   "height": 2.28,
+   "segments": 8,
+   "shading": "smooth",
+   "at": [
+    -1.93,
+    1.7,
+    5.55
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "hull"
+  },
+  {
+   "name": "ColCapOutL",
+   "shape": "box",
+   "size": [
+    0.34,
+    0.13,
+    0.34
+   ],
+   "at": [
+    -1.93,
+    2.895,
+    5.55
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "Pediment",
+   "shape": "extrude",
+   "plane": "xy",
+   "depth": 1.85,
+   "at": [
+    0,
+    0,
+    4.875
+   ],
+   "color": "trim",
+   "collision": "default",
+   "outline": [
+    [
+     2.55,
+     2.95
+    ],
+    [
+     2.55,
+     3.439
+    ],
+    [
+     0,
+     4.95
+    ],
+    [
+     -2.55,
+     3.439
+    ],
+    [
+     -2.55,
+     2.95
+    ],
+    [
+     -1.2,
+     2.95
+    ],
+    [
+     -1.039,
+     3.35
+    ],
+    [
+     -0.6,
+     3.643
+    ],
+    [
+     0,
+     3.75
+    ],
+    [
+     0.6,
+     3.643
+    ],
+    [
+     1.039,
+     3.35
+    ],
+    [
+     1.2,
+     2.95
+    ]
+   ],
+   "note": "front gable over the porch with an elliptical arch opening",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "PorchRoof",
+   "shape": "extrude",
+   "plane": "xy",
+   "depth": 5.1,
+   "at": [
+    0,
+    0,
+    3.55
+   ],
+   "color": "roof",
+   "collision": "default",
+   "outline": [
+    [
+     2.75,
+     3.3
+    ],
+    [
+     2.75,
+     3.52
+    ],
+    [
+     0,
+     5.15
+    ],
+    [
+     -2.75,
+     3.52
+    ],
+    [
+     -2.75,
+     3.3
+    ],
+    [
+     0,
+     4.93
+    ]
+   ],
+   "note": "runs back into the attic so the valley closes",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "FrontCasingL",
+   "shape": "box",
+   "size": [
+    0.49,
+    2.35,
+    0.04
+   ],
+   "at": [
+    -0.705,
+    1.645,
+    4
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "FrontCasingHead",
+   "shape": "box",
+   "size": [
+    0.92,
+    0.24,
+    0.04
+   ],
+   "at": [
+    0,
+    2.7,
+    4
+   ],
+   "color": "trim"
+  },
+  {
+   "name": "SidelightL",
+   "shape": "box",
+   "size": [
+    0.26,
+    1.8,
+    0.06
+   ],
+   "at": [
+    -0.68,
+    1.55,
+    4.005
+   ],
+   "color": "glass",
+   "mirror": "x"
+  },
+  {
+   "name": "FrontThreshold",
+   "shape": "box",
+   "size": [
+    0.94,
+    0.05,
+    0.27
+   ],
+   "at": [
+    0,
+    0.455,
+    3.985
+   ],
+   "color": "oak",
+   "collision": "box"
+  },
+  {
+   "name": "FrontDoor",
+   "shape": "box",
+   "size": [
+    0.93,
+    2.1,
+    0.05
+   ],
+   "at": [
+    -0.005,
+    1.535,
+    3.955
+   ],
+   "color": "door",
+   "pivot": [
+    -0.47,
+    1.535,
+    3.93
+   ],
+   "collision": "box",
+   "note": "hinge: left jamb, inside face; +Y opens inward"
+  },
+  {
+   "name": "FrontDoorGlass",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.6,
+    0.06
+   ],
+   "at": [
+    -0.005,
+    2.1,
+    3.955
+   ],
+   "color": "glass",
+   "parent": "FrontDoor"
+  },
+  {
+   "name": "FrontDoorPanel",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.7,
+    0.07
+   ],
+   "at": [
+    -0.005,
+    0.95,
+    3.955
+   ],
+   "color": "doorDark",
+   "parent": "FrontDoor",
+   "collision": "none"
+  },
+  {
+   "name": "FrontKnobOut",
+   "shape": "sphere",
+   "radius": 0.035,
+   "detail": 0,
+   "at": [
+    0.36,
+    1.45,
+    4.005
+   ],
+   "parent": "FrontDoor",
+   "color": "brass",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   },
+   "collision": "none"
+  },
+  {
+   "name": "FrontKnobIn",
+   "shape": "sphere",
+   "radius": 0.035,
+   "detail": 0,
+   "at": [
+    0.36,
+    1.45,
+    3.905
+   ],
+   "parent": "FrontDoor",
+   "color": "brass",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   },
+   "collision": "none"
+  },
+  {
+   "name": "FrontPairFrameL",
+   "shape": "box",
+   "size": [
+    1.9,
+    1.65,
+    0.04
+   ],
+   "at": [
+    -3.4,
+    2.125,
+    4
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "FrontGlass1L",
+   "shape": "box",
+   "size": [
+    0.79,
+    1.49,
+    0.195
+   ],
+   "at": [
+    -2.95,
+    2.125,
+    3.9375
+   ],
+   "color": "glass",
+   "mirror": "x"
+  },
+  {
+   "name": "FrontMullV1L",
+   "shape": "box",
+   "size": [
+    0.05,
+    1.47,
+    0.06
+   ],
+   "at": [
+    -2.95,
+    2.125,
+    4.025
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "FrontMullH1L",
+   "shape": "box",
+   "size": [
+    0.77,
+    0.05,
+    0.06
+   ],
+   "at": [
+    -2.95,
+    2.275,
+    4.02
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "FrontGlass2L",
+   "shape": "box",
+   "size": [
+    0.79,
+    1.49,
+    0.195
+   ],
+   "at": [
+    -3.85,
+    2.125,
+    3.9375
+   ],
+   "color": "glass",
+   "mirror": "x"
+  },
+  {
+   "name": "FrontMullV2L",
+   "shape": "box",
+   "size": [
+    0.05,
+    1.47,
+    0.06
+   ],
+   "at": [
+    -3.85,
+    2.125,
+    4.025
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "FrontMullH2L",
+   "shape": "box",
+   "size": [
+    0.77,
+    0.05,
+    0.06
+   ],
+   "at": [
+    -3.85,
+    2.275,
+    4.02
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "FrontSillL",
+   "shape": "box",
+   "size": [
+    1.86,
+    0.07,
+    0.13
+   ],
+   "at": [
+    -3.4,
+    1.33,
+    4.055
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "FrontHeadL",
+   "shape": "box",
+   "size": [
+    1.86,
+    0.1,
+    0.07
+   ],
+   "at": [
+    -3.4,
+    2.99,
+    4.025
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "ShutterOutL",
+   "shape": "box",
+   "size": [
+    0.42,
+    1.65,
+    0.04
+   ],
+   "at": [
+    -4.565,
+    2.125,
+    4.01
+   ],
+   "color": "shutter",
+   "mirror": "x"
+  },
+  {
+   "name": "ShutterRailOutL",
+   "shape": "box",
+   "size": [
+    0.38,
+    0.06,
+    0.06
+   ],
+   "at": [
+    -4.565,
+    2.125,
+    4.015
+   ],
+   "color": "shutter",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "ShutterInL",
+   "shape": "box",
+   "size": [
+    0.42,
+    1.65,
+    0.04
+   ],
+   "at": [
+    -2.235,
+    2.125,
+    4.01
+   ],
+   "color": "shutter",
+   "mirror": "x"
+  },
+  {
+   "name": "ShutterRailInL",
+   "shape": "box",
+   "size": [
+    0.38,
+    0.06,
+    0.06
+   ],
+   "at": [
+    -2.235,
+    2.125,
+    4.015
+   ],
+   "color": "shutter",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "SideFrameL",
+   "shape": "box",
+   "size": [
+    0.04,
+    1.65,
+    0.95
+   ],
+   "at": [
+    -5.1,
+    2.125,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "SideGlassL",
+   "shape": "box",
+   "size": [
+    0.195,
+    1.49,
+    0.79
+   ],
+   "at": [
+    -5.0375,
+    2.125,
+    0
+   ],
+   "color": "glass",
+   "mirror": "x"
+  },
+  {
+   "name": "SideMullVL",
+   "shape": "box",
+   "size": [
+    0.06,
+    1.47,
+    0.05
+   ],
+   "at": [
+    -5.125,
+    2.125,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "SideMullHL",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.05,
+    0.77
+   ],
+   "at": [
+    -5.119999999999999,
+    2.275,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "SideSillL",
+   "shape": "box",
+   "size": [
+    0.13,
+    0.07,
+    1.07
+   ],
+   "at": [
+    -5.154999999999999,
+    1.33,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "SideHeadL",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.1,
+    1.07
+   ],
+   "at": [
+    -5.125,
+    2.99,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "SideShutterFrontL",
+   "shape": "box",
+   "size": [
+    0.04,
+    1.65,
+    0.42
+   ],
+   "at": [
+    -5.109999999999999,
+    2.125,
+    0.71
+   ],
+   "color": "shutter",
+   "mirror": "x"
+  },
+  {
+   "name": "SideShutterBackL",
+   "shape": "box",
+   "size": [
+    0.04,
+    1.65,
+    0.42
+   ],
+   "at": [
+    -5.109999999999999,
+    2.125,
+    -0.71
+   ],
+   "color": "shutter",
+   "mirror": "x"
+  },
+  {
+   "name": "AtticFrameL",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.8,
+    0.8
+   ],
+   "at": [
+    -5.1,
+    4.25,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "AtticGlassL",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.66,
+    0.66
+   ],
+   "at": [
+    -5.1049999999999995,
+    4.25,
+    0
+   ],
+   "color": "glass",
+   "mirror": "x",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "AtticMullVL",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.64,
+    0.05
+   ],
+   "at": [
+    -5.125,
+    4.25,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "AtticMullHL",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.05,
+    0.64
+   ],
+   "at": [
+    -5.119999999999999,
+    4.25,
+    0
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "BackFrameL",
+   "shape": "box",
+   "size": [
+    0.95,
+    1.65,
+    0.04
+   ],
+   "at": [
+    -2.6,
+    2.125,
+    -4
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "BackGlassL",
+   "shape": "box",
+   "size": [
+    0.79,
+    1.49,
+    0.195
+   ],
+   "at": [
+    -2.6,
+    2.125,
+    -3.9375
+   ],
+   "color": "glass",
+   "mirror": "x"
+  },
+  {
+   "name": "BackMullVL",
+   "shape": "box",
+   "size": [
+    0.05,
+    1.47,
+    0.06
+   ],
+   "at": [
+    -2.6,
+    2.125,
+    -4.025
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "BackMullHL",
+   "shape": "box",
+   "size": [
+    0.77,
+    0.05,
+    0.06
+   ],
+   "at": [
+    -2.6,
+    2.275,
+    -4.02
+   ],
+   "color": "trim",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "BackSillL",
+   "shape": "box",
+   "size": [
+    1.07,
+    0.07,
+    0.13
+   ],
+   "at": [
+    -2.6,
+    1.33,
+    -4.055
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "BackHeadL",
+   "shape": "box",
+   "size": [
+    1.07,
+    0.1,
+    0.07
+   ],
+   "at": [
+    -2.6,
+    2.99,
+    -4.025
+   ],
+   "color": "trim",
+   "mirror": "x"
+  },
+  {
+   "name": "BackCasingL",
+   "shape": "box",
+   "size": [
+    0.11,
+    2.24,
+    0.04
+   ],
+   "at": [
+    0.705,
+    1.59,
+    -4
+   ],
+   "color": "trim"
+  },
+  {
+   "name": "BackCasingR",
+   "shape": "box",
+   "size": [
+    0.11,
+    2.24,
+    0.04
+   ],
+   "at": [
+    1.695,
+    1.59,
+    -4
+   ],
+   "color": "trim"
+  },
+  {
+   "name": "BackCasingHead",
+   "shape": "box",
+   "size": [
+    0.88,
+    0.15,
+    0.04
+   ],
+   "at": [
+    1.2,
+    2.635,
+    -4
+   ],
+   "color": "trim"
+  },
+  {
+   "name": "BackThreshold",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.05,
+    0.27
+   ],
+   "at": [
+    1.2,
+    0.455,
+    -3.985
+   ],
+   "color": "oak",
+   "collision": "box"
+  },
+  {
+   "name": "BackDoor",
+   "shape": "box",
+   "size": [
+    0.89,
+    2.08,
+    0.05
+   ],
+   "at": [
+    1.195,
+    1.525,
+    -3.955
+   ],
+   "color": "backdoor",
+   "pivot": [
+    0.75,
+    1.525,
+    -3.93
+   ],
+   "collision": "box",
+   "note": "hinge: left jamb seen from inside... x 0.75, inside face; -Y opens inward"
+  },
+  {
+   "name": "BackDoorPanelTop",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.75,
+    0.07
+   ],
+   "at": [
+    1.195,
+    2,
+    -3.955
+   ],
+   "color": "backdoorDark",
+   "parent": "BackDoor",
+   "collision": "none"
+  },
+  {
+   "name": "BackDoorPanelBottom",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.75,
+    0.07
+   ],
+   "at": [
+    1.195,
+    1,
+    -3.955
+   ],
+   "color": "backdoorDark",
+   "parent": "BackDoor",
+   "collision": "none"
+  },
+  {
+   "name": "BackKnobOut",
+   "shape": "sphere",
+   "radius": 0.035,
+   "detail": 0,
+   "at": [
+    1.56,
+    1.45,
+    -4.005
+   ],
+   "parent": "BackDoor",
+   "color": "brass",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   },
+   "collision": "none"
+  },
+  {
+   "name": "BackKnobIn",
+   "shape": "sphere",
+   "radius": 0.035,
+   "detail": 0,
+   "at": [
+    1.56,
+    1.45,
+    -3.905
+   ],
+   "parent": "BackDoor",
+   "color": "brass",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   },
+   "collision": "none"
+  },
+  {
+   "name": "BackStep",
+   "shape": "box",
+   "size": [
+    1.3,
+    0.44,
+    0.8
+   ],
+   "at": [
+    1.2,
+    0.22,
+    -4.5
+   ],
+   "color": "concrete",
+   "collision": "box"
+  },
+  {
+   "name": "Floor",
+   "shape": "box",
+   "size": [
+    9.899999999999999,
+    0.07,
+    7.7
+   ],
+   "at": [
+    0,
+    0.435,
+    0
+   ],
+   "color": "floor",
+   "collision": "box"
+  },
+  {
+   "name": "Ceiling",
+   "shape": "box",
+   "size": [
+    9.899999999999999,
+    0.12,
+    7.7
+   ],
+   "at": [
+    0,
+    3.34,
+    0
+   ],
+   "color": "ceiling",
+   "collision": "box",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "PartitionMid1",
+   "shape": "box",
+   "size": [
+    2,
+    2.83,
+    0.1
+   ],
+   "at": [
+    -3.95,
+    1.875,
+    -0.8
+   ],
+   "color": "interior",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "PartitionMid2",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.74,
+    0.1
+   ],
+   "at": [
+    -2.5,
+    2.92,
+    -0.8
+   ],
+   "color": "interior",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "PartitionMid3",
+   "shape": "box",
+   "size": [
+    3.1,
+    2.83,
+    0.1
+   ],
+   "at": [
+    -0.5,
+    1.875,
+    -0.8
+   ],
+   "color": "interior",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "PartitionMid4",
+   "shape": "box",
+   "size": [
+    0.9,
+    0.74,
+    0.1
+   ],
+   "at": [
+    1.5,
+    2.92,
+    -0.8
+   ],
+   "color": "interior",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "PartitionMid5",
+   "shape": "box",
+   "size": [
+    3,
+    2.83,
+    0.1
+   ],
+   "at": [
+    3.45,
+    1.875,
+    -0.8
+   ],
+   "color": "interior",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "PartitionBack1",
+   "shape": "box",
+   "size": [
+    0.1,
+    2.83,
+    3
+   ],
+   "at": [
+    0,
+    1.875,
+    -2.35
+   ],
+   "color": "interior",
+   "collision": "box",
+   "lod": "keep"
+  },
+  {
+   "name": "DoorwayJambAL",
+   "shape": "box",
+   "size": [
+    0.08,
+    2.07,
+    0.14
+   ],
+   "at": [
+    -2.97,
+    1.505,
+    -0.8
+   ],
+   "color": "trim",
+   "collision": "none"
+  },
+  {
+   "name": "DoorwayJambBL",
+   "shape": "box",
+   "size": [
+    0.08,
+    2.07,
+    0.14
+   ],
+   "at": [
+    -2.03,
+    1.505,
+    -0.8
+   ],
+   "color": "trim",
+   "collision": "none"
+  },
+  {
+   "name": "DoorwayHeadL",
+   "shape": "box",
+   "size": [
+    1.06,
+    0.1,
+    0.14
+   ],
+   "at": [
+    -2.5,
+    2.59,
+    -0.8
+   ],
+   "color": "trim",
+   "collision": "none"
+  },
+  {
+   "name": "DoorwayJambAR",
+   "shape": "box",
+   "size": [
+    0.08,
+    2.07,
+    0.14
+   ],
+   "at": [
+    1.03,
+    1.505,
+    -0.8
+   ],
+   "color": "trim",
+   "collision": "none"
+  },
+  {
+   "name": "DoorwayJambBR",
+   "shape": "box",
+   "size": [
+    0.08,
+    2.07,
+    0.14
+   ],
+   "at": [
+    1.97,
+    1.505,
+    -0.8
+   ],
+   "color": "trim",
+   "collision": "none"
+  },
+  {
+   "name": "DoorwayHeadR",
+   "shape": "box",
+   "size": [
+    1.06,
+    0.1,
+    0.14
+   ],
+   "at": [
+    1.5,
+    2.59,
+    -0.8
+   ],
+   "color": "trim",
+   "collision": "none"
+  },
+  {
+   "name": "Hearth",
+   "shape": "box",
+   "size": [
+    1.6,
+    0.08,
+    0.57
+   ],
+   "at": [
+    3.9,
+    0.49,
+    -0.485
+   ],
+   "color": "cap",
+   "collision": "box"
+  },
+  {
+   "name": "FireplaceBody",
+   "shape": "box",
+   "size": [
+    1.3,
+    1.19,
+    0.48
+   ],
+   "at": [
+    3.9,
+    1.115,
+    -0.54
+   ],
+   "color": "brick",
+   "collision": "box"
+  },
+  {
+   "name": "Firebox",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.62,
+    0.06
+   ],
+   "at": [
+    3.9,
+    0.86,
+    -0.3
+   ],
+   "color": "flue",
+   "collision": "none"
+  },
+  {
+   "name": "Mantel",
+   "shape": "box",
+   "size": [
+    1.55,
+    0.08,
+    0.46
+   ],
+   "at": [
+    3.9,
+    1.75,
+    -0.56
+   ],
+   "color": "oak",
+   "collision": "box"
+  },
+  {
+   "name": "ChimneyBreast",
+   "shape": "box",
+   "size": [
+    0.95,
+    1.51,
+    0.35
+   ],
+   "at": [
+    3.9,
+    2.545,
+    -0.625
+   ],
+   "color": "brick",
+   "collision": "box"
+  },
+  {
+   "name": "ConiferL",
+   "shape": "cone",
+   "radius": [
+    0.42,
+    0
+   ],
+   "height": 1.5,
+   "segments": 7,
+   "at": [
+    -1.8,
+    0.75,
+    6.35
+   ],
+   "color": "leafDark",
+   "mirror": "x",
+   "collision": "none",
+   "jitter": 0.02
+  },
+  {
+   "name": "BushL",
+   "shape": "sphere",
+   "radius": [
+    0.6,
+    0.42,
+    0.45
+   ],
+   "detail": 1,
+   "jitter": 0.03,
+   "at": [
+    -4.3,
+    0.48,
+    4.45
+   ],
+   "color": "leaf",
+   "mirror": "x",
+   "collision": "none"
+  },
+  {
+   "name": "Rug",
+   "shape": "box",
+   "size": [
+    2.5,
+    0.05,
+    2
+   ],
+   "at": [
+    3.65,
+    0.455,
+    1.3
+   ],
+   "color": "rug",
+   "collision": "none"
+  },
+  {
+   "name": "SofaLeg1",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    4.81,
+    0.51,
+    2.755
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SofaLeg2",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    2.89,
+    0.51,
+    2.755
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SofaLeg3",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    4.81,
+    0.51,
+    2.045
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SofaLeg4",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    2.89,
+    0.51,
+    2.045
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SofaBase",
+   "shape": "box",
+   "size": [
+    2.1,
+    0.25,
+    0.89
+   ],
+   "at": [
+    3.85,
+    0.675,
+    2.4
+   ],
+   "color": "fabricGreen",
+   "collision": "box"
+  },
+  {
+   "name": "SofaBack",
+   "shape": "box",
+   "size": [
+    1.74,
+    0.52,
+    0.22
+   ],
+   "at": [
+    3.85,
+    1.06,
+    2.735
+   ],
+   "color": "fabricGreen",
+   "collision": "none"
+  },
+  {
+   "name": "SofaArmL",
+   "shape": "box",
+   "size": [
+    0.18,
+    0.3,
+    0.89
+   ],
+   "at": [
+    4.81,
+    0.94,
+    2.4
+   ],
+   "color": "fabricGreen",
+   "collision": "none",
+   "chamfer": 0.03
+  },
+  {
+   "name": "SofaArmR",
+   "shape": "box",
+   "size": [
+    0.18,
+    0.3,
+    0.89
+   ],
+   "at": [
+    2.89,
+    0.94,
+    2.4
+   ],
+   "color": "fabricGreen",
+   "collision": "none",
+   "chamfer": 0.03
+  },
+  {
+   "name": "SofaCushion1",
+   "shape": "box",
+   "size": [
+    0.56,
+    0.13,
+    0.65
+   ],
+   "at": [
+    4.43,
+    0.855,
+    2.31
+   ],
+   "color": "fabricGreen",
+   "collision": "none",
+   "chamfer": 0.025
+  },
+  {
+   "name": "SofaCushion2",
+   "shape": "box",
+   "size": [
+    0.56,
+    0.13,
+    0.65
+   ],
+   "at": [
+    3.85,
+    0.855,
+    2.31
+   ],
+   "color": "fabricGreen",
+   "collision": "none",
+   "chamfer": 0.025
+  },
+  {
+   "name": "SofaCushion3",
+   "shape": "box",
+   "size": [
+    0.56,
+    0.13,
+    0.65
+   ],
+   "at": [
+    3.27,
+    0.855,
+    2.31
+   ],
+   "color": "fabricGreen",
+   "collision": "none",
+   "chamfer": 0.025
+  },
+  {
+   "name": "ArmchairLeg1",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    2.145,
+    0.51,
+    1.235
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "ArmchairLeg2",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    2.145,
+    0.51,
+    0.565
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "ArmchairLeg3",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    2.855,
+    0.51,
+    1.235
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "ArmchairLeg4",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.08,
+    0.06
+   ],
+   "at": [
+    2.855,
+    0.51,
+    0.565
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "ArmchairBase",
+   "shape": "box",
+   "size": [
+    0.89,
+    0.25,
+    0.85
+   ],
+   "at": [
+    2.5,
+    0.675,
+    0.9
+   ],
+   "color": "fabricRose",
+   "collision": "box"
+  },
+  {
+   "name": "ArmchairBack",
+   "shape": "box",
+   "size": [
+    0.22,
+    0.52,
+    0.49
+   ],
+   "at": [
+    2.165,
+    1.06,
+    0.9
+   ],
+   "color": "fabricRose",
+   "collision": "none"
+  },
+  {
+   "name": "ArmchairArmL",
+   "shape": "box",
+   "size": [
+    0.89,
+    0.3,
+    0.18
+   ],
+   "at": [
+    2.5,
+    0.94,
+    1.235
+   ],
+   "color": "fabricRose",
+   "collision": "none",
+   "chamfer": 0.03
+  },
+  {
+   "name": "ArmchairArmR",
+   "shape": "box",
+   "size": [
+    0.89,
+    0.3,
+    0.18
+   ],
+   "at": [
+    2.5,
+    0.94,
+    0.565
+   ],
+   "color": "fabricRose",
+   "collision": "none",
+   "chamfer": 0.03
+  },
+  {
+   "name": "ArmchairCushion1",
+   "shape": "box",
+   "size": [
+    0.65,
+    0.13,
+    0.47
+   ],
+   "at": [
+    2.59,
+    0.855,
+    0.9
+   ],
+   "color": "fabricRose",
+   "collision": "none",
+   "chamfer": 0.025
+  },
+  {
+   "name": "CoffeeTableLeg1",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.41,
+    0.05
+   ],
+   "at": [
+    3.405,
+    0.675,
+    0.98
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "CoffeeTableLeg2",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.41,
+    0.05
+   ],
+   "at": [
+    4.395,
+    0.675,
+    0.98
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "CoffeeTableLeg3",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.41,
+    0.05
+   ],
+   "at": [
+    3.405,
+    0.675,
+    1.42
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "CoffeeTableLeg4",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.41,
+    0.05
+   ],
+   "at": [
+    4.395,
+    0.675,
+    1.42
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "CoffeeTableTop",
+   "shape": "box",
+   "size": [
+    1.1,
+    0.04,
+    0.55
+   ],
+   "at": [
+    3.9,
+    0.9,
+    1.2
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "CoffeeTableShelf",
+   "shape": "box",
+   "size": [
+    0.96,
+    0.04,
+    0.41
+   ],
+   "at": [
+    3.9,
+    0.59,
+    1.2
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "CoffeeBowl",
+   "shape": "sphere",
+   "radius": [
+    0.12,
+    0.05,
+    0.12
+   ],
+   "detail": 1,
+   "at": [
+    3.75,
+    0.94,
+    1.2
+   ],
+   "color": "china",
+   "collision": "none"
+  },
+  {
+   "name": "FloorLampBase",
+   "shape": "cylinder",
+   "radius": 0.16,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    4.62,
+    0.49,
+    1.45
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "FloorLampPole",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 1.3,
+   "segments": 6,
+   "at": [
+    4.62,
+    1.16,
+    1.45
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "FloorLampShade",
+   "shape": "cone",
+   "radius": [
+    0.24,
+    0.15
+   ],
+   "height": 0.3,
+   "segments": 8,
+   "at": [
+    4.62,
+    1.92,
+    1.45
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireSideL",
+   "shape": "box",
+   "size": [
+    0.04,
+    1.8,
+    0.3
+   ],
+   "at": [
+    2.17,
+    1.37,
+    -0.6
+   ],
+   "color": "woodDark",
+   "collision": "box"
+  },
+  {
+   "name": "BookcaseFireSideR",
+   "shape": "box",
+   "size": [
+    0.04,
+    1.8,
+    0.3
+   ],
+   "at": [
+    3.03,
+    1.37,
+    -0.6
+   ],
+   "color": "woodDark",
+   "collision": "box"
+  },
+  {
+   "name": "BookcaseFireBackPanel",
+   "shape": "box",
+   "size": [
+    0.82,
+    1.68,
+    0.04
+   ],
+   "at": [
+    2.6,
+    1.39,
+    -0.73
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireTop",
+   "shape": "box",
+   "size": [
+    0.82,
+    0.04,
+    0.3
+   ],
+   "at": [
+    2.6,
+    2.25,
+    -0.6
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBottom",
+   "shape": "box",
+   "size": [
+    0.82,
+    0.08,
+    0.29
+   ],
+   "at": [
+    2.6,
+    0.51,
+    -0.605
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireShelf1",
+   "shape": "box",
+   "size": [
+    0.82,
+    0.04,
+    0.23
+   ],
+   "at": [
+    2.6,
+    0.95,
+    -0.595
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireShelf2",
+   "shape": "box",
+   "size": [
+    0.82,
+    0.04,
+    0.23
+   ],
+   "at": [
+    2.6,
+    1.4,
+    -0.595
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireShelf3",
+   "shape": "box",
+   "size": [
+    0.82,
+    0.04,
+    0.23
+   ],
+   "at": [
+    2.6,
+    1.85,
+    -0.595
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_0",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.31,
+    0.2
+   ],
+   "at": [
+    2.23,
+    0.705,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_1",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.31,
+    0.2
+   ],
+   "at": [
+    2.29,
+    0.705,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_2",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.26,
+    0.2
+   ],
+   "at": [
+    2.34,
+    0.68,
+    -0.61
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_3",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.21,
+    0.2
+   ],
+   "at": [
+    2.39,
+    0.655,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_4",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.22,
+    0.2
+   ],
+   "at": [
+    2.44,
+    0.66,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_5",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.21,
+    0.2
+   ],
+   "at": [
+    2.49,
+    0.655,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_6",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.24,
+    0.2
+   ],
+   "at": [
+    2.54,
+    0.67,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_7",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.22,
+    0.2
+   ],
+   "at": [
+    2.6,
+    0.66,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_8",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.22,
+    0.2
+   ],
+   "at": [
+    2.66,
+    0.66,
+    -0.61
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_9",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.29,
+    0.2
+   ],
+   "at": [
+    2.71,
+    0.695,
+    -0.61
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_10",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.22,
+    0.2
+   ],
+   "at": [
+    2.755,
+    0.66,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_11",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.32,
+    0.2
+   ],
+   "at": [
+    2.795,
+    0.71,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_12",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.27,
+    0.2
+   ],
+   "at": [
+    2.845,
+    0.685,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook0_13",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.25,
+    0.2
+   ],
+   "at": [
+    2.9,
+    0.675,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_0",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.29,
+    0.2
+   ],
+   "at": [
+    2.22,
+    1.115,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_1",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.23,
+    0.2
+   ],
+   "at": [
+    2.27,
+    1.085,
+    -0.61
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_2",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.21,
+    0.2
+   ],
+   "at": [
+    2.325,
+    1.075,
+    -0.61
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_3",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.3,
+    0.2
+   ],
+   "at": [
+    2.385,
+    1.12,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_4",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.3,
+    0.2
+   ],
+   "at": [
+    2.45,
+    1.12,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_5",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.26,
+    0.2
+   ],
+   "at": [
+    2.515,
+    1.1,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_6",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.24,
+    0.2
+   ],
+   "at": [
+    2.57,
+    1.09,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_7",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.28,
+    0.2
+   ],
+   "at": [
+    2.62,
+    1.11,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_8",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.31,
+    0.2
+   ],
+   "at": [
+    2.67,
+    1.125,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_9",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.26,
+    0.2
+   ],
+   "at": [
+    2.72,
+    1.1,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_10",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.31,
+    0.2
+   ],
+   "at": [
+    2.765,
+    1.125,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_11",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.26,
+    0.2
+   ],
+   "at": [
+    2.815,
+    1.1,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_12",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.29,
+    0.2
+   ],
+   "at": [
+    2.865,
+    1.115,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook1_13",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.32,
+    0.2
+   ],
+   "at": [
+    2.91,
+    1.13,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_0",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.28,
+    0.2
+   ],
+   "at": [
+    2.225,
+    1.56,
+    -0.61
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_1",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.22,
+    0.2
+   ],
+   "at": [
+    2.285,
+    1.53,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_2",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.32,
+    0.2
+   ],
+   "at": [
+    2.335,
+    1.58,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_3",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.26,
+    0.2
+   ],
+   "at": [
+    2.39,
+    1.55,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_4",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.21,
+    0.2
+   ],
+   "at": [
+    2.455,
+    1.525,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_5",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.23,
+    0.2
+   ],
+   "at": [
+    2.505,
+    1.535,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_6",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.24,
+    0.2
+   ],
+   "at": [
+    2.545,
+    1.54,
+    -0.61
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_7",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.29,
+    0.2
+   ],
+   "at": [
+    2.59,
+    1.565,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_8",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.31,
+    0.2
+   ],
+   "at": [
+    2.635,
+    1.575,
+    -0.61
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook2_9",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.24,
+    0.2
+   ],
+   "at": [
+    2.675,
+    1.54,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_0",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.24,
+    0.2
+   ],
+   "at": [
+    2.22,
+    1.99,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_1",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.25,
+    0.2
+   ],
+   "at": [
+    2.275,
+    1.995,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_2",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.31,
+    0.2
+   ],
+   "at": [
+    2.33,
+    2.025,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_3",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.23,
+    0.2
+   ],
+   "at": [
+    2.385,
+    1.985,
+    -0.61
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_4",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.3,
+    0.2
+   ],
+   "at": [
+    2.435,
+    2.02,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_5",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.22,
+    0.2
+   ],
+   "at": [
+    2.475,
+    1.98,
+    -0.61
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_6",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.27,
+    0.2
+   ],
+   "at": [
+    2.53,
+    2.005,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_7",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.26,
+    0.2
+   ],
+   "at": [
+    2.59,
+    2,
+    -0.61
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_8",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.24,
+    0.2
+   ],
+   "at": [
+    2.64,
+    1.99,
+    -0.61
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_9",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.27,
+    0.2
+   ],
+   "at": [
+    2.7,
+    2.005,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_10",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.28,
+    0.2
+   ],
+   "at": [
+    2.77,
+    2.01,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_11",
+   "shape": "box",
+   "size": [
+    0.07,
+    0.3,
+    0.2
+   ],
+   "at": [
+    2.84,
+    2.02,
+    -0.61
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseFireBook3_12",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.28,
+    0.2
+   ],
+   "at": [
+    2.9,
+    2.01,
+    -0.61
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallSideL",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.8,
+    0.04
+   ],
+   "at": [
+    -4.8,
+    1.37,
+    3.43
+   ],
+   "color": "woodDark",
+   "collision": "box"
+  },
+  {
+   "name": "BookcaseWallSideR",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.8,
+    0.04
+   ],
+   "at": [
+    -4.8,
+    1.37,
+    2.57
+   ],
+   "color": "woodDark",
+   "collision": "box"
+  },
+  {
+   "name": "BookcaseWallBackPanel",
+   "shape": "box",
+   "size": [
+    0.04,
+    1.68,
+    0.82
+   ],
+   "at": [
+    -4.93,
+    1.39,
+    3
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallTop",
+   "shape": "box",
+   "size": [
+    0.3,
+    0.04,
+    0.82
+   ],
+   "at": [
+    -4.8,
+    2.25,
+    3
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBottom",
+   "shape": "box",
+   "size": [
+    0.29,
+    0.08,
+    0.82
+   ],
+   "at": [
+    -4.805,
+    0.51,
+    3
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallShelf1",
+   "shape": "box",
+   "size": [
+    0.23,
+    0.04,
+    0.82
+   ],
+   "at": [
+    -4.795,
+    0.95,
+    3
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallShelf2",
+   "shape": "box",
+   "size": [
+    0.23,
+    0.04,
+    0.82
+   ],
+   "at": [
+    -4.795,
+    1.4,
+    3
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallShelf3",
+   "shape": "box",
+   "size": [
+    0.23,
+    0.04,
+    0.82
+   ],
+   "at": [
+    -4.795,
+    1.85,
+    3
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_0",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.32,
+    0.07
+   ],
+   "at": [
+    -4.81,
+    0.71,
+    3.37
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_1",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.27,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    0.685,
+    3.305
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_2",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.22,
+    0.04
+   ],
+   "at": [
+    -4.81,
+    0.66,
+    3.255
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_3",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.22,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    0.66,
+    3.205
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_4",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.3,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    0.7,
+    3.15
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_5",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.29,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    0.695,
+    3.095
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_6",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.23,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    0.665,
+    3.04
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_7",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.29,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    0.695,
+    2.99
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_8",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.29,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    0.695,
+    2.94
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_9",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.27,
+    0.04
+   ],
+   "at": [
+    -4.81,
+    0.685,
+    2.895
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_10",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.29,
+    0.04
+   ],
+   "at": [
+    -4.81,
+    0.695,
+    2.855
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_11",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.26,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    0.68,
+    2.805
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_12",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.25,
+    0.04
+   ],
+   "at": [
+    -4.81,
+    0.675,
+    2.755
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook0_13",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.31,
+    0.07
+   ],
+   "at": [
+    -4.81,
+    0.705,
+    2.7
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_0",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.23,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.085,
+    3.375
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_1",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.32,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.13,
+    3.32
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_2",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.26,
+    0.07
+   ],
+   "at": [
+    -4.81,
+    1.1,
+    3.26
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_3",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.23,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.085,
+    3.2
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_4",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.26,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.1,
+    3.145
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_5",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.31,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.125,
+    3.09
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_6",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.28,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.11,
+    3.035
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_7",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.24,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.09,
+    2.975
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_8",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.23,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.085,
+    2.915
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_9",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.3,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.12,
+    2.86
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_10",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.27,
+    0.07
+   ],
+   "at": [
+    -4.81,
+    1.105,
+    2.8
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_11",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.3,
+    0.07
+   ],
+   "at": [
+    -4.81,
+    1.12,
+    2.73
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook1_12",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.32,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.13,
+    2.665
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_0",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.26,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.55,
+    3.375
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_1",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.3,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.57,
+    3.32
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_2",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.24,
+    0.04
+   ],
+   "at": [
+    -4.81,
+    1.54,
+    3.275
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_3",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.26,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.55,
+    3.23
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_4",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.28,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.56,
+    3.18
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_5",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.23,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.535,
+    3.125
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_6",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.28,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.56,
+    3.065
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_7",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.25,
+    0.07
+   ],
+   "at": [
+    -4.81,
+    1.545,
+    3
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook2_8",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.3,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.57,
+    2.935
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_0",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.24,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.99,
+    3.38
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_1",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.25,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.995,
+    3.325
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_2",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.25,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.995,
+    3.27
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_3",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.29,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    2.015,
+    3.215
+   ],
+   "color": "book3",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_4",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.3,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    2.02,
+    3.16
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_5",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.22,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    1.98,
+    3.11
+   ],
+   "color": "book2",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_6",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.21,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.975,
+    3.055
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_7",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.21,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.975,
+    2.995
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_8",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.26,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    2,
+    2.94
+   ],
+   "color": "book4",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_9",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.29,
+    0.05
+   ],
+   "at": [
+    -4.81,
+    2.015,
+    2.89
+   ],
+   "color": "book1",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_10",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.23,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    1.985,
+    2.835
+   ],
+   "color": "book5",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_11",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.26,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    2,
+    2.775
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "BookcaseWallBook3_12",
+   "shape": "box",
+   "size": [
+    0.2,
+    0.3,
+    0.06
+   ],
+   "at": [
+    -4.81,
+    2.02,
+    2.715
+   ],
+   "color": "book6",
+   "collision": "none"
+  },
+  {
+   "name": "Log1",
+   "shape": "cylinder",
+   "radius": 0.055,
+   "height": 0.48,
+   "segments": 6,
+   "axis": "x",
+   "at": [
+    3.87,
+    0.585,
+    -0.26
+   ],
+   "color": "logBark",
+   "collision": "none"
+  },
+  {
+   "name": "Log2",
+   "shape": "cylinder",
+   "radius": 0.055,
+   "height": 0.48,
+   "segments": 6,
+   "axis": "x",
+   "at": [
+    3.93,
+    0.635,
+    -0.18
+   ],
+   "color": "logBark",
+   "collision": "none"
+  },
+  {
+   "name": "MantelClock",
+   "shape": "box",
+   "size": [
+    0.24,
+    0.2,
+    0.1
+   ],
+   "at": [
+    3.9,
+    1.89,
+    -0.4
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "MantelClockFace",
+   "shape": "box",
+   "size": [
+    0.14,
+    0.12,
+    0.04
+   ],
+   "at": [
+    3.9,
+    1.9,
+    -0.345
+   ],
+   "color": "china",
+   "collision": "none"
+  },
+  {
+   "name": "Candle1Holder",
+   "shape": "cylinder",
+   "radius": 0.04,
+   "height": 0.05,
+   "segments": 8,
+   "at": [
+    3.35,
+    1.815,
+    -0.4
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "Candle1",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.2,
+   "segments": 6,
+   "at": [
+    3.35,
+    1.935,
+    -0.4
+   ],
+   "color": "china",
+   "collision": "none"
+  },
+  {
+   "name": "Candle2Holder",
+   "shape": "cylinder",
+   "radius": 0.04,
+   "height": 0.05,
+   "segments": 8,
+   "at": [
+    4.45,
+    1.815,
+    -0.4
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "Candle2",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.2,
+   "segments": 6,
+   "at": [
+    4.45,
+    1.935,
+    -0.4
+   ],
+   "color": "china",
+   "collision": "none"
+  },
+  {
+   "name": "PaintingFireFrame",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.5,
+    0.04
+   ],
+   "at": [
+    3.9,
+    2.55,
+    -0.44
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "PaintingFireCanvas",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.4,
+    0.04
+   ],
+   "at": [
+    3.9,
+    2.55,
+    -0.435
+   ],
+   "color": "canvas1",
+   "collision": "none"
+  },
+  {
+   "name": "PaintingHallFrame",
+   "shape": "box",
+   "size": [
+    0.8,
+    0.6,
+    0.04
+   ],
+   "at": [
+    -0.5,
+    1.8,
+    -0.74
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "PaintingHallCanvas",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.5,
+    0.04
+   ],
+   "at": [
+    -0.5,
+    1.8,
+    -0.735
+   ],
+   "color": "canvas2",
+   "collision": "none"
+  },
+  {
+   "name": "DiningTableLeg1",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    -3.97,
+    0.745,
+    1.13
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningTableLeg2",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    -2.63,
+    0.745,
+    1.13
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningTableLeg3",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    -3.97,
+    0.745,
+    1.87
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningTableLeg4",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    -2.63,
+    0.745,
+    1.87
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningTableCloth",
+   "shape": "box",
+   "size": [
+    1.62,
+    0.21,
+    1.02
+   ],
+   "at": [
+    -3.3,
+    1.115,
+    1.5
+   ],
+   "color": "cloth",
+   "collision": "box"
+  },
+  {
+   "name": "DiningChair1Leg1",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.867,
+    0.67,
+    0.583
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair1Leg2",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.532,
+    0.67,
+    0.583
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair1Leg3",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.867,
+    0.67,
+    0.898
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair1Leg4",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.532,
+    0.67,
+    0.898
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair1Seat",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.05,
+    0.42
+   ],
+   "at": [
+    -3.7,
+    0.895,
+    0.74
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "DiningChair1PostL",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -3.897,
+    1.18,
+    0.553
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair1PostR",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -3.503,
+    1.18,
+    0.553
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair1Back",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.24,
+    0.04
+   ],
+   "at": [
+    -3.7,
+    1.3,
+    0.553
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair2Leg1",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.067,
+    0.67,
+    0.583
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair2Leg2",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -2.732,
+    0.67,
+    0.583
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair2Leg3",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.067,
+    0.67,
+    0.898
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair2Leg4",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -2.732,
+    0.67,
+    0.898
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair2Seat",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.05,
+    0.42
+   ],
+   "at": [
+    -2.9,
+    0.895,
+    0.74
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "DiningChair2PostL",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -3.097,
+    1.18,
+    0.553
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair2PostR",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -2.702,
+    1.18,
+    0.553
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair2Back",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.24,
+    0.04
+   ],
+   "at": [
+    -2.9,
+    1.3,
+    0.553
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair3Leg1",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.532,
+    0.67,
+    2.418
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair3Leg2",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.867,
+    0.67,
+    2.418
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair3Leg3",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.532,
+    0.67,
+    2.102
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair3Leg4",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.867,
+    0.67,
+    2.102
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair3Seat",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.05,
+    0.42
+   ],
+   "at": [
+    -3.7,
+    0.895,
+    2.26
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "DiningChair3PostL",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -3.503,
+    1.18,
+    2.448
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair3PostR",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -3.897,
+    1.18,
+    2.448
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair3Back",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.24,
+    0.04
+   ],
+   "at": [
+    -3.7,
+    1.3,
+    2.448
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair4Leg1",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -2.732,
+    0.67,
+    2.418
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair4Leg2",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.067,
+    0.67,
+    2.418
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair4Leg3",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -2.732,
+    0.67,
+    2.102
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair4Leg4",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    -3.067,
+    0.67,
+    2.102
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair4Seat",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.05,
+    0.42
+   ],
+   "at": [
+    -2.9,
+    0.895,
+    2.26
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "DiningChair4PostL",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -2.702,
+    1.18,
+    2.448
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair4PostR",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    -3.097,
+    1.18,
+    2.448
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningChair4Back",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.24,
+    0.04
+   ],
+   "at": [
+    -2.9,
+    1.3,
+    2.448
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "DiningVase",
+   "shape": "lathe",
+   "profile": [
+    [
+     0,
+     1.22
+    ],
+    [
+     0.06,
+     1.22
+    ],
+    [
+     0.08,
+     1.29
+    ],
+    [
+     0.05,
+     1.3900000000000001
+    ],
+    [
+     0.04,
+     1.46
+    ],
+    [
+     0,
+     1.46
+    ]
+   ],
+   "segments": 8,
+   "at": [
+    -3.3,
+    0,
+    1.5
+   ],
+   "color": "vase",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardLeg1",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.1,
+    0.05
+   ],
+   "at": [
+    -4.545,
+    0.52,
+    -0.695
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardLeg2",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.1,
+    0.05
+   ],
+   "at": [
+    -3.255,
+    0.52,
+    -0.695
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardLeg3",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.1,
+    0.05
+   ],
+   "at": [
+    -4.545,
+    0.52,
+    -0.355
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardLeg4",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.1,
+    0.05
+   ],
+   "at": [
+    -3.255,
+    0.52,
+    -0.355
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardBody",
+   "shape": "box",
+   "size": [
+    1.4,
+    0.72,
+    0.45
+   ],
+   "at": [
+    -3.9,
+    0.93,
+    -0.525
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "SideboardTop",
+   "shape": "box",
+   "size": [
+    1.46,
+    0.04,
+    0.48
+   ],
+   "at": [
+    -3.9,
+    1.31,
+    -0.54
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardDoorL",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.5,
+    0.04
+   ],
+   "at": [
+    -4.36,
+    0.89,
+    -0.29
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardDoorM",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.5,
+    0.04
+   ],
+   "at": [
+    -3.9,
+    0.89,
+    -0.29
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardDoorR",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.5,
+    0.04
+   ],
+   "at": [
+    -3.44,
+    0.89,
+    -0.29
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardDrawer",
+   "shape": "box",
+   "size": [
+    1.34,
+    0.12,
+    0.04
+   ],
+   "at": [
+    -3.9,
+    1.22,
+    -0.29
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "SideboardLampBase",
+   "shape": "cylinder",
+   "radius": 0.07,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    -4.35,
+    1.35,
+    -0.55
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "SideboardLampStem",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.28,
+   "segments": 6,
+   "at": [
+    -4.35,
+    1.5,
+    -0.55
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "SideboardLampShade",
+   "shape": "cone",
+   "radius": [
+    0.16,
+    0.1
+   ],
+   "height": 0.2,
+   "segments": 8,
+   "at": [
+    -4.35,
+    1.72,
+    -0.55
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none"
+  },
+  {
+   "name": "SideboardVase",
+   "shape": "lathe",
+   "profile": [
+    [
+     0,
+     1.33
+    ],
+    [
+     0.05,
+     1.33
+    ],
+    [
+     0.07,
+     1.42
+    ],
+    [
+     0.03,
+     1.55
+    ],
+    [
+     0.035,
+     1.59
+    ],
+    [
+     0,
+     1.59
+    ]
+   ],
+   "segments": 8,
+   "at": [
+    -3.5,
+    0,
+    -0.55
+   ],
+   "color": "vase",
+   "collision": "none"
+  },
+  {
+   "name": "RadioCabinet",
+   "shape": "box",
+   "size": [
+    0.6,
+    1,
+    0.4
+   ],
+   "at": [
+    -1.6,
+    0.97,
+    3.65
+   ],
+   "color": "wood",
+   "collision": "box",
+   "chamfer": 0.03
+  },
+  {
+   "name": "RadioGrille",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.36,
+    0.04
+   ],
+   "at": [
+    -1.6,
+    0.89,
+    3.455
+   ],
+   "color": "grille",
+   "collision": "none"
+  },
+  {
+   "name": "RadioDialPanel",
+   "shape": "box",
+   "size": [
+    0.42,
+    0.14,
+    0.04
+   ],
+   "at": [
+    -1.6,
+    1.27,
+    3.455
+   ],
+   "color": "china",
+   "collision": "none"
+  },
+  {
+   "name": "CurtainOuterL",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.9,
+    0.06
+   ],
+   "at": [
+    -4.4,
+    2.17,
+    3.82
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "CurtainInnerL",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.9,
+    0.06
+   ],
+   "at": [
+    -2.4,
+    2.17,
+    3.82
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "ValanceL",
+   "shape": "box",
+   "size": [
+    2.5,
+    0.2,
+    0.1
+   ],
+   "at": [
+    -3.4,
+    3.17,
+    3.79
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "SideCurtainAL",
+   "shape": "box",
+   "size": [
+    0.06,
+    1.9,
+    0.3
+   ],
+   "at": [
+    -4.92,
+    2.17,
+    0.545
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "SideCurtainBL",
+   "shape": "box",
+   "size": [
+    0.06,
+    1.9,
+    0.3
+   ],
+   "at": [
+    -4.92,
+    2.17,
+    -0.545
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "CurtainOuterR",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.9,
+    0.06
+   ],
+   "at": [
+    4.4,
+    2.17,
+    3.82
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "CurtainInnerR",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.9,
+    0.06
+   ],
+   "at": [
+    2.4,
+    2.17,
+    3.82
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "ValanceR",
+   "shape": "box",
+   "size": [
+    2.5,
+    0.2,
+    0.1
+   ],
+   "at": [
+    3.4,
+    3.17,
+    3.79
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "SideCurtainAR",
+   "shape": "box",
+   "size": [
+    0.06,
+    1.9,
+    0.3
+   ],
+   "at": [
+    4.92,
+    2.17,
+    0.545
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "SideCurtainBR",
+   "shape": "box",
+   "size": [
+    0.06,
+    1.9,
+    0.3
+   ],
+   "at": [
+    4.92,
+    2.17,
+    -0.545
+   ],
+   "color": "curtain",
+   "collision": "none"
+  },
+  {
+   "name": "Linoleum",
+   "shape": "box",
+   "size": [
+    4.8,
+    0.045,
+    2.9
+   ],
+   "at": [
+    2.5,
+    0.453,
+    -2.35
+   ],
+   "color": "lino",
+   "collision": "none"
+  },
+  {
+   "name": "BaseCabinets",
+   "shape": "box",
+   "size": [
+    2.34,
+    0.86,
+    0.6
+   ],
+   "at": [
+    3.02,
+    0.9,
+    -3.55
+   ],
+   "color": "enamel",
+   "collision": "box"
+  },
+  {
+   "name": "Countertop",
+   "shape": "box",
+   "size": [
+    2.34,
+    0.04,
+    0.64
+   ],
+   "at": [
+    3.02,
+    1.35,
+    -3.53
+   ],
+   "color": "counter",
+   "collision": "box"
+  },
+  {
+   "name": "CabDoor1",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.48,
+    0.04
+   ],
+   "at": [
+    2.16,
+    0.81,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabDrawer1",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.18,
+    0.04
+   ],
+   "at": [
+    2.16,
+    1.18,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabHandle1",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.04,
+    0.05
+   ],
+   "at": [
+    2.16,
+    1.18,
+    -3.21
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   }
+  },
+  {
+   "name": "CabDoor2",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.48,
+    0.04
+   ],
+   "at": [
+    2.735,
+    0.81,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabDrawer2",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.18,
+    0.04
+   ],
+   "at": [
+    2.735,
+    1.18,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabHandle2",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.04,
+    0.05
+   ],
+   "at": [
+    2.735,
+    1.18,
+    -3.21
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   }
+  },
+  {
+   "name": "CabDoor3",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.48,
+    0.04
+   ],
+   "at": [
+    3.31,
+    0.81,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabDrawer3",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.18,
+    0.04
+   ],
+   "at": [
+    3.31,
+    1.18,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabHandle3",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.04,
+    0.05
+   ],
+   "at": [
+    3.31,
+    1.18,
+    -3.21
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   }
+  },
+  {
+   "name": "CabDoor4",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.48,
+    0.04
+   ],
+   "at": [
+    3.885,
+    0.81,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabDrawer4",
+   "shape": "box",
+   "size": [
+    0.54,
+    0.18,
+    0.04
+   ],
+   "at": [
+    3.885,
+    1.18,
+    -3.24
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "CabHandle4",
+   "shape": "box",
+   "size": [
+    0.12,
+    0.04,
+    0.05
+   ],
+   "at": [
+    3.885,
+    1.18,
+    -3.21
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   }
+  },
+  {
+   "name": "SinkRim",
+   "shape": "box",
+   "size": [
+    0.62,
+    0.04,
+    0.46
+   ],
+   "at": [
+    2.6,
+    1.375,
+    -3.53
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.3
+   }
+  },
+  {
+   "name": "SinkBasin",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.04,
+    0.34
+   ],
+   "at": [
+    2.6,
+    1.385,
+    -3.53
+   ],
+   "color": "steelDark",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.3
+   }
+  },
+  {
+   "name": "FaucetStem",
+   "shape": "cylinder",
+   "radius": 0.025,
+   "height": 0.22,
+   "segments": 8,
+   "at": [
+    2.6,
+    1.47,
+    -3.79
+   ],
+   "color": "steel",
+   "material": {
+    "metalness": 0.8,
+    "roughness": 0.25
+   },
+   "collision": "none"
+  },
+  {
+   "name": "FaucetSpout",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.05,
+    0.18
+   ],
+   "at": [
+    2.6,
+    1.56,
+    -3.71
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.8,
+    "roughness": 0.25
+   }
+  },
+  {
+   "name": "Canister1",
+   "shape": "cylinder",
+   "radius": 0.08,
+   "height": 0.24,
+   "segments": 8,
+   "at": [
+    3.35,
+    1.485,
+    -3.72
+   ],
+   "color": "canister",
+   "collision": "none"
+  },
+  {
+   "name": "Canister2",
+   "shape": "cylinder",
+   "radius": 0.07,
+   "height": 0.2,
+   "segments": 8,
+   "at": [
+    3.55,
+    1.465,
+    -3.72
+   ],
+   "color": "canister",
+   "collision": "none"
+  },
+  {
+   "name": "Canister3",
+   "shape": "cylinder",
+   "radius": 0.06,
+   "height": 0.16,
+   "segments": 8,
+   "at": [
+    3.73,
+    1.445,
+    -3.72
+   ],
+   "color": "canister",
+   "collision": "none"
+  },
+  {
+   "name": "Range",
+   "shape": "box",
+   "size": [
+    0.76,
+    0.91,
+    0.65
+   ],
+   "at": [
+    4.57,
+    0.925,
+    -3.525
+   ],
+   "color": "enamel",
+   "collision": "box"
+  },
+  {
+   "name": "RangeBackguard",
+   "shape": "box",
+   "size": [
+    0.76,
+    0.22,
+    0.08
+   ],
+   "at": [
+    4.57,
+    1.49,
+    -3.81
+   ],
+   "color": "enamel",
+   "collision": "none"
+  },
+  {
+   "name": "RangeOvenDoor",
+   "shape": "box",
+   "size": [
+    0.6,
+    0.45,
+    0.04
+   ],
+   "at": [
+    4.57,
+    0.85,
+    -3.21
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "RangeOvenHandle",
+   "shape": "box",
+   "size": [
+    0.45,
+    0.04,
+    0.05
+   ],
+   "at": [
+    4.57,
+    1.12,
+    -3.19
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   }
+  },
+  {
+   "name": "RangeControls",
+   "shape": "box",
+   "size": [
+    0.7,
+    0.08,
+    0.04
+   ],
+   "at": [
+    4.57,
+    1.26,
+    -3.21
+   ],
+   "color": "steelDark",
+   "collision": "none"
+  },
+  {
+   "name": "Burner1",
+   "shape": "cylinder",
+   "radius": 0.09,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    4.39,
+    1.39,
+    -3.33
+   ],
+   "color": "steelDark",
+   "collision": "none"
+  },
+  {
+   "name": "Burner2",
+   "shape": "cylinder",
+   "radius": 0.09,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    4.75,
+    1.39,
+    -3.33
+   ],
+   "color": "steelDark",
+   "collision": "none"
+  },
+  {
+   "name": "Burner3",
+   "shape": "cylinder",
+   "radius": 0.09,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    4.39,
+    1.39,
+    -3.6
+   ],
+   "color": "steelDark",
+   "collision": "none"
+  },
+  {
+   "name": "Burner4",
+   "shape": "cylinder",
+   "radius": 0.09,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    4.75,
+    1.39,
+    -3.6
+   ],
+   "color": "steelDark",
+   "collision": "none"
+  },
+  {
+   "name": "Kettle",
+   "shape": "sphere",
+   "radius": [
+    0.1,
+    0.08,
+    0.1
+   ],
+   "detail": 1,
+   "at": [
+    4.39,
+    1.48,
+    -3.33
+   ],
+   "color": "kettle",
+   "material": {
+    "metalness": 0.5,
+    "roughness": 0.35
+   },
+   "collision": "none"
+  },
+  {
+   "name": "WallCabinet",
+   "shape": "box",
+   "size": [
+    1.05,
+    0.77,
+    0.33
+   ],
+   "at": [
+    3.625,
+    2.215,
+    -3.685
+   ],
+   "color": "enamel",
+   "collision": "box"
+  },
+  {
+   "name": "WallCabDoorL",
+   "shape": "box",
+   "size": [
+    0.49,
+    0.71,
+    0.04
+   ],
+   "at": [
+    3.36,
+    2.215,
+    -3.51
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "WallCabDoorR",
+   "shape": "box",
+   "size": [
+    0.49,
+    0.71,
+    0.04
+   ],
+   "at": [
+    3.89,
+    2.215,
+    -3.51
+   ],
+   "color": "enamelDoor",
+   "collision": "none"
+  },
+  {
+   "name": "Fridge",
+   "shape": "box",
+   "size": [
+    0.7,
+    1.6,
+    0.75
+   ],
+   "at": [
+    4.6,
+    1.27,
+    -2.725
+   ],
+   "color": "enamel",
+   "collision": "box",
+   "chamfer": 0.06
+  },
+  {
+   "name": "FridgeHandle",
+   "shape": "box",
+   "size": [
+    0.05,
+    0.3,
+    0.05
+   ],
+   "at": [
+    4.23,
+    1.57,
+    -2.45
+   ],
+   "color": "steel",
+   "collision": "none",
+   "material": {
+    "metalness": 0.7,
+    "roughness": 0.35
+   }
+  },
+  {
+   "name": "FridgeBadge",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.05,
+    0.2
+   ],
+   "at": [
+    4.25,
+    1.92,
+    -2.725
+   ],
+   "color": "steelDark",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenTableLeg1",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    2.23,
+    0.745,
+    -2.195
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenTableLeg2",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    2.97,
+    0.745,
+    -2.195
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenTableLeg3",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    2.23,
+    0.745,
+    -1.605
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenTableLeg4",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.55,
+    0.06
+   ],
+   "at": [
+    2.97,
+    0.745,
+    -1.605
+   ],
+   "color": "wood",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenTableCloth",
+   "shape": "box",
+   "size": [
+    1.02,
+    0.21,
+    0.87
+   ],
+   "at": [
+    2.6,
+    1.115,
+    -1.9
+   ],
+   "color": "gingham",
+   "collision": "box"
+  },
+  {
+   "name": "KitchenChair1Leg1",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.768,
+    0.67,
+    -1.092
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair1Leg2",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.433,
+    0.67,
+    -1.092
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair1Leg3",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.768,
+    0.67,
+    -1.407
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair1Leg4",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.433,
+    0.67,
+    -1.407
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair1Seat",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.05,
+    0.42
+   ],
+   "at": [
+    2.6,
+    0.895,
+    -1.25
+   ],
+   "color": "woodLight",
+   "collision": "box"
+  },
+  {
+   "name": "KitchenChair1PostL",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    2.798,
+    1.18,
+    -1.062
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair1PostR",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    2.403,
+    1.18,
+    -1.062
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair1Back",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.24,
+    0.04
+   ],
+   "at": [
+    2.6,
+    1.3,
+    -1.062
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair2Leg1",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.433,
+    0.67,
+    -2.707
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair2Leg2",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.768,
+    0.67,
+    -2.707
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair2Leg3",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.433,
+    0.67,
+    -2.392
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair2Leg4",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.4,
+    0.045
+   ],
+   "at": [
+    2.768,
+    0.67,
+    -2.392
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair2Seat",
+   "shape": "box",
+   "size": [
+    0.44,
+    0.05,
+    0.42
+   ],
+   "at": [
+    2.6,
+    0.895,
+    -2.55
+   ],
+   "color": "woodLight",
+   "collision": "box"
+  },
+  {
+   "name": "KitchenChair2PostL",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    2.403,
+    1.18,
+    -2.737
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair2PostR",
+   "shape": "box",
+   "size": [
+    0.045,
+    0.52,
+    0.045
+   ],
+   "at": [
+    2.798,
+    1.18,
+    -2.737
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenChair2Back",
+   "shape": "box",
+   "size": [
+    0.35,
+    0.24,
+    0.04
+   ],
+   "at": [
+    2.6,
+    1.3,
+    -2.737
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "KitchenCurtain",
+   "shape": "box",
+   "size": [
+    0.79,
+    0.4,
+    0.06
+   ],
+   "at": [
+    2.6,
+    1.82,
+    -3.81
+   ],
+   "color": "gingham",
+   "collision": "none"
+  },
+  {
+   "name": "Carpet",
+   "shape": "box",
+   "size": [
+    4.8,
+    0.05,
+    2.9
+   ],
+   "at": [
+    -2.5,
+    0.455,
+    -2.35
+   ],
+   "color": "carpet",
+   "collision": "none"
+  },
+  {
+   "name": "BedBase",
+   "shape": "box",
+   "size": [
+    1.93,
+    0.2,
+    1.42
+   ],
+   "at": [
+    -3.935,
+    0.77,
+    -2.4
+   ],
+   "color": "woodDark",
+   "collision": "box"
+  },
+  {
+   "name": "BedLeg1",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.21,
+    0.06
+   ],
+   "at": [
+    -4.85,
+    0.565,
+    -3.06
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BedLeg2",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.21,
+    0.06
+   ],
+   "at": [
+    -4.85,
+    0.565,
+    -1.74
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BedLeg3",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.21,
+    0.06
+   ],
+   "at": [
+    -3.02,
+    0.565,
+    -3.06
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "BedLeg4",
+   "shape": "box",
+   "size": [
+    0.06,
+    0.21,
+    0.06
+   ],
+   "at": [
+    -3.02,
+    0.565,
+    -1.74
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "Mattress",
+   "shape": "box",
+   "size": [
+    1.91,
+    0.22,
+    1.37
+   ],
+   "at": [
+    -3.93,
+    0.98,
+    -2.4
+   ],
+   "color": "linen",
+   "collision": "none",
+   "chamfer": 0.04
+  },
+  {
+   "name": "Blanket",
+   "shape": "box",
+   "size": [
+    1.39,
+    0.27,
+    1.43
+   ],
+   "at": [
+    -3.635,
+    0.975,
+    -2.4
+   ],
+   "color": "quilt",
+   "collision": "none",
+   "chamfer": 0.03
+  },
+  {
+   "name": "PillowA",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.12,
+    0.6
+   ],
+   "at": [
+    -4.62,
+    1.14,
+    -2.73
+   ],
+   "color": "linen",
+   "collision": "none",
+   "chamfer": 0.04
+  },
+  {
+   "name": "PillowB",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.12,
+    0.6
+   ],
+   "at": [
+    -4.62,
+    1.14,
+    -2.07
+   ],
+   "color": "linen",
+   "collision": "none",
+   "chamfer": 0.04
+  },
+  {
+   "name": "Headboard",
+   "shape": "extrude",
+   "plane": "zy",
+   "depth": 0.06,
+   "at": [
+    -4.915,
+    0,
+    0
+   ],
+   "color": "woodDark",
+   "collision": "box",
+   "outline": [
+    [
+     -3.13,
+     0.47
+    ],
+    [
+     -3.13,
+     1.35
+    ],
+    [
+     -2.9,
+     1.5
+    ],
+    [
+     -2.4,
+     1.56
+    ],
+    [
+     -1.9,
+     1.5
+    ],
+    [
+     -1.67,
+     1.35
+    ],
+    [
+     -1.67,
+     0.47
+    ]
+   ]
+  },
+  {
+   "name": "Footboard",
+   "shape": "extrude",
+   "plane": "zy",
+   "depth": 0.05,
+   "at": [
+    -2.95,
+    0,
+    0
+   ],
+   "color": "woodDark",
+   "collision": "box",
+   "outline": [
+    [
+     -3.13,
+     0.47
+    ],
+    [
+     -3.13,
+     1.05
+    ],
+    [
+     -2.4,
+     1.15
+    ],
+    [
+     -1.67,
+     1.05
+    ],
+    [
+     -1.67,
+     0.47
+    ]
+   ]
+  },
+  {
+   "name": "Nightstand1Body",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.6,
+    0.5
+   ],
+   "at": [
+    -4.75,
+    0.77,
+    -3.5
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "Nightstand1Drawer",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.14,
+    0.42
+   ],
+   "at": [
+    -4.555,
+    0.94,
+    -3.5
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "BedLamp1Base",
+   "shape": "cylinder",
+   "radius": 0.07,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    -4.78,
+    1.09,
+    -3.5
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "BedLamp1Stem",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.28,
+   "segments": 6,
+   "at": [
+    -4.78,
+    1.24,
+    -3.5
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "BedLamp1Shade",
+   "shape": "cone",
+   "radius": [
+    0.16,
+    0.1
+   ],
+   "height": 0.2,
+   "segments": 8,
+   "at": [
+    -4.78,
+    1.46,
+    -3.5
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none"
+  },
+  {
+   "name": "Nightstand2Body",
+   "shape": "box",
+   "size": [
+    0.4,
+    0.6,
+    0.5
+   ],
+   "at": [
+    -4.75,
+    0.77,
+    -1.3
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "Nightstand2Drawer",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.14,
+    0.42
+   ],
+   "at": [
+    -4.555,
+    0.94,
+    -1.3
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "BedLamp2Base",
+   "shape": "cylinder",
+   "radius": 0.07,
+   "height": 0.04,
+   "segments": 8,
+   "at": [
+    -4.78,
+    1.09,
+    -1.3
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "BedLamp2Stem",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.28,
+   "segments": 6,
+   "at": [
+    -4.78,
+    1.24,
+    -1.3
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none"
+  },
+  {
+   "name": "BedLamp2Shade",
+   "shape": "cone",
+   "radius": [
+    0.16,
+    0.1
+   ],
+   "height": 0.2,
+   "segments": 8,
+   "at": [
+    -4.78,
+    1.46,
+    -1.3
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none"
+  },
+  {
+   "name": "DresserBody",
+   "shape": "box",
+   "size": [
+    0.5,
+    0.85,
+    1.2
+   ],
+   "at": [
+    -0.3,
+    0.895,
+    -2
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "DresserDrawer1",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.22,
+    1.1
+   ],
+   "at": [
+    -0.545,
+    0.64,
+    -2
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "DresserDrawer2",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.22,
+    1.1
+   ],
+   "at": [
+    -0.545,
+    0.89,
+    -2
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "DresserDrawer3",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.22,
+    1.1
+   ],
+   "at": [
+    -0.545,
+    1.14,
+    -2
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "MirrorFrame",
+   "shape": "cylinder",
+   "radius": 0.37,
+   "height": 0.04,
+   "segments": 12,
+   "axis": "x",
+   "at": [
+    -0.11,
+    1.75,
+    -2
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "MirrorGlass",
+   "shape": "cylinder",
+   "radius": 0.32,
+   "height": 0.05,
+   "segments": 12,
+   "axis": "x",
+   "at": [
+    -0.1,
+    1.75,
+    -2
+   ],
+   "color": "mirror",
+   "material": {
+    "metalness": 0.9,
+    "roughness": 0.1
+   },
+   "collision": "none"
+  },
+  {
+   "name": "MirrorPostA",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.5,
+    0.04
+   ],
+   "at": [
+    -0.12,
+    1.57,
+    -2.38
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "MirrorPostB",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.5,
+    0.04
+   ],
+   "at": [
+    -0.12,
+    1.57,
+    -1.62
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "WardrobeBody",
+   "shape": "box",
+   "size": [
+    1,
+    1.9,
+    0.6
+   ],
+   "at": [
+    -0.8,
+    1.42,
+    -3.55
+   ],
+   "color": "wood",
+   "collision": "box"
+  },
+  {
+   "name": "WardrobeCrown",
+   "shape": "box",
+   "size": [
+    1.06,
+    0.06,
+    0.64
+   ],
+   "at": [
+    -0.8,
+    2.4,
+    -3.54
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "WardrobeDoorL",
+   "shape": "box",
+   "size": [
+    0.47,
+    1.7,
+    0.04
+   ],
+   "at": [
+    -1.045,
+    1.42,
+    -3.255
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "WardrobeDoorR",
+   "shape": "box",
+   "size": [
+    0.47,
+    1.7,
+    0.04
+   ],
+   "at": [
+    -0.555,
+    1.42,
+    -3.255
+   ],
+   "color": "woodLight",
+   "collision": "none"
+  },
+  {
+   "name": "WardrobeKnobL",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.12,
+    0.05
+   ],
+   "at": [
+    -0.84,
+    1.47,
+    -3.23
+   ],
+   "color": "brass",
+   "collision": "none"
+  },
+  {
+   "name": "WardrobeKnobR",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.12,
+    0.05
+   ],
+   "at": [
+    -0.76,
+    1.47,
+    -3.23
+   ],
+   "color": "brass",
+   "collision": "none"
+  },
+  {
+   "name": "BedCurtainA",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.9,
+    0.06
+   ],
+   "at": [
+    -3.15,
+    2.17,
+    -3.82
+   ],
+   "color": "curtainBed",
+   "collision": "none"
+  },
+  {
+   "name": "BedCurtainB",
+   "shape": "box",
+   "size": [
+    0.3,
+    1.9,
+    0.06
+   ],
+   "at": [
+    -2.05,
+    2.17,
+    -3.82
+   ],
+   "color": "curtainBed",
+   "collision": "none"
+  },
+  {
+   "name": "PaintingBedFrame",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.45,
+    0.6
+   ],
+   "at": [
+    -4.94,
+    2,
+    -2.4
+   ],
+   "color": "woodDark",
+   "collision": "none"
+  },
+  {
+   "name": "PaintingBedCanvas",
+   "shape": "box",
+   "size": [
+    0.04,
+    0.35,
+    0.5
+   ],
+   "at": [
+    -4.935,
+    2,
+    -2.4
+   ],
+   "color": "canvas3",
+   "collision": "none"
+  },
+  {
+   "name": "LampDiningCanopy",
+   "shape": "cylinder",
+   "radius": 0.08,
+   "height": 0.05,
+   "segments": 8,
+   "at": [
+    -3.3,
+    3.27,
+    1.5
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampDiningCord",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.5,
+   "segments": 6,
+   "at": [
+    -3.3,
+    3,
+    1.5
+   ],
+   "color": "flue",
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampDiningShade",
+   "shape": "cone",
+   "radius": [
+    0.28,
+    0.07
+   ],
+   "height": 0.22,
+   "segments": 8,
+   "at": [
+    -3.3,
+    2.65,
+    1.5
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampLivingCanopy",
+   "shape": "cylinder",
+   "radius": 0.08,
+   "height": 0.05,
+   "segments": 8,
+   "at": [
+    1,
+    3.27,
+    1.4
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampLivingCord",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.5,
+   "segments": 6,
+   "at": [
+    1,
+    3,
+    1.4
+   ],
+   "color": "flue",
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampLivingShade",
+   "shape": "cone",
+   "radius": [
+    0.28,
+    0.07
+   ],
+   "height": 0.22,
+   "segments": 8,
+   "at": [
+    1,
+    2.65,
+    1.4
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampKitchenCanopy",
+   "shape": "cylinder",
+   "radius": 0.08,
+   "height": 0.05,
+   "segments": 8,
+   "at": [
+    2.6,
+    3.27,
+    -2.3
+   ],
+   "color": "brass",
+   "material": {
+    "metalness": 0.6,
+    "roughness": 0.4
+   },
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampKitchenCord",
+   "shape": "cylinder",
+   "radius": 0.022,
+   "height": 0.5,
+   "segments": 6,
+   "at": [
+    2.6,
+    3,
+    -2.3
+   ],
+   "color": "flue",
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampKitchenGlobe",
+   "shape": "sphere",
+   "radius": 0.15,
+   "detail": 1,
+   "at": [
+    2.6,
+    2.65,
+    -2.3
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none",
+   "parent": "RoofGroup"
+  },
+  {
+   "name": "LampBedroom",
+   "shape": "sphere",
+   "radius": [
+    0.22,
+    0.09,
+    0.22
+   ],
+   "detail": 1,
+   "at": [
+    -2.5,
+    3.25,
+    -2.35
+   ],
+   "color": "shade",
+   "material": {
+    "emissive": "glowWarm"
+   },
+   "collision": "none",
+   "parent": "RoofGroup"
+  }
+ ],
+ "animations": [
+  {
+   "name": "FrontDoorOpen",
+   "duration": 1.6,
+   "description": "Front door creaks open inward to 90 degrees.",
+   "tracks": [
+    {
+     "part": "FrontDoor",
+     "rot": [
+      [
+       0,
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      [
+       0.2,
+       [
+        0,
+        4.5,
+        0
+       ],
+       "out"
+      ],
+      [
+       1.6,
+       [
+        0,
+        90,
+        0
+       ],
+       "out"
+      ]
+     ]
+    }
+   ],
+   "markers": [
+    {
+     "t": 0,
+     "name": "Unlatch"
+    },
+    {
+     "t": 0.2,
+     "name": "Creak"
+    }
+   ]
+  },
+  {
+   "name": "FrontDoorClose",
+   "duration": 0.65,
+   "description": "Front door swings shut and settles.",
+   "tracks": [
+    {
+     "part": "FrontDoor",
+     "rot": [
+      [
+       0,
+       [
+        0,
+        90,
+        0
+       ]
+      ],
+      [
+       0.45,
+       [
+        0,
+        0,
+        0
+       ],
+       "in"
+      ],
+      [
+       0.55,
+       [
+        0,
+        3.1500000000000004,
+        0
+       ],
+       "out"
+      ],
+      [
+       0.65,
+       [
+        0,
+        0,
+        0
+       ],
+       "in"
+      ]
+     ]
+    }
+   ],
+   "markers": [
+    {
+     "t": 0.45,
+     "name": "Slam"
+    }
+   ]
+  },
+  {
+   "name": "BackDoorOpen",
+   "duration": 1.6,
+   "description": "Back door creaks open inward to 90 degrees.",
+   "tracks": [
+    {
+     "part": "BackDoor",
+     "rot": [
+      [
+       0,
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      [
+       0.2,
+       [
+        0,
+        -4.5,
+        0
+       ],
+       "out"
+      ],
+      [
+       1.6,
+       [
+        0,
+        -90,
+        0
+       ],
+       "out"
+      ]
+     ]
+    }
+   ],
+   "markers": [
+    {
+     "t": 0,
+     "name": "Unlatch"
+    },
+    {
+     "t": 0.2,
+     "name": "Creak"
+    }
+   ]
+  },
+  {
+   "name": "BackDoorClose",
+   "duration": 0.65,
+   "description": "Back door swings shut and settles.",
+   "tracks": [
+    {
+     "part": "BackDoor",
+     "rot": [
+      [
+       0,
+       [
+        0,
+        -90,
+        0
+       ]
+      ],
+      [
+       0.45,
+       [
+        0,
+        0,
+        0
+       ],
+       "in"
+      ],
+      [
+       0.55,
+       [
+        0,
+        -3.1500000000000004,
+        0
+       ],
+       "out"
+      ],
+      [
+       0.65,
+       [
+        0,
+        0,
+        0
+       ],
+       "in"
+      ]
+     ]
+    }
+   ],
+   "markers": [
+    {
+     "t": 0.45,
+     "name": "Slam"
+    }
+   ]
+  },
+  {
+   "name": "RoofLift",
+   "duration": 1.2,
+   "description": "Roof, ceiling and ceiling lights lift 4 m to show the rooms (cutaway view).",
+   "tracks": [
+    {
+     "part": "RoofGroup",
+     "pos": [
+      [
+       0,
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      [
+       1.2,
+       [
+        0,
+        4,
+        0
+       ],
+       "inOut"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "RoofLower",
+   "duration": 1.2,
+   "description": "Roof settles back into place.",
+   "tracks": [
+    {
+     "part": "RoofGroup",
+     "pos": [
+      [
+       0,
+       [
+        0,
+        4,
+        0
+       ]
+      ],
+      [
+       1.2,
+       [
+        0,
+        0,
+        0
+       ],
+       "inOut"
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "type": "ratio",
+   "a": "x",
+   "b": "y",
+   "expect": 1.45,
+   "tol": 0.07,
+   "label": "roof span : chimney-top height like the reference (11.0 : 7.44)"
+  },
+  {
+   "type": "size",
+   "axis": "y",
+   "min": 7.3,
+   "max": 7.8,
+   "label": "overall height ~7.4-7.7 m"
+  },
+  {
+   "type": "angle",
+   "clip": "FrontDoorOpen",
+   "at": "end",
+   "part": "FrontDoor",
+   "axis": "y",
+   "min": 88,
+   "max": 92,
+   "label": "front door opens 90 deg inward"
+  },
+  {
+   "type": "angle",
+   "clip": "BackDoorOpen",
+   "at": "end",
+   "part": "BackDoor",
+   "axis": "y",
+   "min": -92,
+   "max": -88,
+   "label": "back door opens 90 deg inward"
+  },
+  {
+   "type": "pose",
+   "clip": "FrontDoorClose",
+   "at": "end",
+   "equals": "rest",
+   "label": "front door closes fully"
+  },
+  {
+   "type": "pose",
+   "clip": "BackDoorClose",
+   "at": "end",
+   "equals": "rest",
+   "label": "back door closes fully"
+  },
+  {
+   "type": "pose",
+   "clip": "FrontDoorClose",
+   "at": "start",
+   "equals": {
+    "clip": "FrontDoorOpen",
+    "at": "end"
+   },
+   "label": "front Close starts where Open ends"
+  },
+  {
+   "type": "pose",
+   "clip": "BackDoorClose",
+   "at": "start",
+   "equals": {
+    "clip": "BackDoorOpen",
+    "at": "end"
+   },
+   "label": "back Close starts where Open ends"
+  },
+  {
+   "type": "apart",
+   "a": "FrontDoor",
+   "b": "FrontThreshold",
+   "clip": "FrontDoorOpen",
+   "label": "front door clears the threshold"
+  },
+  {
+   "type": "apart",
+   "a": "FrontDoor",
+   "b": "Floor",
+   "clip": "FrontDoorOpen",
+   "label": "front door clears the floor"
+  },
+  {
+   "type": "apart",
+   "a": "BackDoor",
+   "b": "BackThreshold",
+   "clip": "BackDoorOpen",
+   "label": "back door clears the threshold"
+  },
+  {
+   "type": "apart",
+   "a": "BackDoor",
+   "b": "PartitionBack1",
+   "clip": "BackDoorOpen",
+   "label": "back door misses the back partition"
+  }
+ ]
+}

@@ -1,0 +1,3520 @@
+newmtl GableL_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl GableR_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Roof_mat
+Kd 0.2902 0.3176 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RidgeCap_mat
+Kd 0.2392 0.2627 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Chimney_mat
+Kd 0.5804 0.2784 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ChimneyCap_mat
+Kd 0.4157 0.4314 0.4392
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ChimneyFlue_mat
+Kd 0.1137 0.1216 0.1294
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Pediment_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PorchRoof_mat
+Kd 0.2902 0.3176 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticFrameL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticFrameR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticGlassL_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticGlassR_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticMullVL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticMullVR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticMullHL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl AtticMullHR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Ceiling_mat
+Kd 0.8863 0.8667 0.8157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampDiningCanopy_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampDiningCord_mat
+Kd 0.1137 0.1216 0.1294
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampDiningShade_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampLivingCanopy_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampLivingCord_mat
+Kd 0.1137 0.1216 0.1294
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampLivingShade_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampKitchenCanopy_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampKitchenCord_mat
+Kd 0.1137 0.1216 0.1294
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampKitchenGlobe_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl LampBedroom_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Foundation_mat
+Kd 0.4902 0.5216 0.5059
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront1_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront2_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront3_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront4_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront5_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront6_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront7_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront8_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront9_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront10_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront11_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront12_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront13_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront14_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallFront15_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack1_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack2_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack3_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack4_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack5_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack6_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack7_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack8_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallBack9_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallLeft1_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallLeft2_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallLeft3_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallLeft4_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallRight1_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallRight2_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallRight3_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallRight4_mat
+Kd 0.9137 0.8980 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CornerFrontL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CornerFrontR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CornerBackL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CornerBackR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FriezeFront_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FriezeBack_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Stoop_mat
+Kd 0.6627 0.6745 0.6510
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Step1_mat
+Kd 0.6627 0.6745 0.6510
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Step2_mat
+Kd 0.6627 0.6745 0.6510
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColBaseInL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColBaseInR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColInL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColInR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColCapInL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColCapInR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColBaseOutL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColBaseOutR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColOutL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColOutR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColCapOutL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ColCapOutR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontCasingL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontCasingR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontCasingHead_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SidelightL_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SidelightR_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontThreshold_mat
+Kd 0.5412 0.4157 0.2706
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontDoor_mat
+Kd 0.7529 0.2235 0.1686
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontDoorGlass_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontDoorPanel_mat
+Kd 0.6392 0.1882 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontKnobOut_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontKnobIn_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontPairFrameL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontPairFrameR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontGlass1L_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontGlass1R_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullV1L_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullV1R_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullH1L_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullH1R_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontGlass2L_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontGlass2R_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullV2L_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullV2R_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullH2L_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontMullH2R_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontSillL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontSillR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontHeadL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FrontHeadR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterOutL_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterOutR_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterRailOutL_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterRailOutR_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterInL_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterInR_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterRailInL_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ShutterRailInR_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideFrameL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideFrameR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideGlassL_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideGlassR_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideMullVL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideMullVR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideMullHL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideMullHR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideSillL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideSillR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideHeadL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideHeadR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideShutterFrontL_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideShutterFrontR_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideShutterBackL_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideShutterBackR_mat
+Kd 0.2392 0.2902 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackFrameL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackFrameR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackGlassL_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackGlassR_mat
+Kd 0.1725 0.2275 0.2784
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackMullVL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackMullVR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackMullHL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackMullHR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackSillL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackSillR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackHeadL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackHeadR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackCasingL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackCasingR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackCasingHead_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackThreshold_mat
+Kd 0.5412 0.4157 0.2706
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackDoor_mat
+Kd 0.4196 0.2902 0.2118
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackDoorPanelTop_mat
+Kd 0.3529 0.2392 0.1725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackDoorPanelBottom_mat
+Kd 0.3529 0.2392 0.1725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackKnobOut_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackKnobIn_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BackStep_mat
+Kd 0.6627 0.6745 0.6510
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Floor_mat
+Kd 0.4314 0.3137 0.2196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PartitionMid1_mat
+Kd 0.7216 0.6824 0.5961
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PartitionMid2_mat
+Kd 0.7216 0.6824 0.5961
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PartitionMid3_mat
+Kd 0.7216 0.6824 0.5961
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PartitionMid4_mat
+Kd 0.7216 0.6824 0.5961
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PartitionMid5_mat
+Kd 0.7216 0.6824 0.5961
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PartitionBack1_mat
+Kd 0.7216 0.6824 0.5961
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DoorwayJambAL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DoorwayJambBL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DoorwayHeadL_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DoorwayJambAR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DoorwayJambBR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DoorwayHeadR_mat
+Kd 0.9686 0.9647 0.9451
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Hearth_mat
+Kd 0.4157 0.4314 0.4392
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FireplaceBody_mat
+Kd 0.5804 0.2784 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Firebox_mat
+Kd 0.1137 0.1216 0.1294
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Mantel_mat
+Kd 0.5412 0.4157 0.2706
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ChimneyBreast_mat
+Kd 0.5804 0.2784 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ConiferL_mat
+Kd 0.1843 0.3333 0.1882
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ConiferR_mat
+Kd 0.1843 0.3333 0.1882
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BushL_mat
+Kd 0.2941 0.4784 0.2471
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BushR_mat
+Kd 0.2941 0.4784 0.2471
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Rug_mat
+Kd 0.5569 0.2314 0.1804
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaLeg1_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaLeg2_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaLeg3_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaLeg4_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaBase_mat
+Kd 0.3725 0.4784 0.3333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaBack_mat
+Kd 0.3725 0.4784 0.3333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaArmL_mat
+Kd 0.3725 0.4784 0.3333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaArmR_mat
+Kd 0.3725 0.4784 0.3333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaCushion1_mat
+Kd 0.3725 0.4784 0.3333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaCushion2_mat
+Kd 0.3725 0.4784 0.3333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SofaCushion3_mat
+Kd 0.3725 0.4784 0.3333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairLeg1_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairLeg2_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairLeg3_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairLeg4_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairBase_mat
+Kd 0.6275 0.3451 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairBack_mat
+Kd 0.6275 0.3451 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairArmL_mat
+Kd 0.6275 0.3451 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairArmR_mat
+Kd 0.6275 0.3451 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ArmchairCushion1_mat
+Kd 0.6275 0.3451 0.3098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CoffeeTableLeg1_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CoffeeTableLeg2_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CoffeeTableLeg3_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CoffeeTableLeg4_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CoffeeTableTop_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CoffeeTableShelf_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CoffeeBowl_mat
+Kd 0.9569 0.9451 0.9176
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FloorLampBase_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FloorLampPole_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FloorLampShade_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireSideL_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireSideR_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBackPanel_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireTop_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBottom_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireShelf1_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireShelf2_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireShelf3_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_0_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_1_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_2_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_3_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_4_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_5_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_6_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_7_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_8_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_9_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_10_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_11_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_12_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook0_13_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_0_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_1_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_2_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_3_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_4_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_5_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_6_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_7_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_8_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_9_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_10_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_11_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_12_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook1_13_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_0_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_1_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_2_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_3_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_4_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_5_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_6_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_7_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_8_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook2_9_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_0_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_1_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_2_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_3_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_4_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_5_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_6_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_7_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_8_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_9_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_10_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_11_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseFireBook3_12_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallSideL_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallSideR_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBackPanel_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallTop_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBottom_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallShelf1_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallShelf2_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallShelf3_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_0_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_1_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_2_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_3_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_4_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_5_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_6_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_7_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_8_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_9_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_10_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_11_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_12_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook0_13_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_0_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_1_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_2_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_3_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_4_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_5_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_6_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_7_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_8_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_9_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_10_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_11_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook1_12_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_0_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_1_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_2_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_3_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_4_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_5_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_6_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_7_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook2_8_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_0_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_1_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_2_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_3_mat
+Kd 0.2471 0.3725 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_4_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_5_mat
+Kd 0.1804 0.2902 0.4196
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_6_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_7_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_8_mat
+Kd 0.6902 0.5412 0.2431
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_9_mat
+Kd 0.4784 0.1804 0.1647
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_10_mat
+Kd 0.3529 0.2471 0.3725
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_11_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BookcaseWallBook3_12_mat
+Kd 0.1843 0.1843 0.1843
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Log1_mat
+Kd 0.3529 0.2510 0.1882
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Log2_mat
+Kd 0.3529 0.2510 0.1882
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl MantelClock_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl MantelClockFace_mat
+Kd 0.9569 0.9451 0.9176
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Candle1Holder_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Candle1_mat
+Kd 0.9569 0.9451 0.9176
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Candle2Holder_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Candle2_mat
+Kd 0.9569 0.9451 0.9176
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PaintingFireFrame_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PaintingFireCanvas_mat
+Kd 0.4275 0.5412 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PaintingHallFrame_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PaintingHallCanvas_mat
+Kd 0.7686 0.6039 0.3529
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningTableLeg1_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningTableLeg2_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningTableLeg3_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningTableLeg4_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningTableCloth_mat
+Kd 0.9490 0.9373 0.9020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1Leg1_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1Leg2_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1Leg3_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1Leg4_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1Seat_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1PostL_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1PostR_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair1Back_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2Leg1_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2Leg2_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2Leg3_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2Leg4_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2Seat_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2PostL_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2PostR_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair2Back_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3Leg1_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3Leg2_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3Leg3_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3Leg4_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3Seat_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3PostL_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3PostR_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair3Back_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4Leg1_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4Leg2_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4Leg3_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4Leg4_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4Seat_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4PostL_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4PostR_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningChair4Back_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DiningVase_mat
+Kd 0.2471 0.4275 0.5490
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardLeg1_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardLeg2_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardLeg3_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardLeg4_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardBody_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardTop_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardDoorL_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardDoorM_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardDoorR_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardDrawer_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardLampBase_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardLampStem_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardLampShade_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideboardVase_mat
+Kd 0.2471 0.4275 0.5490
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RadioCabinet_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RadioGrille_mat
+Kd 0.4196 0.3529 0.2667
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RadioDialPanel_mat
+Kd 0.9569 0.9451 0.9176
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CurtainOuterL_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CurtainInnerL_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ValanceL_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideCurtainAL_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideCurtainBL_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CurtainOuterR_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CurtainInnerR_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl ValanceR_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideCurtainAR_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SideCurtainBR_mat
+Kd 0.7804 0.6431 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Linoleum_mat
+Kd 0.8471 0.8235 0.7529
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BaseCabinets_mat
+Kd 0.9451 0.9373 0.9098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Countertop_mat
+Kd 0.2471 0.2902 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDoor1_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDrawer1_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabHandle1_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDoor2_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDrawer2_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabHandle2_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDoor3_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDrawer3_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabHandle3_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDoor4_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabDrawer4_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl CabHandle4_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SinkRim_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl SinkBasin_mat
+Kd 0.2902 0.3137 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FaucetStem_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FaucetSpout_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Canister1_mat
+Kd 0.9098 0.7686 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Canister2_mat
+Kd 0.9098 0.7686 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Canister3_mat
+Kd 0.9098 0.7686 0.4157
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Range_mat
+Kd 0.9451 0.9373 0.9098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RangeBackguard_mat
+Kd 0.9451 0.9373 0.9098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RangeOvenDoor_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RangeOvenHandle_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl RangeControls_mat
+Kd 0.2902 0.3137 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Burner1_mat
+Kd 0.2902 0.3137 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Burner2_mat
+Kd 0.2902 0.3137 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Burner3_mat
+Kd 0.2902 0.3137 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Burner4_mat
+Kd 0.2902 0.3137 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Kettle_mat
+Kd 0.7843 0.2588 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallCabinet_mat
+Kd 0.9451 0.9373 0.9098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallCabDoorL_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WallCabDoorR_mat
+Kd 0.9020 0.8902 0.8549
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Fridge_mat
+Kd 0.9451 0.9373 0.9098
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FridgeHandle_mat
+Kd 0.6039 0.6314 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl FridgeBadge_mat
+Kd 0.2902 0.3137 0.3373
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenTableLeg1_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenTableLeg2_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenTableLeg3_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenTableLeg4_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenTableCloth_mat
+Kd 0.7843 0.3216 0.2902
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1Leg1_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1Leg2_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1Leg3_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1Leg4_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1Seat_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1PostL_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1PostR_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair1Back_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2Leg1_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2Leg2_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2Leg3_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2Leg4_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2Seat_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2PostL_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2PostR_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenChair2Back_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl KitchenCurtain_mat
+Kd 0.7843 0.3216 0.2902
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Carpet_mat
+Kd 0.3647 0.4353 0.4510
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedBase_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLeg1_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLeg2_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLeg3_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLeg4_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Mattress_mat
+Kd 0.9412 0.9255 0.8863
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Blanket_mat
+Kd 0.4863 0.5608 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PillowA_mat
+Kd 0.9412 0.9255 0.8863
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PillowB_mat
+Kd 0.9412 0.9255 0.8863
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Headboard_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Footboard_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Nightstand1Body_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Nightstand1Drawer_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLamp1Base_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLamp1Stem_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLamp1Shade_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Nightstand2Body_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl Nightstand2Drawer_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLamp2Base_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLamp2Stem_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedLamp2Shade_mat
+Kd 0.9529 0.8863 0.7020
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DresserBody_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DresserDrawer1_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DresserDrawer2_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl DresserDrawer3_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl MirrorFrame_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl MirrorGlass_mat
+Kd 0.7882 0.8392 0.8706
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl MirrorPostA_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl MirrorPostB_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WardrobeBody_mat
+Kd 0.4784 0.3216 0.2000
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WardrobeCrown_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WardrobeDoorL_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WardrobeDoorR_mat
+Kd 0.6275 0.4784 0.3216
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WardrobeKnobL_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl WardrobeKnobR_mat
+Kd 0.7882 0.6431 0.2275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedCurtainA_mat
+Kd 0.7882 0.6275 0.6275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl BedCurtainB_mat
+Kd 0.7882 0.6275 0.6275
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PaintingBedFrame_mat
+Kd 0.3098 0.2000 0.1333
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
+
+newmtl PaintingBedCanvas_mat
+Kd 0.5412 0.4784 0.6588
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+Ns 10
+illum 2
