@@ -13,3 +13,8 @@ models/**/out/cutaway*.json
 *.blend1
 .DS_Store
 Thumbs.db
+
+# Dog build stages (run_all.py regenerates them in seconds; Dog.blend is the finished file)
+models/dog/blender/Dog_mesh.blend
+models/dog/blender/Dog_rig.blend
+models/dog/blender/__pycache__/
