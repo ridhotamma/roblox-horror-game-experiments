@@ -83,7 +83,8 @@ HIND = {
 # limb thickness (capsule radii, m). Slimmer than v3.0 (which was ~25% too thick next to the
 # references) while keeping the same taper: upper leg > forearm/shin > wrist/metatarsus.
 FRONT_R = {"upper": 0.0185, "fore_top": 0.0150, "fore_low": 0.0125, "wrist": 0.0118}
-HIND_R = {"femur": 0.0190, "shin_top": 0.0150, "shin_low": 0.0105, "hock": 0.0090, "meta": 0.0105}
+HIND_R = {"femur": 0.0200, "hamstring": 0.0160, "shin_top": 0.0145, "shin_low": 0.0105, "hock": 0.0085,
+          "meta": 0.0102}
 
 # -------------------------------------------------------------- tail (rest pose: low then curling up)
 TAIL = [(0.0, 0.200, 0.265), (0.0, 0.268, 0.266), (0.0, 0.324, 0.292),

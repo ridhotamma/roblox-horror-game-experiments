@@ -189,7 +189,13 @@ class Skeleton:
 def two_bone(a, t, l1, l2, bend):
     dy, dz = t[0] - a[0], t[1] - a[1]
     d = math.hypot(dy, dz)
-    d = max(abs(l1 - l2) + 1e-4, min(l1 + l2 - 1e-4, d))
+    # soft reach: ease toward a straight leg instead of snapping to it (a two-bone solve near full extension flips
+    # the middle joint many degrees per frame, which reads as jitter)
+    L = l1 + l2
+    ds = 0.96 * L
+    if d > ds:
+        d = ds + (0.999 * L - ds) * (1 - math.exp(-(d - ds) / (0.999 * L - ds)))
+    d = max(abs(l1 - l2) + 1e-4, d)
     base = atan2(dz, dy)
     off = acos(max(-1, min(1, (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d))))
     th1 = base + bend * off
@@ -269,28 +275,37 @@ def tail_sway(p, t, cycles, amp=(4, 6, 8, 10), lag=0.55, lift=(0, 0, 0, 0)):
         p.pitch[bone] = p.pitch.get(bone, 0.0) + tail_up(lift[i])
 
 
+def hermite(p0, p1, m0, m1, s):
+    s2, s3 = s * s, s * s * s
+    return (2 * s3 - 3 * s2 + 1) * p0 + (s3 - 2 * s2 + s) * m0 + (-2 * s3 + 3 * s2) * p1 + (s3 - s2) * m1
+
+
 def gait_leg(rest, leg, ph, g, front_fold, hind_fold, reach=0.0):
     """Toe target for one leg at its own phase: stance slides the planted paw back (+Y) at body speed, swing
-    brings it forward (-Y) on an arc, folding the wrist / hock on the way."""
+    brings it forward (-Y) on an arc, folding the wrist / hock on the way. Continuous in value and speed across
+    lift-off and touchdown: the swing starts from the stance's heel lift and speed, and the lift eases in/out."""
     duty, stride = g["duty"], g["stance"]
     r = rest[leg]
     y0, z0 = r["target"]
+    front = leg[0] == "F"
+    heel = radians(30 if front else 18)
+    heel_z = 0.003 if front else 0.004
     if ph < duty:
         s = ph / duty
         late = ease(max(0.0, (s - 0.70) / 0.30))     # heel lifts at the end of stance
-        y = y0 + stride * (s - 0.5)
-        if leg[0] == "F":
-            return {"target": (y, z0 + 0.003 * late), "angle": r["angle"] + radians(30) * late}
-        return {"target": (y, z0 + 0.004 * late), "angle": r["angle"] + radians(18) * late}
+        return {"target": (y0 + stride * (s - 0.5), z0 + heel_z * late), "angle": r["angle"] + heel * late}
     s = (ph - duty) / (1 - duty)
-    y = y0 + stride * (0.5 - ease(s)) - reach * sin(pi * s)
-    lift = g["lift_f"] if leg[0] == "F" else g["lift_h"]
-    z = z0 + lift * sin(pi * s) ** 0.8
-    if leg[0] == "F":
-        fold = sin(pi * min(1, s / 0.75)) if s < 0.75 else 0.0
-        return {"target": (y, z), "angle": r["angle"] + front_fold * fold - radians(14) * bump(s, 0.86, 0.14)}
-    fold = sin(pi * min(1, s / 0.8)) if s < 0.8 else 0.0
-    return {"target": (y, z + 0.012 * fold), "angle": r["angle"] + hind_fold * fold}
+    v = stride * (1 - duty) / duty
+    y = hermite(y0 + 0.5 * stride, y0 - 0.5 * stride, v, v, s) - reach * sin(pi * s) ** 2
+    lift = g["lift_f"] if front else g["lift_h"]
+    carry = 1 - ease(s / 0.3)
+    z = z0 + lift * sin(pi * s) ** 1.5 + heel_z * carry
+    if front:
+        fold = sin(pi * min(1, s / 0.75)) ** 2 if s < 0.75 else 0.0
+        return {"target": (y, z), "angle": r["angle"] + heel * carry + front_fold * fold
+                - radians(14) * bump(s, 0.86, 0.14)}
+    fold = sin(pi * min(1, s / 0.8)) ** 2 if s < 0.8 else 0.0
+    return {"target": (y, z + 0.012 * fold), "angle": r["angle"] + heel * carry + hind_fold * fold}
 
 
 # ------------------------------------------------------------------ locomotion
@@ -495,6 +510,9 @@ def idle_stretch(sk, rest, t):
 
 
 _SIT = {}
+# how the seated tilt is shared along the back: the hips turn less and the lower back curves, so the skin between
+# the rump and the folded thighs doesn't fold into a lip under the belly
+SIT_SPLIT = (0.62, 0.38, 0.25)
 
 
 def sit_solution(sk, rest):
@@ -507,14 +525,14 @@ def sit_solution(sk, rest):
     sh = sk.bones["UpperArm.L"]["head"]
 
     def shoulder(a, ry):
-        alpha = {"Hips": a, "Spine1": 0.18 * a, "Spine2": 0.10 * a}
+        alpha = {"Hips": SIT_SPLIT[0] * a, "Spine1": SIT_SPLIT[1] * a, "Spine2": SIT_SPLIT[2] * a}
         pos, _ = sk.fk(alpha, (ry, root_z))
         return pos["UpperArm.L"]
 
     lo, hi = 0.0, radians(80)
     for _ in range(40):
         m = (lo + hi) / 2
-        if shoulder(-m, 0.0)[1] < sh[1] + 0.005:
+        if shoulder(-m, 0.0)[1] < sh[1] - 0.012:      # chest a little lower: a few degrees less tilt
             lo = m
         else:
             hi = m
@@ -530,10 +548,10 @@ def sit_pose(sk, rest, p, k):
     ry, rz = sol["root_yz"]
     side, fwd, up = p.root
     p.root = (side, fwd - ry * k, up + rz * k)
-    p.pitch["Hips"] = p.pitch.get("Hips", 0.0) + a
-    p.pitch["Spine1"] = p.pitch.get("Spine1", 0.0) + 0.18 * a
-    p.pitch["Spine2"] = p.pitch.get("Spine2", 0.0) + 0.10 * a
-    body = a * 1.28
+    p.pitch["Hips"] = p.pitch.get("Hips", 0.0) + SIT_SPLIT[0] * a
+    p.pitch["Spine1"] = p.pitch.get("Spine1", 0.0) + SIT_SPLIT[1] * a
+    p.pitch["Spine2"] = p.pitch.get("Spine2", 0.0) + SIT_SPLIT[2] * a
+    body = a * sum(SIT_SPLIT)
     p.pitch["Neck"] = p.pitch.get("Neck", 0.0) - 0.55 * body
     p.pitch["Head"] = p.pitch.get("Head", 0.0) - 0.45 * body
     for s in ("L", "R"):
@@ -585,8 +603,8 @@ def idle_groom(sk, rest, t):
     lick = window(t, 0.24, 0.28, 0.46, 0.50)
     wipe = window(t, 0.50, 0.54, 0.70, 0.74)
     # head comes down and turns toward the right paw
-    p.pitch["Neck"] += nose_up(-22) * raise_
-    p.pitch["Head"] += nose_up(-14) * raise_ + nose_up(4) * sin(TAU * 14 * t) * lick
+    p.pitch["Neck"] += nose_up(-30) * raise_          # the head comes well down to the paw, so the leg
+    p.pitch["Head"] += nose_up(-20) * raise_          # doesn't have to rise as high + nose_up(4) * sin(TAU * 14 * t) * lick
     p.yaw["Neck"] = turn_left(-12) * raise_
     p.yaw["Head"] = turn_left(-10) * raise_
     p.roll["Head"] = drop_left(-10) * raise_ + drop_left(-14) * wipe * (0.5 + 0.5 * sin(TAU * 2 * (t - 0.50) / 0.20))

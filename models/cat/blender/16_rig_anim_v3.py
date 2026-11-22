@@ -125,9 +125,9 @@ def region(n, co):
         return 0.0
     ax = abs(x)
     if n.startswith(("UpperArm", "Forearm", "Paw")):
-        return (1 - smoothstep(0.195, 0.235, z)) * smoothstep(0.014, 0.030, ax) * (1 - smoothstep(-0.07, -0.03, y))
+        return (1 - smoothstep(0.170, 0.250, z)) * smoothstep(0.012, 0.034, ax) * (1 - smoothstep(-0.07, -0.03, y))
     if n.startswith(("Thigh", "Shin", "Foot")):
-        return (1 - smoothstep(0.205, 0.250, z)) * smoothstep(0.014, 0.030, ax) * smoothstep(0.06, 0.10, y)
+        return (1 - smoothstep(0.175, 0.255, z)) * smoothstep(0.016, 0.034, ax) * smoothstep(0.075, 0.12, y)
     return 1.0
 
 
@@ -141,7 +141,7 @@ for e in me_b.edges:
     a, b = e.vertices
     nbrs[a].append(b)
     nbrs[b].append(a)
-for _ in range(6):
+for _ in range(16):
     new = []
     for vi, ws in enumerate(W):
         acc = {k: 0.5 * w for k, w in ws.items()}

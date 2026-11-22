@@ -11,8 +11,8 @@ local root = model:WaitForChild("HumanoidRootPart") :: BasePart
 
 -- 1 = the size the clips were made for (HumanoidRootPart 0.62 m long at 4.5 studs/m)
 local scale = root.Size.Z / (0.62 * 4.5)
-local WALK_SPEED = 5 * scale
-local RUN_SPEED = 15 * scale
+local WALK_SPEED = 4 * scale
+local RUN_SPEED = 13 * scale
 local NEAR = 6 * scale -- stop this far from the player
 local FAR = 20 * scale -- run beyond this
 local SIGHT = 120 -- notice players within this many studs

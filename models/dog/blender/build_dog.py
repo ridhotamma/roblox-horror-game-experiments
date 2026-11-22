@@ -141,17 +141,29 @@ def sculpt_body():
     for sx in (1, -1):
         f = {k: Vector((v[0] * sx, v[1], v[2])) for k, v in S.FRONT.items()}
         h = {k: Vector((v[0] * sx, v[1], v[2])) for k, v in S.HIND.items()}
-        # front: shoulder blade mass, upper arm, forearm, pastern, paw
-        sc.ellipsoid((0.070 * sx, 0.225, 0.430), (0.045, 0.070, 0.085))
-        sc.capsule(f["shoulder"], f["elbow"], 0.040)
-        sc.capsule(f["elbow"], f["wrist"], 0.025)
-        sc.capsule(f["wrist"], f["wrist"] + Vector((0, 0.025, -0.045)), 0.022)
+        # front, following the bones: the shoulder blade lies along the chest (withers down and forward to the
+        # point of shoulder), the upper arm runs back to the elbow, then a slim forearm, pastern and paw
+        sc.capsule(Vector((0.058 * sx, 0.170, 0.515)), f["shoulder"] + Vector((-0.008 * sx, -0.005, 0.0)), 0.034)
+        sc.capsule(f["shoulder"], f["elbow"], 0.031)
+        sc.ellipsoid(f["elbow"] + Vector((0, -0.012, 0.004)), (0.024, 0.024, 0.026))          # point of elbow
+        sc.capsule(f["elbow"], (f["elbow"] + f["wrist"]) / 2, 0.024)
+        sc.capsule((f["elbow"] + f["wrist"]) / 2, f["wrist"], 0.020)
+        sc.capsule(f["wrist"], f["wrist"] + Vector((0, 0.025, -0.045)), 0.019)
         sc.ellipsoid((0.085 * sx, 0.240, 0.024), (0.030, 0.042, 0.024))
-        # hind: thigh muscle, gaskin, metatarsus, paw
-        sc.ellipsoid(((h["hip"] + h["knee"]) / 2) + Vector((0, -0.025, 0.0)), (0.050, 0.085, 0.100),
-                     rot=Quaternion((1, 0, 0), math.radians(-25)))
-        sc.capsule(h["knee"], h["hock"], 0.028)
-        sc.capsule(h["hock"], h["ball"], 0.021)
+        # hind, a flattened wedge instead of one hanging egg: the haunch blends into the croup, the femur muscles
+        # run forward-down to the stifle, the hamstrings make the curved back line from the seat bone down to the
+        # gaskin, and the gaskin tapers to a clean hock
+        hip_top = h["hip"] + Vector((-0.024 * sx, 0.0, 0.0))
+        sc.ellipsoid(Vector((0.064 * sx, -0.245, 0.415)), (0.044, 0.098, 0.078))              # haunch
+        sc.capsule(hip_top, h["knee"] + Vector((0, -0.012, 0.012)), 0.039)                    # quadriceps / femur
+        sc.capsule(Vector((0.058 * sx, -0.335, 0.440)), Vector((0.086 * sx, -0.228, 0.268)), 0.031)   # hamstrings
+        sc.ellipsoid(Vector((0.076 * sx, -0.232, 0.345)), (0.034, 0.058, 0.064),              # fills the thigh
+                     rot=Quaternion((1, 0, 0), math.radians(-28)))
+        sc.ellipsoid(h["knee"] + Vector((0, 0.006, 0.0)), (0.026, 0.026, 0.028))              # stifle
+        sc.capsule(h["knee"], (h["knee"] + h["hock"]) / 2, 0.026)                             # gaskin
+        sc.capsule((h["knee"] + h["hock"]) / 2, h["hock"], 0.019)
+        sc.ellipsoid(h["hock"] + Vector((0, -0.010, 0.004)), (0.017, 0.018, 0.019))           # point of hock
+        sc.capsule(h["hock"], h["ball"], 0.019)
         sc.ellipsoid((0.090 * sx, -0.262, 0.024), (0.031, 0.044, 0.024))
     return sc.ob
 

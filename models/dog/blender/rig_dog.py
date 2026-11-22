@@ -84,10 +84,13 @@ def region(bone, co):
         m *= smoothstep(-0.004, 0.022, x)
     elif bone.endswith("_R"):
         m *= smoothstep(-0.004, 0.022, -x)
+    ax = abs(x)
     if bone.startswith("Front"):
-        m *= smoothstep(0.07, 0.14, y)
+        # the legs own the skin below the chest floor and away from the sternum; the chest between the front legs
+        # stays on the spine, so it can't fold out into a fin when the body tilts up over straight legs (sitting)
+        m *= smoothstep(0.07, 0.14, y) * (1 - smoothstep(0.31, 0.45, z)) * smoothstep(0.03, 0.075, ax)
     elif bone.startswith("Hind"):
-        m *= 1 - smoothstep(-0.14, -0.07, y)
+        m *= (1 - smoothstep(-0.14, -0.07, y)) * (1 - smoothstep(0.34, 0.48, z)) * smoothstep(0.03, 0.075, ax)
     elif bone.startswith("Tail"):
         m *= 1 - smoothstep(-0.325, -0.285, y)
     elif bone == "Head":
@@ -108,10 +111,29 @@ def nearest_spine_bone(rig, co):
     return best
 
 
-def mask_body_weights(body, rig):
+def mask_body_weights(body, rig, smooth_passes=8):
+    """Region-mask the bone-heat weights, then smooth them over the surface (re-masking each pass) so every
+    leg-to-body join bends over a wide, soft band instead of pinching into a fold."""
     names = {vg.index: vg.name for vg in body.vertex_groups}
-    for v in body.data.vertices:
-        ws = {names[g.group]: g.weight * region(names[g.group], v.co) for g in v.groups}
+    me = body.data
+    W = [{names[g.group]: g.weight * region(names[g.group], v.co) for g in v.groups} for v in me.vertices]
+    nbrs = [[] for _ in me.vertices]
+    for e in me.edges:
+        a, b = e.vertices
+        nbrs[a].append(b)
+        nbrs[b].append(a)
+    for _ in range(smooth_passes):
+        new = []
+        for vi, ws in enumerate(W):
+            acc = {k: 0.5 * w for k, w in ws.items()}
+            nb = nbrs[vi]
+            for o in nb:
+                for k, w in W[o].items():
+                    acc[k] = acc.get(k, 0.0) + 0.5 * w / len(nb)
+            new.append(acc)
+        W = [{k: w * region(k, me.vertices[vi].co) for k, w in ws.items() if w > 1e-5} for vi, ws in enumerate(new)]
+    for v in me.vertices:
+        ws = W[v.index]
         total = sum(ws.values())
         if total < 1e-4:
             ws = {nearest_spine_bone(rig, v.co): 1.0}

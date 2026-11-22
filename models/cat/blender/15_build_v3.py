@@ -112,6 +112,7 @@ sc.capsule(*S.NOSE_BRIDGE)
 for i in range(4):
     sc.capsule(S.TAIL[i], S.TAIL[i + 1], S.TAIL_R[i])
 
+HIND_X_HAUNCH = S.HIND_X - 0.010
 for sx in (1, -1):
     def m(p):
         return (p[0] * sx, p[1], p[2])
@@ -125,14 +126,19 @@ for sx in (1, -1):
     sc.capsule(m(F["wrist"]), m((F["wrist"][0], F["wrist"][1] - 0.008, 0.021)), FR["wrist"])
     sc.ellipsoid(m(F["paw"][0]), F["paw"][1])
 
-    sc.ellipsoid(m(H["thigh"][0]), H["thigh"][1], rot=(28, 0, 0))
-    sc.capsule(m(H["hip"]), m(H["knee"]), HR["femur"])
-    mid = [(a + b) / 2 for a, b in zip(H["knee"], H["hock"])]
-    sc.capsule(m(H["knee"]), m(mid), HR["shin_top"])
-    sc.capsule(m(mid), m(H["hock"]), HR["shin_low"])
-    sc.ellipsoid(m(H["calf"][0]), H["calf"][1], rot=(-30, 0, 0))
-    sc.ellipsoid(m((H["hock"][0], H["hock"][1] + 0.003, H["hock"][2])), (HR["hock"], HR["hock"] + 0.001, HR["hock"] + 0.001))
-    sc.capsule(m(H["hock"]), m((H["hock"][0], 0.150, 0.023)), HR["meta"])
+    # hind leg as one flattened wedge, like the references: the haunch blends into the rump, the femur muscles
+    # run forward-down to the knee, the hamstrings make the curved back line down to the gaskin, a filler joins
+    # them; then one smoothly tapering gaskin to a small heel and a slim metatarsus (no separate calf / knee lumps)
+    hip, knee, hock = Vector(H["hip"]), Vector(H["knee"]), Vector(H["hock"])
+    sc.ellipsoid(m((HIND_X_HAUNCH, 0.152, 0.222)), (0.030, 0.058, 0.042))                    # haunch
+    sc.capsule(m(hip + Vector((-0.010, 0.0, 0.0))), m(knee + Vector((0, 0.006, 0.008))), HR["femur"])
+    sc.capsule(m((0.040, 0.206, 0.234)), m((0.050, 0.142, 0.128)), HR["hamstring"])          # hamstrings
+    sc.ellipsoid(m((0.046, 0.146, 0.180)), (0.018, 0.034, 0.040), rot=(-28, 0, 0))          # thigh fill
+    mid = knee.lerp(hock, 0.45)
+    sc.capsule(m(knee), m(mid), HR["shin_top"])
+    sc.capsule(m(mid), m(hock), HR["shin_low"])
+    sc.ellipsoid(m(hock + Vector((0, 0.004, 0.002))), (HR["hock"], HR["hock"] + 0.0015, HR["hock"] + 0.001))
+    sc.capsule(m(hock), m((H["hock"][0], 0.150, 0.023)), HR["meta"])
     sc.ellipsoid(m(H["paw"][0]), H["paw"][1])
 
 bpy.context.view_layer.update()

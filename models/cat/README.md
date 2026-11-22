@@ -16,8 +16,8 @@ A stylised tuxedo cat built in Blender 5.3 from measured photo references, with 
 | Bounds (rest pose) | 0.16 m wide × 0.76 m long × 0.47 m tall (tail up) |
 | Shoulder height | ~0.32 m |
 | Nose to tail base | ~0.57 m |
-| Triangles | 13,420 (8,536 fur body + 4,884 face details: eyeballs, pupils, eyelids, ears, nose, mouth, whiskers) |
-| Vertices | 6,782 |
+| Triangles | 15,100 (10,216 fur body + 4,884 face details: eyeballs, pupils, eyelids, ears, nose, mouth, whiskers) |
+| Vertices | 7,622 |
 | Materials | 7, no textures; the tuxedo markings are vertex colours (`COLOR_0`) |
 | Rig | 37 bones: `Root` + 24 body deform bones + 12 face bones; at most 4 influences per vertex |
 | Frame rate | 24 fps |
@@ -40,6 +40,10 @@ The v3 rebuild compares the cat against openly licensed photos and a skeleton (s
   rigged to blink and to widen or narrow the pupil (see **Face rig**).
 - **Ears:** large, with wide bases, cupped and pink inside, leaning outward from the
   corners of the skull.
+- **Hind legs** are one smooth, flattened wedge, as in the skeleton photo. A haunch blends
+  into the rump, the thigh muscle runs forward to the knee and the hamstrings form the
+  curved back line. One tapering lower thigh leads to a small heel, with no separate
+  calf or knee lumps.
 - **Legs:** slim, tapering from upper leg to wrist and hock. The upper arm is about 3.7 cm
   across and the forearm about 2.5 cm. The v3.0 legs were about 25% thicker than the
   references.
@@ -109,7 +113,7 @@ leg swung forward the white bib tore and dark wedges appeared in it, which showe
 - **Hind legs** own only the skin below the hip joint and behind the belly.
 - **Face and ears** stay rigid separate parts.
 
-The weights are then smoothed over the surface six times, so joints bend in soft folds.
+The weights are then smoothed over the surface sixteen times, so joints bend in soft folds. The seated pose shares its upright tilt between the hips and the lower back, so the hips turn less against the folded thighs.
 
 How the motion is built (the same approach as the dog's):
 

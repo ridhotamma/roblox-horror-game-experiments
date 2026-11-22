@@ -80,9 +80,9 @@ def blinks(sec, times, close=0.07, hold=0.03, open_=0.12):
             v = max(v, 1 - ease((dt - close - hold) / open_))
     return v
 
-WALK = {"stance": 0.50, "duty": 0.62, "lift_f": 0.055, "lift_h": 0.05,
+WALK = {"stance": 0.36, "duty": 0.62, "front_back": 0.045, "lift_f": 0.055, "lift_h": 0.05,
         "phase": {"HL": 0.00, "FL": 0.25, "HR": 0.50, "FR": 0.75}}
-RUN = {"stance": 0.56, "duty": 0.32, "lift_f": 0.11, "lift_h": 0.09,
+RUN = {"stance": 0.42, "duty": 0.32, "front_back": 0.075, "lift_f": 0.11, "lift_h": 0.09,
        "phase": {"HL": 0.00, "HR": 0.10, "FR": 0.42, "FL": 0.52}}
 CLIPS["Walk"]["speed"] = WALK["stance"] / (WALK["duty"] * CLIPS["Walk"]["frames"] / FPS)
 CLIPS["Run"]["speed"] = RUN["stance"] / (RUN["duty"] * CLIPS["Run"]["frames"] / FPS)
@@ -127,7 +127,13 @@ def two_bone(a, t, l1, l2, bend):
     side of the a->t line (hind stifle, forward), -1 on the other (front elbow, backward)."""
     dy, dz = t[0] - a[0], t[1] - a[1]
     d = math.hypot(dy, dz)
-    d = max(abs(l1 - l2) + 1e-4, min(l1 + l2 - 1e-4, d))
+    # soft reach: ease toward a straight leg instead of snapping to it (a two-bone solve near full extension flips
+    # the middle joint many degrees per frame, which reads as jitter)
+    L = l1 + l2
+    ds = 0.96 * L
+    if d > ds:
+        d = ds + (0.999 * L - ds) * (1 - math.exp(-(d - ds) / (0.999 * L - ds)))
+    d = max(abs(l1 - l2) + 1e-4, d)
     base = atan2(dz, dy)
     off = acos(max(-1, min(1, (l1 * l1 + d * d - l2 * l2) / (2 * l1 * d))))
     th1 = base + bend * off
@@ -218,35 +224,47 @@ def solve(sk, pose):
 
 
 # ------------------------------------------------------------------ gait helper
+def hermite(p0, p1, m0, m1, s):
+    s2, s3 = s * s, s * s * s
+    return (2 * s3 - 3 * s2 + 1) * p0 + (s3 - 2 * s2 + s) * m0 + (-2 * s3 + 3 * s2) * p1 + (s3 - s2) * m1
+
+
 def gait_leg(rest, leg, ph, g, front_fold, hind_fold, reach=0.0):
     """Paw target for one leg at its own phase ph in [0,1): stance moves the planted paw backward at body speed,
-    swing brings it forward on an arc. Returns the leg spec dict."""
+    swing brings it forward on an arc. Every channel is continuous in value and speed across lift-off and
+    touchdown (no pops): the swing starts with the heel-lift the stance ended on and with the stance's speed,
+    and the lift eases in and out. Returns the leg spec dict."""
     duty, stride = g["duty"], g["stance"]
     r = rest[leg]
     y0, z0 = r["target"]
+    front = leg[0] == "F"
+    if front:
+        y0 -= g.get("front_back", 0.0)              # centre the front stride under the shoulder, not the resting toe
+    heel_paw = radians(32 if front else 30)         # heel lift reached at the end of stance
+    heel_foot = 0.0 if front else radians(14)
+    heel_z = 0.004 if front else 0.018
     if ph < duty:                                  # stance: planted, sliding back under the body
         s = ph / duty
+        late = ease(max(0.0, (s - 0.70) / 0.30))
         y = y0 + stride * (0.5 - s)
-        z = z0
-        late = max(0.0, (s - 0.70) / 0.30)          # heel lifts at the end of stance
-        if leg[0] == "F":
-            paw = r["paw"] - radians(32) * ease(late)
-            return {"target": (y, z + 0.004 * late), "paw": paw}
-        paw = r["paw"] - radians(30) * ease(late)
-        foot = r["foot"] - radians(14) * ease(late)
-        return {"target": (y, z + 0.018 * ease(late)), "paw": paw, "foot": foot}
+        if front:
+            return {"target": (y, z0 + heel_z * late), "paw": r["paw"] - heel_paw * late}
+        return {"target": (y, z0 + heel_z * late), "paw": r["paw"] - heel_paw * late,
+                "foot": r["foot"] - heel_foot * late}
     s = (ph - duty) / (1 - duty)                    # swing: forward arc
-    y = y0 + stride * (ease(s) - 0.5) + reach * sin(pi * s)
-    lift = g["lift_f"] if leg[0] == "F" else g["lift_h"]
-    z = z0 + lift * sin(pi * s) ** 0.8
-    if leg[0] == "F":
+    v = -stride * (1 - duty) / duty                 # stance speed in swing units: matched at both ends
+    y = hermite(y0 - 0.5 * stride, y0 + 0.5 * stride, v, v, s) + reach * sin(pi * s) ** 2
+    lift = g["lift_f"] if front else g["lift_h"]
+    carry = 1 - ease(s / 0.3)                       # the stance's heel lift unwinds over the first 30%
+    z = z0 + lift * sin(pi * s) ** 1.5 + heel_z * carry
+    if front:
         # carpus folds the paw back early in swing, then the paw reaches forward to land
-        fold = sin(pi * min(1, s / 0.75)) if s < 0.75 else 0.0
-        paw = r["paw"] - front_fold * fold + radians(16) * bump(s, 0.86, 0.14)
+        fold = sin(pi * min(1, s / 0.75)) ** 2 if s < 0.75 else 0.0
+        paw = r["paw"] - heel_paw * carry - front_fold * fold + radians(8) * bump(s, 0.86, 0.14)
         return {"target": (y, z), "paw": paw}
-    fold = sin(pi * min(1, s / 0.8)) if s < 0.8 else 0.0
-    paw = r["paw"] - radians(40) * fold
-    foot = r["foot"] - hind_fold * fold
+    fold = sin(pi * min(1, s / 0.8)) ** 2 if s < 0.8 else 0.0
+    paw = r["paw"] - heel_paw * carry - radians(40) * fold
+    foot = r["foot"] - heel_foot * carry - hind_fold * fold
     return {"target": (y, z + 0.02 * fold), "paw": paw, "foot": foot}
 
 
@@ -318,7 +336,7 @@ def walk(sk, rest, t):
     p = Pose()
     g = WALK
     bob = cos(TAU * 2 * (t - 0.10))
-    p.root = (0.0, -0.014 - 0.007 * bob)
+    p.root = (0.0, -0.030 - 0.007 * bob)   # a slight crouch gives the near-straight front legs room
     # weight shift: each hip drops while its own hind leg swings (left hind swing is centred at t ~ 0.81), and the
     # shoulders rock with the front swing (left fore centred at t ~ 0.06); +roll drops the left side
     hips_roll = radians(2.8) * cos(TAU * (t - 0.81))
@@ -356,7 +374,7 @@ def run(sk, rest, t):
         ph = (t - off) % 1.0
         if ph < g["duty"]:
             load += sin(pi * ph / g["duty"])
-    p.root = (0.0, -0.035 + 0.045 * (0.5 - min(1.0, load / 1.6)))
+    p.root = (0.0, -0.052 + 0.045 * (0.5 - min(1.0, load / 1.6)))
     p.pitch["Hips"] = radians(6) * flex + radians(5) * sin(TAU * (t - 0.20))
     p.pitch["Spine"] = radians(-8) * flex
     p.pitch["Chest"] = radians(3) * flex
@@ -379,7 +397,7 @@ def run(sk, rest, t):
     p.pitch["Head"] -= 0.5 * (p.pitch["Hips"] + p.pitch["Spine"] + p.pitch["Chest"])
     for leg, off in g["phase"].items():
         p.legs[leg] = gait_leg(rest, leg, (t - off) % 1.0, g, radians(120), radians(40),
-                               reach=0.05 if leg[0] == "F" else 0.02)
+                               reach=0.03 if leg[0] == "F" else 0.015)
     return p
 
 
@@ -493,13 +511,14 @@ def idle_sniff(sk, rest, t):
 
 
 _SIT = {}
+SIT_RUMP_Z = 0.19      # height of the Hips bone head when seated; main() raises it until the haunches rest on the floor
 
 
 def sit_solution(sk, rest):
     """Hips pitch and root offset for a sit: rump down near the hind paws, front legs straight under the shoulders."""
     if _SIT:
         return _SIT
-    rump_z = 0.19
+    rump_z = SIT_RUMP_Z
     sh = sk.bones["FrontUpper_L"]["head"]
     hips = sk.bones["Hips"]["head"]
     root_z = rump_z - hips[1]
@@ -516,8 +535,9 @@ def sit_solution(sk, rest):
         else:
             hi = a
     a = (lo + hi) / 2
-    root_y = (sh[0] - 0.03) - shoulder(a, 0.0)[0]       # shoulders end a little behind where they stood
-    _SIT.update({"hips": a, "root": (root_y, root_z)})
+    root_y = (sh[0] + 0.005) - shoulder(a, 0.0)[0]      # shoulders stay over the front paws (legs upright)
+    pos, _ = sk.fk({"Hips": a, "Spine": 0.22 * a, "Chest": 0.05 * a}, (root_y, root_z))
+    _SIT.update({"hips": a, "root": (root_y, root_z), "hip_y": pos["HindThigh_L"][0]})
     return _SIT
 
 
@@ -536,8 +556,12 @@ def sit_pose(sk, rest, p, k):
     for s in ("L", "R"):
         r = rest["H" + s]
         y0, z0 = r["target"]
-        p.legs["H" + s] = {"target": (y0 + (sol["root"][0] - 0.05) * k, z0), "paw": r["paw"],
-                           "foot": lerp(r["foot"], radians(-8), k)}
+        # seated, the hind paws sit just ahead of the hip with the hock on the floor behind them, so the leg folds
+        # into the classic tight triangle (thigh up and forward to the stifle, gaskin back down to the hock)
+        p.legs["H" + s] = {"target": (lerp(y0, sol["hip_y"] + 0.095, k), z0), "paw": r["paw"],
+                           "foot": lerp(r["foot"], radians(-6), k)}
+        # turn the folded leg out a little so the foot lies beside the thigh, not through it
+        p.yaw[f"HindThigh_{s}"] = p.yaw.get(f"HindThigh_{s}", 0.0) + radians(10) * k * (-1 if s == "L" else 1)
     return p
 
 
@@ -553,11 +577,17 @@ def idle_sit(sk, rest, t):
     p.roll["Head"] = radians(8) * bump(t, 0.55, 0.07)
     p.pitch["Ear_L"] = radians(6) * hold - radians(14) * bump(t, 0.42, 0.03)
     p.pitch["Ear_R"] = radians(6) * hold
-    # the tail lies on the floor and sweeps it
-    p.pitch["Tail1"] = radians(-6) - radians(32) * k
+    # the tail lies along the floor and sweeps it. Pitches are solved from world angles after the hip tilt (tail
+    # bones are flipped in solve(): a clip value v becomes local pitch -v)
+    cum = p.pitch.get("Hips", 0.0)
+    for bone, world, stand in (("Tail1", 194, -6), ("Tail2", 182, 0), ("Tail3", 178, 0)):
+        need = radians(world) - sk.bones[bone]["theta"] - cum
+        need = (need + pi) % TAU - pi
+        v = lerp(radians(stand), -need, k)
+        p.pitch[bone] = v
+        cum += -v
     for i, bone in enumerate(("Tail1", "Tail2", "Tail3")):
         p.yaw[bone] = radians(16 + 4 * i) * sin(TAU * 7 * t - 0.6 * i) * (0.4 + 0.6 * hold)
-    p.pitch["Tail2"] = radians(-8) * k
     return p
 
 
@@ -671,31 +701,29 @@ def paw_world(rig, name):
 
 
 def contact_check(rig):
-    """Measured in Blender's evaluated pose (not the planner): how far planted paws slide, the lowest paw tip."""
+    """Measured in Blender's evaluated pose (not the planner): how far planted paws slide, the lowest paw tip.
+    A paw counts as planted on a frame when it is down on that frame and on both neighbours (lift-off and
+    touchdown frames are motion, not slip)."""
     sc = bpy.context.scene
     out = {}
+    paws = ("FrontPaw_L", "FrontPaw_R", "HindPaw_L", "HindPaw_R")
+    rest_x = {paw: (rig.matrix_world @ rig.data.bones[paw].tail_local).x for paw in paws}
     for name, cfg in CLIPS.items():
         rig.animation_data.action = bpy.data.actions[name]
         n = cfg["frames"]
-        lowest = 9
-        slide = 0.0
-        prev = {}
-        side = 0.0
-        rest_x = {paw: (rig.matrix_world @ rig.data.bones[paw].tail_local).x for paw in
-                  ("FrontPaw_L", "FrontPaw_R", "HindPaw_L", "HindPaw_R")}
         speed = cfg.get("speed") or 0.0
+        track = {paw: [] for paw in paws}
         for fr in range(n + 1):
             sc.frame_set(fr)
-            for paw in ("FrontPaw_L", "FrontPaw_R", "HindPaw_L", "HindPaw_R"):
-                p = paw_world(rig, paw)
-                lowest = min(lowest, p.z)
-                if paw in prev and p.z < 0.03 and prev[paw].z < 0.03:
-                    # a planted paw should move back at exactly the clip speed (the root is in place)
-                    dy = (p.y - prev[paw].y) + speed / FPS
-                    slide = max(slide, abs(dy))
-                if p.z < 0.03:
-                    side = max(side, abs(p.x - rest_x[paw]))
-                prev[paw] = p
+            for paw in paws:
+                track[paw].append(paw_world(rig, paw))
+        lowest, slide, side = 9.0, 0.0, 0.0
+        for paw, pts in track.items():
+            lowest = min(lowest, min(p.z for p in pts))
+            for i in range(1, len(pts) - 1):
+                if pts[i - 1].z < 0.03 and pts[i].z < 0.03 and pts[i + 1].z < 0.03:
+                    slide = max(slide, abs((pts[i].y - pts[i - 1].y) + speed / FPS))
+                    side = max(side, abs(pts[i].x - rest_x[paw]))
         out[name] = {"lowest_paw_tip": round(lowest, 4), "max_slide_per_frame_m": round(slide, 4),
                      "max_sideways_m": round(side, 4)}
     rig.animation_data.action = None
@@ -751,11 +779,51 @@ def contact_sheet(rig, frames_per_clip=6):
     return paths
 
 
+def mesh_min_z(dog, frames, groups=None):
+    """Lowest evaluated vertex over frames; with `groups`, only vertices whose main bone is one of them."""
+    sc = bpy.context.scene
+    dg = bpy.context.evaluated_depsgraph_get()
+    ids = None
+    if groups:
+        names = {g.index: g.name for g in dog.vertex_groups}
+        ids = [v.index for v in dog.data.vertices
+               if v.groups and names[max(v.groups, key=lambda g: g.weight).group] in groups]
+    low = 9.0
+    for fr in frames:
+        sc.frame_set(fr)
+        ob = dog.evaluated_get(dg)
+        me = ob.to_mesh()
+        vs = me.vertices
+        low = min(low, min(vs[i].co.z for i in ids) if ids else min(v.co.z for v in vs))
+        ob.to_mesh_clear()
+    return low
+
+
+def seat_on_floor(rig):
+    """Move the seated rump up or down until the haunches (not the paws) just rest on the floor."""
+    global SIT_RUMP_Z
+    dog = bpy.data.objects["Dog"]
+    n = CLIPS["IdleSit"]["frames"]
+    hold = range(int(n * 0.25), int(n * 0.75), 6)
+    haunch = {"Hips", "HindThigh_L", "HindThigh_R"}
+    for _ in range(6):
+        rig.animation_data.action = bpy.data.actions["IdleSit"]
+        low = mesh_min_z(dog, hold, haunch)
+        rig.animation_data.action = None
+        if -0.004 <= low <= 0.004:
+            break
+        SIT_RUMP_Z += 0.002 - low
+        _SIT.clear()
+        bake(rig)
+    return {"rump_z": round(SIT_RUMP_Z, 4), "lowest_while_seated": round(low, 4)}
+
+
 def main():
     rig = bpy.data.objects["DogRig"]
     sc = bpy.context.scene
     sc.render.fps = FPS
     report = {"bake": bake(rig)}
+    report["sit"] = seat_on_floor(rig)
     report["contact"] = contact_check(rig)
     sc.frame_set(0)
     bpy.ops.wm.save_as_mainfile(filepath=os.path.join(HERE, "Dog.blend"))
