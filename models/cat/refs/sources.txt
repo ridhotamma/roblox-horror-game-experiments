@@ -1,0 +1,9 @@
+﻿Reference images used for proportions (not traced for textures or design copying).
+
+refs/cat_side.jpg
+  "Domestic cat in Poland 1.jpg"
+  Wikimedia Commons, CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Domestic_cat_in_Poland_1.jpg
+
+Measured: side profile, standing cat. Nose-to-tail-base ~0.57 m, shoulder height ~0.30 m,
+tail ~0.30 m. The model follows those proportions with a slightly stylised, chunkier body.
