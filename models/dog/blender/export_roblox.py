@@ -101,6 +101,8 @@ def write_animations(rig):
         lines.append(f"\t\t\tspeed = {num(speed_studs, 3)}, -- studs per second of travel the cycle was made for")
         if name == "Jump":
             lines.append("\t\t\tphysicsLift = true, -- the Humanoid does the jumping: drop the clip's upward root lift")
+        if cfg.get("idle_variant"):
+            lines.append("			idleVariant = true, -- played now and then while standing still, then back to Idle")
         if "markers" in cfg:
             mk = ", ".join(f"{k} = {{ {v[0]}, {v[1]} }}" for k, v in cfg["markers"].items())
             lines.append(f"\t\t\tmarkers = {{ {mk} }},")

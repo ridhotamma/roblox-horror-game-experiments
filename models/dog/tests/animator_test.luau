@@ -161,6 +161,58 @@ check(seen["Run@" .. tostring(15 * 1.3)], "run at 15 studs/s (x1.3 scale)")
 check(modes.crouch and modes.jump and modes.air and modes.land, "went through crouch, jump, air and land")
 check(anim.mode == "ground", "back on the ground at the end, mode = " .. anim.mode)
 
+-- 2b. idle variants: standing still plays them now and then, each ends back in Idle, moving interrupts them -------
+local variants = {}
+for name, clip in DogAnimations.clips do
+	if clip.idleVariant then
+		table.insert(variants, name)
+		check(not clip.loop, name .. " is a one-shot")
+	end
+end
+check(#variants >= 4, ("expected at least 4 idle variants, got %d"):format(#variants))
+math.randomseed(7)
+anim.tracks = {}
+anim.mode = "ground"
+anim.locoName = nil
+anim:SetIdleVariantDelay(1, 2)
+local played, backToIdle, prev = {}, 0, nil
+t = 0
+while t < 60 do
+	anim:SetLocomotion(0)
+	if not anim.variantName then
+		check(anim.locoName == "Idle", "plain Idle between variants")
+	end
+	anim:Step(1 / 30)
+	local v = anim.variantName
+	if v then
+		played[v] = true
+	end
+	if prev and not v then
+		backToIdle += 1
+	end
+	prev = v
+	t += 1 / 30
+end
+local distinct = 0
+for _ in played do
+	distinct += 1
+end
+check(distinct == #variants, ("all %d idle variants played in 60 s, saw %d"):format(#variants, distinct))
+check(backToIdle >= 4, "variants hand back to Idle when they end")
+-- start one by name, then walk: the variant must stop and Walk take over
+anim:PlayIdleVariant("IdleSit")
+check(anim.variantName == "IdleSit", "PlayIdleVariant by name")
+for _ = 1, 15 do
+	anim:SetLocomotion(0)
+	anim:Step(1 / 30)
+end
+check(anim.variantName == "IdleSit", "a variant keeps playing while the dog stands still")
+anim:SetLocomotion(5 * 1.3)
+anim:Step(1 / 30)
+check(anim.variantName == nil and anim.locoName == "Walk", "moving interrupts the idle variant")
+anim:SetIdleVariantDelay(nil)
+print(("idle variants: %d played, %d hand-backs to Idle"):format(distinct, backToIdle))
+
 -- 3. Destroy puts the rest pose back ---------------------------------------------------------------------------
 anim:Destroy()
 local w = worldOf()

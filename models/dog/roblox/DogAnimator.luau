@@ -16,6 +16,8 @@
 --   anim:Crouch()                             -- jump anticipation (frames 0-9); hold until Jump()
 --   anim:Jump()                               -- push off and the airborne poses; holds the last air pose
 --   anim:Land()                               -- landing, then back to locomotion
+--   anim:PlayIdleVariant(name?)               -- play an idle variant now (random one if name is nil)
+--   anim:SetIdleVariantDelay(min, max)        -- seconds of plain Idle between variants (default 6-12; nil = off)
 --   anim:Step(dt)                             -- advance and write the bones
 --   anim:Destroy()                            -- bones back to rest
 
@@ -25,6 +27,8 @@ DogAnimator.__index = DogAnimator
 local WALK_RUN_SWITCH = 0.55 -- switch to Run above this fraction of the way from walk speed to run speed
 local IDLE_BELOW = 0.35      -- studs/s (at the native scale) below which the dog stands
 local FADE = 0.18            -- seconds for locomotion cross-fades
+local VARIANT_FADE = 0.35    -- softer blend into and out of idle variants (sit, sniff, shake...)
+local VARIANT_DELAY = { 6, 12 } -- seconds of plain Idle before the next variant
 
 -- ------------------------------------------------------------------ quaternions as plain numbers (x, y, z, w)
 local function qget(arr, frame)
@@ -126,6 +130,18 @@ function DogAnimator.fromBones(bones: { any }, data)
 		end
 	end
 
+	-- idle variants: one-shot clips flagged idleVariant, played now and then while standing
+	self.idleVariants = {}
+	for name, clip in data.clips do
+		if clip.idleVariant then
+			table.insert(self.idleVariants, name)
+		end
+	end
+	table.sort(self.idleVariants)
+	self.variantDelay = { VARIANT_DELAY[1], VARIANT_DELAY[2] }
+	self.idleClock = 0
+	self.nextVariantAt = self:_rollDelay()
+
 	self.tracks = {}
 	self.mode = "ground" -- ground | crouch | jump | air | land
 	self.locoName = nil
@@ -202,6 +218,63 @@ function DogAnimator:_advance(dt)
 	self.tracks = keep
 end
 
+-- ------------------------------------------------------------------ idle variants
+function DogAnimator:_rollDelay()
+	local d = self.variantDelay
+	if not d then
+		return math.huge
+	end
+	return d[1] + math.random() * (d[2] - d[1])
+end
+
+function DogAnimator:SetIdleVariantDelay(minSeconds: number?, maxSeconds: number?)
+	self.variantDelay = minSeconds and { minSeconds, maxSeconds or minSeconds } or nil
+	self.idleClock = 0
+	self.nextVariantAt = self:_rollDelay()
+end
+
+function DogAnimator:_stopVariant()
+	self.variantTrack = nil
+	self.variantName = nil
+	self.idleClock = 0
+	self.nextVariantAt = self:_rollDelay()
+end
+
+function DogAnimator:PlayIdleVariant(name: string?)
+	if self.mode ~= "ground" or #self.idleVariants == 0 then
+		return nil
+	end
+	if not name then
+		-- random, but never the same one twice in a row
+		local pool = {}
+		for _, n in self.idleVariants do
+			if n ~= self.variantName and n ~= self.lastVariant then
+				table.insert(pool, n)
+			end
+		end
+		if #pool == 0 then
+			pool = self.idleVariants
+		end
+		name = pool[math.random(1, #pool)]
+	end
+	local track
+	track = self:_play(name, {
+		fade = VARIANT_FADE,
+		onEnd = function()
+			if self.variantTrack == track then
+				-- it ends on the standing pose: hand back to the Idle loop with a soft blend
+				self:_stopVariant()
+				self.locoName = nil
+				self.locoFade = VARIANT_FADE
+			end
+		end,
+	})
+	self.variantTrack = track
+	self.variantName = name
+	self.lastVariant = name
+	return track
+end
+
 -- ------------------------------------------------------------------ locomotion and jump states
 function DogAnimator:SetLocomotion(speed: number)
 	local clips = self.data.clips
@@ -226,9 +299,20 @@ function DogAnimator:SetLocomotion(speed: number)
 			name, rate = "Walk", math.clamp(v / walkV, 0.45, 1.9)
 		end
 	end
+	if self.variantTrack then
+		if name == "Idle" then
+			return -- the variant is the idle for now
+		end
+		self:_stopVariant() -- started moving: leave the variant with a soft blend
+		self.locoFade = VARIANT_FADE
+	end
 	if name ~= self.locoName or not self.locoTrack or self.locoTrack.target == 0 then
 		self.locoName = name
-		self.locoTrack = self:_play(name, {})
+		self.locoTrack = self:_play(name, { fade = self.locoFade })
+		self.locoFade = nil
+		if name == "Idle" then
+			self.idleClock = 0
+		end
 	end
 	self.locoTrack.rate = rate
 end
@@ -243,6 +327,7 @@ function DogAnimator:Crouch()
 		return
 	end
 	self.mode = "crouch"
+	self:_stopVariant()
 	local a = self:_marker("takeoff")
 	self.locoTrack = nil
 	self:_play("Jump", { from = a, to = 9, fade = 0.08 })
@@ -254,6 +339,7 @@ function DogAnimator:Jump()
 	end
 	local cued = self.mode == "crouch" -- otherwise no anticipation: start at the push-off
 	self.mode = "jump"
+	self:_stopVariant()
 	self.locoTrack = nil
 	local _, takeoffEnd = self:_marker("takeoff")
 	local airFrom, airTo = self:_marker("air")
@@ -282,6 +368,7 @@ function DogAnimator:Fall()
 	-- walked off a ledge: go straight to the airborne poses
 	if self.mode == "ground" or self.mode == "land" then
 		self.locoTrack = nil
+		self:_stopVariant()
 		local airFrom, airTo = self:_marker("air")
 		self.mode = "air"
 		self:_play("Jump", { from = math.floor((airFrom + airTo) / 2), to = airTo, fade = 0.12 })
@@ -426,6 +513,12 @@ function DogAnimator:_apply(rot, rootOffset)
 end
 
 function DogAnimator:Step(dt: number)
+	if self.mode == "ground" and self.locoName == "Idle" and not self.variantTrack then
+		self.idleClock += dt
+		if self.idleClock >= self.nextVariantAt then
+			self:PlayIdleVariant()
+		end
+	end
 	self:_advance(dt)
 	local rot, root = self:_blend()
 	self:_apply(rot, root)

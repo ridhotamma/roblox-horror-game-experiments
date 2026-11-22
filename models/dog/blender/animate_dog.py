@@ -32,6 +32,11 @@ CLIPS = {
     "Jump": {"frames": 36, "loop": False, "speed": 0.0,
              # frame markers for the Roblox animator: crouch+takeoff, the airborne part (held while falling), landing
              "markers": {"takeoff": [0, 13], "air": [13, 23], "land": [23, 36]}},
+    # idle variants: one-shots that start and end standing; DogAnimator plays one now and then while idle
+    "IdleLook": {"frames": 105, "loop": False, "speed": 0.0, "idle_variant": True},
+    "IdleSniff": {"frames": 120, "loop": False, "speed": 0.0, "idle_variant": True},
+    "IdleSit": {"frames": 210, "loop": False, "speed": 0.0, "idle_variant": True},
+    "IdleShake": {"frames": 48, "loop": False, "speed": 0.0, "idle_variant": True},
 }
 
 WALK = {"stance": 0.50, "duty": 0.62, "lift_f": 0.055, "lift_h": 0.05,
@@ -113,6 +118,7 @@ class Pose:
         self.root = (0.0, 0.0)
         self.pitch = {}      # bone -> local X rotation (body chain, neck, head, tail, ears)
         self.yaw = {}        # bone -> local Z rotation (tail wag, head turn, ear flick)
+        self.roll = {}       # bone -> local Y rotation (spine/hip roll, head tilt, body shake)
         self.legs = {}       # "FL"/"FR"/"HL"/"HR" -> dict(target=(y, z), paw=angle, foot=angle (hind))
 
 
@@ -204,46 +210,96 @@ def gait_leg(rest, leg, ph, g, front_fold, hind_fold, reach=0.0):
 
 
 # ------------------------------------------------------------------ clips
+def counter_roll(p):
+    """A spine roll tips the legs sideways with it; turn each leg back about its own forward axis (its local Z, which
+    is world +Y here) so planted paws stay where they are while the body rocks over them."""
+    hips = p.roll.get("Hips", 0.0)
+    chest = hips + p.roll.get("Spine", 0.0) + p.roll.get("Chest", 0.0)
+    for s in ("L", "R"):
+        p.yaw[f"HindThigh_{s}"] = p.yaw.get(f"HindThigh_{s}", 0.0) - hips
+        p.yaw[f"FrontUpper_{s}"] = p.yaw.get(f"FrontUpper_{s}", 0.0) - chest
+
+
+def plant(p, rest):
+    for leg in rest:
+        p.legs[leg] = dict(rest[leg])
+
+
+def window(t, a, b, c, d):
+    """0 before a, eases to 1 by b, holds, eases back to 0 between c and d."""
+    return ease((t - a) / (b - a)) * (1 - ease((t - c) / (d - c)))
+
+
+def tail_wag(p, t, cycles, amp=(14, 12, 10), lag=0.6, pitch=-6.0):
+    for i, (bone, a) in enumerate(zip(("Tail1", "Tail2", "Tail3"), amp)):
+        p.yaw[bone] = radians(a) * sin(TAU * cycles * t - lag * i)
+    p.pitch["Tail1"] = radians(pitch)
+
+
+def standing(rest, t, breaths):
+    """Neutral stance with breathing; `breaths` is a whole number so a one-shot starts and ends on the same pose."""
+    p = Pose()
+    breath = sin(TAU * breaths * t)
+    p.root = (0.0, -0.006 + 0.003 * breath)
+    p.pitch["Spine"] = radians(1.2) * breath
+    p.pitch["Chest"] = radians(-0.8) * breath
+    plant(p, rest)
+    return p
+
+
 def idle(sk, rest, t):
-    """3 s breathing loop: chest rise, slow look-around, tail wag, ear flicks, feet planted."""
+    """3 s breathing loop: chest rise, weight shift, slow look-around with overlap, tail wag, ear flicks."""
     p = Pose()
     breath = sin(TAU * 2 * t)
-    p.root = (0.004 * sin(TAU * t), -0.006 + 0.003 * breath)
+    shift = sin(TAU * t)
+    p.root = (0.004 * shift, -0.006 + 0.003 * breath)
+    p.roll["Hips"] = radians(1.4) * shift                  # weight rocks from one hind leg to the other
+    p.roll["Chest"] = radians(-0.6) * sin(TAU * t - 0.5)
     p.pitch["Spine"] = radians(1.2) * breath
     p.pitch["Chest"] = radians(-0.8) * breath
     look = sin(TAU * t) * 0.6 + sin(TAU * 2 * t + 1.0) * 0.4
+    look_late = sin(TAU * t - 0.35) * 0.6 + sin(TAU * 2 * t + 0.65) * 0.4   # the head follows the neck
     p.pitch["Neck"] = radians(4) * sin(TAU * t + 2.0)
     p.pitch["Head"] = radians(-3) * sin(TAU * t + 2.0) + radians(4) * bump(t, 0.62, 0.08)   # little nod
     p.yaw["Neck"] = radians(9) * look
-    p.yaw["Head"] = radians(7) * look
-    wag = sin(TAU * 6 * t)
-    p.yaw["Tail1"] = radians(14) * wag
-    p.yaw["Tail2"] = radians(12) * sin(TAU * 6 * t - 0.6)
-    p.yaw["Tail3"] = radians(10) * sin(TAU * 6 * t - 1.2)
-    p.pitch["Tail1"] = radians(-6)
-    p.pitch["Ear_L"] = radians(-16) * bump(t, 0.30, 0.035)
-    p.pitch["Ear_R"] = radians(-16) * bump(t, 0.78, 0.035)
+    p.yaw["Head"] = radians(7) * look_late
+    p.roll["Head"] = radians(3) * look_late
+    tail_wag(p, t, 6)
+    p.pitch["Ear_L"] = radians(-16) * bump(t, 0.30, 0.035) + radians(2) * breath
+    p.pitch["Ear_R"] = radians(-16) * bump(t, 0.78, 0.035) + radians(2) * breath
     p.yaw["Ear_L"] = radians(8) * bump(t, 0.30, 0.04)
     p.yaw["Ear_R"] = radians(-8) * bump(t, 0.78, 0.04)
-    for leg in rest:
-        p.legs[leg] = dict(rest[leg])
+    plant(p, rest)
     return p
 
 
 def walk(sk, rest, t):
     p = Pose()
     g = WALK
-    p.root = (0.0, -0.014 - 0.007 * cos(TAU * 2 * (t - 0.10)))
+    bob = cos(TAU * 2 * (t - 0.10))
+    p.root = (0.0, -0.014 - 0.007 * bob)
+    # weight shift: each hip drops while its own hind leg swings (left hind swing is centred at t ~ 0.81), and the
+    # shoulders rock with the front swing (left fore centred at t ~ 0.06); +roll drops the left side
+    hips_roll = radians(2.8) * cos(TAU * (t - 0.81))
+    chest_roll = radians(2.2) * cos(TAU * (t - 0.06))
+    p.roll["Hips"] = hips_roll
+    p.roll["Chest"] = chest_roll - hips_roll
+    p.yaw["Spine"] = radians(0.8) * sin(TAU * (t - 0.81))   # a little lateral flex toward the loaded side
+    p.yaw["Chest"] = radians(-0.6) * sin(TAU * (t - 0.81))
     p.pitch["Hips"] = radians(1.2) * sin(TAU * 2 * t)
     p.pitch["Spine"] = radians(-0.8) * sin(TAU * 2 * t)
+    # the head rides steadier than the body and a beat later (overlap)
     p.pitch["Neck"] = radians(-4) + radians(2.5) * sin(TAU * 2 * (t - 0.15))
-    p.pitch["Head"] = radians(4) - radians(2.5) * sin(TAU * 2 * (t - 0.15))
-    p.yaw["Head"] = radians(2.5) * sin(TAU * t)
-    p.pitch["Tail1"] = radians(-10)
-    p.yaw["Tail1"] = radians(11) * sin(TAU * t)
-    p.yaw["Tail2"] = radians(9) * sin(TAU * t - 0.7)
-    p.yaw["Tail3"] = radians(8) * sin(TAU * t - 1.4)
-    p.pitch["Ear_L"] = p.pitch["Ear_R"] = radians(-4) * sin(TAU * 2 * t)
+    p.pitch["Head"] = radians(4) - radians(2.0) * sin(TAU * 2 * (t - 0.20))
+    p.yaw["Neck"] = -0.6 * (p.yaw["Spine"] + p.yaw["Chest"])
+    p.yaw["Head"] = radians(2.0) * sin(TAU * (t - 0.1))
+    p.roll["Head"] = -0.5 * chest_roll
+    # ears bounce after the body bob; the tail swings with the hips, each joint later than the last
+    ear = radians(-3) + radians(5) * cos(TAU * 2 * (t - 0.10) - 1.4)
+    p.pitch["Ear_L"] = ear + radians(2) * sin(TAU * (t - 0.2))
+    p.pitch["Ear_R"] = ear - radians(2) * sin(TAU * (t - 0.2))
+    tail_wag(p, t - 0.06, 1, amp=(12, 11, 10), lag=0.75, pitch=-10)
+    p.pitch["Tail2"] = radians(3) * cos(TAU * 2 * (t - 0.25))
     for leg, off in g["phase"].items():
         p.legs[leg] = gait_leg(rest, leg, (t - off) % 1.0, g, radians(95), radians(22))
     return p
@@ -269,7 +325,17 @@ def run(sk, rest, t):
     p.pitch["Tail2"] = radians(-6) + radians(8) * sin(TAU * (t - 0.25))
     p.pitch["Tail3"] = radians(6) * sin(TAU * (t - 0.4))
     p.yaw["Tail1"] = radians(4) * sin(TAU * t)
-    p.pitch["Ear_L"] = p.pitch["Ear_R"] = radians(-34) + radians(6) * sin(TAU * (t - 0.2))
+    p.yaw["Tail2"] = radians(5) * sin(TAU * t - 0.7)
+    p.yaw["Tail3"] = radians(6) * sin(TAU * t - 1.4)
+    p.roll["Hips"] = radians(1.8) * sin(TAU * (t - 0.05))
+    p.roll["Chest"] = radians(-1.6) * sin(TAU * (t - 0.47)) - p.roll["Hips"]
+    # ears trail the bound (pinned back, flapping a beat late); the head counters half the spine pitch so its
+    # gaze stays steadier
+    p.pitch["Ear_L"] = radians(-34) + radians(9) * sin(TAU * (t - 0.32))
+    p.pitch["Ear_R"] = radians(-34) + radians(9) * sin(TAU * (t - 0.36))
+    p.yaw["Ear_L"] = radians(5) * sin(TAU * (t - 0.4))
+    p.yaw["Ear_R"] = radians(-5) * sin(TAU * (t - 0.4))
+    p.pitch["Head"] -= 0.5 * (p.pitch["Hips"] + p.pitch["Spine"] + p.pitch["Chest"])
     for leg, off in g["phase"].items():
         p.legs[leg] = gait_leg(rest, leg, (t - off) % 1.0, g, radians(120), radians(40),
                                reach=0.05 if leg[0] == "F" else 0.02)
@@ -342,14 +408,155 @@ def jump(sk, rest, t):
     return p
 
 
-CLIP_FUNCS = {"Idle": idle, "Walk": walk, "Run": run, "Jump": jump}
+# ------------------------------------------------------------------ idle variants
+def idle_look(sk, rest, t):
+    """3.5 s: ears prick, look to the right, then to the left with a curious head tilt, settle."""
+    p = standing(rest, t, 3)
+    alert = window(t, 0.0, 0.08, 0.86, 0.98)
+    right = window(t, 0.06, 0.18, 0.40, 0.50)
+    left = window(t, 0.46, 0.58, 0.80, 0.93)
+    tilt = window(t, 0.58, 0.66, 0.76, 0.86)
+    p.yaw["Neck"] = radians(24) * right - radians(20) * left
+    p.yaw["Head"] = radians(16) * window(t, 0.09, 0.21, 0.40, 0.52) - radians(13) * window(t, 0.49, 0.61, 0.80, 0.95)
+    p.roll["Head"] = radians(20) * tilt - radians(3) * right
+    p.pitch["Neck"] = radians(7) * alert
+    p.pitch["Head"] = radians(-4) * alert - radians(5) * tilt
+    p.roll["Hips"] = radians(1.5) * (left - right)
+    p.roll["Chest"] = radians(2.0) * (left - right) - p.roll["Hips"]
+    perk = radians(16) * alert
+    p.pitch["Ear_L"] = perk - radians(12) * bump(t, 0.34, 0.03)
+    p.pitch["Ear_R"] = perk + radians(10) * tilt
+    p.yaw["Ear_R"] = radians(-10) * bump(t, 0.70, 0.04)
+    tail_wag(p, t, 4, amp=(6, 6, 6), pitch=-6 + 16 * alert)
+    return p
+
+
+def idle_sniff(sk, rest, t):
+    """4 s: nose down to the ground, sweep left and right sniffing in short bursts, come back up."""
+    p = standing(rest, t, 3)
+    down = window(t, 0.04, 0.20, 0.80, 0.95)
+    ry, rz = p.root
+    p.root = (ry - 0.015 * down, rz - 0.045 * down)
+    p.pitch["Chest"] += radians(-9) * down
+    p.pitch["Neck"] = radians(-88) * down
+    p.pitch["Head"] = radians(30) * down
+    sweep = sin(TAU * 1.25 * (t - 0.2))
+    p.yaw["Neck"] = radians(12) * sweep * down
+    p.yaw["Head"] = radians(9) * sin(TAU * 1.25 * (t - 0.25)) * down
+    sniff = bump(t, 0.36, 0.07) + bump(t, 0.52, 0.06) + bump(t, 0.68, 0.06)
+    p.pitch["Head"] += radians(2.5) * sin(TAU * 28 * t) * sniff * down
+    p.pitch["Ear_L"] = p.pitch["Ear_R"] = radians(10) * down
+    p.roll["Hips"] = radians(1.2) * sweep * down
+    tail_wag(p, t, 5, amp=(9, 8, 8), pitch=-6 + 8 * down)
+    return p
+
+
+_SIT = {}
+
+
+def sit_solution(sk, rest):
+    """Hips pitch and root offset for a sit: rump down near the hind paws, front legs straight under the shoulders."""
+    if _SIT:
+        return _SIT
+    rump_z = 0.19
+    sh = sk.bones["FrontUpper_L"]["head"]
+    hips = sk.bones["Hips"]["head"]
+    root_z = rump_z - hips[1]
+
+    def shoulder(a, root_y):
+        pos, _ = sk.fk({"Hips": a, "Spine": 0.22 * a, "Chest": 0.05 * a}, (root_y, root_z))
+        return pos["FrontUpper_L"]
+
+    lo, hi = 0.0, radians(85)
+    for _ in range(40):
+        a = (lo + hi) / 2
+        if shoulder(a, 0.0)[1] < sh[1] - 0.025:
+            lo = a
+        else:
+            hi = a
+    a = (lo + hi) / 2
+    root_y = (sh[0] - 0.03) - shoulder(a, 0.0)[0]       # shoulders end a little behind where they stood
+    _SIT.update({"hips": a, "root": (root_y, root_z)})
+    return _SIT
+
+
+def sit_pose(sk, rest, p, k):
+    """Blend a standing pose toward the sit by k (0..1); the hind paws tuck forward, the hocks lie on the ground."""
+    sol = sit_solution(sk, rest)
+    a = sol["hips"] * k
+    ry, rz = p.root
+    p.root = (ry + sol["root"][0] * k, rz + sol["root"][1] * k)
+    p.pitch["Hips"] = p.pitch.get("Hips", 0.0) + a
+    p.pitch["Spine"] = p.pitch.get("Spine", 0.0) + 0.22 * a
+    p.pitch["Chest"] = p.pitch.get("Chest", 0.0) + 0.05 * a
+    body = a * 1.27
+    p.pitch["Neck"] = p.pitch.get("Neck", 0.0) - 0.45 * body
+    p.pitch["Head"] = p.pitch.get("Head", 0.0) - 0.55 * body
+    for s in ("L", "R"):
+        r = rest["H" + s]
+        y0, z0 = r["target"]
+        p.legs["H" + s] = {"target": (y0 + (sol["root"][0] - 0.05) * k, z0), "paw": r["paw"],
+                           "foot": lerp(r["foot"], radians(-8), k)}
+    return p
+
+
+def idle_sit(sk, rest, t):
+    """7 s: sit down, look around with the tail sweeping the floor, stand back up."""
+    p = standing(rest, t, 5)
+    k = window(t, 0.02, 0.17, 0.83, 0.97)
+    sit_pose(sk, rest, p, k)
+    hold = window(t, 0.15, 0.25, 0.75, 0.85)
+    look = sin(TAU * 1.0 * (t - 0.25))
+    p.yaw["Neck"] = radians(16) * look * hold
+    p.yaw["Head"] = radians(10) * sin(TAU * 1.0 * (t - 0.29)) * hold
+    p.roll["Head"] = radians(8) * bump(t, 0.55, 0.07)
+    p.pitch["Ear_L"] = radians(6) * hold - radians(14) * bump(t, 0.42, 0.03)
+    p.pitch["Ear_R"] = radians(6) * hold
+    # the tail lies on the floor and sweeps it
+    p.pitch["Tail1"] = radians(-6) - radians(32) * k
+    for i, bone in enumerate(("Tail1", "Tail2", "Tail3")):
+        p.yaw[bone] = radians(16 + 4 * i) * sin(TAU * 7 * t - 0.6 * i) * (0.4 + 0.6 * hold)
+    p.pitch["Tail2"] = radians(-8) * k
+    return p
+
+
+def idle_shake(sk, rest, t):
+    """1.6 s wet-dog shake: a fast roll wave from the head to the tail, ears flapping, paws planted."""
+    p = standing(rest, t, 1)
+    env = window(t, 0.04, 0.18, 0.70, 0.95)
+    w = TAU * 7.5 * t
+    ry, rz = p.root
+    p.root = (ry, rz - 0.02 * env)
+    rolls = (("Head", 26, 0.0), ("Neck", 18, 0.5), ("Chest", 12, 1.0), ("Spine", 9, 1.5), ("Hips", 6, 2.0))
+    world = {name: radians(a) * sin(w - ph) * env for name, a, ph in rolls}
+    p.roll["Hips"] = world["Hips"]
+    p.roll["Spine"] = world["Spine"] - world["Hips"]
+    p.roll["Chest"] = world["Chest"] - world["Spine"]
+    p.roll["Neck"] = world["Neck"] - world["Chest"]
+    p.roll["Head"] = world["Head"] - world["Neck"]
+    p.pitch["Neck"] = radians(-10) * env
+    p.pitch["Head"] = radians(6) * env
+    for s, sgn in (("L", 1), ("R", -1)):
+        p.yaw[f"Ear_{s}"] = radians(28) * sin(w - 0.9) * env * sgn
+        p.pitch[f"Ear_{s}"] = radians(-14) * env + radians(12) * sin(w - 1.2) * env * sgn
+    for i, bone in enumerate(("Tail1", "Tail2", "Tail3")):
+        p.yaw[bone] = radians(22) * sin(w - 2.4 - 0.5 * i) * env
+    p.pitch["Tail1"] = radians(-6)
+    return p
+
+
+CLIP_FUNCS = {"Idle": idle, "Walk": walk, "Run": run, "Jump": jump, "IdleLook": idle_look,
+              "IdleSniff": idle_sniff, "IdleSit": idle_sit, "IdleShake": idle_shake}
 
 
 # ------------------------------------------------------------------ baking to keys
-def apply_pose(rig, alpha, yaw, root):
+def apply_pose(rig, alpha, yaw, root, roll=None):
+    roll = roll or {}
     for pb in rig.pose.bones:
         pb.rotation_mode = "QUATERNION"
         q = Quaternion((1, 0, 0), alpha.get(pb.name, 0.0))
+        if pb.name in roll:
+            q = Quaternion((0, 1, 0), roll[pb.name]) @ q
         if pb.name in yaw:
             q = Quaternion((0, 0, 1), yaw[pb.name]) @ q
         pb.rotation_quaternion = q
@@ -373,8 +580,9 @@ def bake(rig):
         for fr in range(0, last + 1):
             t = (fr % n) / n if cfg["loop"] else fr / n
             pose = CLIP_FUNCS[name](sk, rest, t)
+            counter_roll(pose)
             alpha = solve(sk, pose)
-            apply_pose(rig, alpha, pose.yaw, pose.root)
+            apply_pose(rig, alpha, pose.yaw, pose.root, pose.roll)
             for pb in rig.pose.bones:
                 pb.keyframe_insert("rotation_quaternion", frame=fr, group=pb.name)
             rig.pose.bones["DogRoot"].keyframe_insert("location", frame=fr, group="DogRoot")
@@ -420,6 +628,9 @@ def contact_check(rig):
         lowest = 9
         slide = 0.0
         prev = {}
+        side = 0.0
+        rest_x = {paw: (rig.matrix_world @ rig.data.bones[paw].tail_local).x for paw in
+                  ("FrontPaw_L", "FrontPaw_R", "HindPaw_L", "HindPaw_R")}
         speed = cfg.get("speed") or 0.0
         for fr in range(n + 1):
             sc.frame_set(fr)
@@ -430,8 +641,11 @@ def contact_check(rig):
                     # a planted paw should move back at exactly the clip speed (the root is in place)
                     dy = (p.y - prev[paw].y) + speed / FPS
                     slide = max(slide, abs(dy))
+                if p.z < 0.03:
+                    side = max(side, abs(p.x - rest_x[paw]))
                 prev[paw] = p
-        out[name] = {"lowest_paw_tip": round(lowest, 4), "max_slide_per_frame_m": round(slide, 4)}
+        out[name] = {"lowest_paw_tip": round(lowest, 4), "max_slide_per_frame_m": round(slide, 4),
+                     "max_sideways_m": round(side, 4)}
     rig.animation_data.action = None
     return out
 

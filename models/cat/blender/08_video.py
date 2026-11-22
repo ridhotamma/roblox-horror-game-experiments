@@ -28,7 +28,12 @@ cam.data.lens = 70
 cam.location = (1.45, -1.75, 0.82)
 cam.rotation_euler = (Vector((0, 0.00, 0.255)) - Vector(cam.location)).to_track_quat('-Z', 'Y').to_euler()
 
-clips = [("Idle", "Idle", 1, 96), ("Walk", "Walk", 1, 24), ("Run", "Run", 1, 16), ("Jump", "Jump", 1, 40)]
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cat_anim as CA  # noqa: E402
+scene.render.fps = CA.FPS
+# loops render frames 1..N (frame N+1 repeats frame 1), one-shots 1..N+1
+clips = [(n, n, 1, c["frames"] + (0 if c["loop"] else 1)) for n, c in CA.CLIPS.items()]
 for name, act_name, f0, f1 in clips:
     act = bpy.data.actions[act_name]
     arm.animation_data.action = act
