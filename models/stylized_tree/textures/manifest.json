@@ -1,0 +1,25 @@
+{
+ "generated": "2026-11-22T08:28:33.667Z",
+ "spec": "../art/leaf_cluster.art.mjs",
+ "assets": [
+  {
+   "name": "leaf_cluster",
+   "kind": "item",
+   "size": [
+    1024,
+    1024
+   ],
+   "files": [
+    "leaf_cluster.png",
+    "leaf_cluster_512.png",
+    "review-leaf_cluster.png"
+   ],
+   "checks": [
+    "PASS background: transparent background, alpha bleed applied (no dark fringes when Roblox scales it)",
+    "PASS fill: subject spans 94.8% of the canvas",
+    "PASS value range: subject lightness spans 0.53 (OKLab L, 5-95%)",
+    "PASS small size: 14.0% of pixels are high-contrast edges at 48x48"
+   ]
+  }
+ ]
+}
