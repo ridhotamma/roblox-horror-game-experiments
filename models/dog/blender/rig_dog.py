@@ -142,7 +142,7 @@ def skin(rig, body, parts):
         elif n.startswith(("Eye", "Nose")):
             rigid_group(ob, "Head")
         elif n.startswith("Ear_"):
-            rigid_group(ob, n)                 # Ear_L / Ear_R
+            pass                               # root on Head blending into Ear_L / Ear_R, from build_dog.py
         elif n in ("Collar", "Tag"):
             rigid_group(ob, "Neck")
         else:

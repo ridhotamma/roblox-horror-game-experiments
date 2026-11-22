@@ -341,62 +341,101 @@ def make_nose(bvh):
 
 
 def make_ears(bvh):
-    """Each ear: a thick curved leaf, upright at the base and folding forward at the tip (a 'button' fold).
+    """Each ear: a cupped leaf (convex back, hollow front) that is thick at the root and folds forward at the tip.
+    The root is welded to the skull: the lowest rings are projected onto the head surface and sunk into it, so the
+    base follows the skull's curve with no gap, and the root is coloured like the coat there. The ear carries its own
+    weights (written here as vertex groups): the root rides on Head, the leaf on Ear_L / Ear_R, blended over the
+    lowest quarter so the base bends like skin when the ear moves instead of slicing through the head.
     Returns objects plus {side: (base, tip)} for the ear bones."""
     parts, bones = [], {}
-    rows = 7
+    H, W = 0.105, 0.080
+    seg = 14
+    ts = [-0.30, -0.14, 0.0, 0.07, 0.18, 0.32, 0.47, 0.61, 0.74, 0.86, 0.95]
     for side, sx in (("L", 1), ("R", -1)):
         base, n = hit(bvh, (0.030 * sx, 0.415, 0.705), (0.42 * sx, -0.05, 1.0))
-        base = base - n * 0.010
         up = Vector((0.38 * sx, -0.06, 1.0)).normalized()
         fwd = Vector((0, 1, 0))
-        across = up.cross(fwd).normalized()      # along the ear's width
+        across = up.cross(fwd).normalized()
         if across.x * sx < 0:
             across = -across
-        fold_axis = up.cross(fwd).normalized()     # rotating up about this by +angle tilts it toward +Y
-        H, W, T = 0.105, 0.078, 0.008
+        fold_axis = up.cross(fwd).normalized()
+
+        def spine(t):
+            """Centre line point and direction at height t (fraction of H); below 0 it continues straight down."""
+            if t <= 0.55:
+                return base + up * (H * t), up
+            p = base + up * (H * 0.55)
+            d = up
+            steps = 8
+            dt = (t - 0.55) / steps
+            for k in range(steps):
+                tm = 0.55 + dt * (k + 0.5)
+                d = Quaternion(fold_axis, math.radians(40 * (tm - 0.55) / 0.45)) @ up
+                p = p + d * (H * dt)
+            return p, d
+
         bm = bmesh.new()
-        grid_f, grid_b = [], []
-        spine_pts = []
-        p = base.copy()
-        direction = up.copy()
-        seg = H / (rows - 1)
-        for i in range(rows):
-            t = i / (rows - 1)
-            if i > 0:
-                bend = math.radians(0 if t < 0.55 else 38 * (t - 0.55) / 0.45)
-                d = Quaternion(fold_axis, bend) @ up      # tip folds forward (toward +Y)
-                p = p + d * seg
-                direction = d
-            spine_pts.append(p.copy())
-            nrm = across.cross(direction).normalized()
+        rings, ring_t = [], []
+        for t in ts:
+            p, d = spine(t)
+            nrm = across.cross(d).normalized()
             if nrm.y < 0:
                 nrm = -nrm
-            hw = W / 2 * (1 - t) ** 0.85 + 0.003
-            rowf, rowb = [], []
-            for k in (-1, -0.33, 0.33, 1):
-                q = p + across * (hw * k) + nrm * (0.004 * (1 - abs(k)))   # slight cup
-                rowf.append(bm.verts.new(q + nrm * (T / 2)))
-                rowb.append(bm.verts.new(q - nrm * (T / 2)))
-            grid_f.append(rowf)
-            grid_b.append(rowb)
+            tt = max(t, 0.0)
+            hw = W / 2 * (1 - tt) ** 0.85 + 0.003
+            if t <= 0.07:
+                hw *= 1.05                               # the root flares a little into the skull
+            back = 0.020 * (1 - tt) ** 1.2 + 0.003       # convex back, thick at the root
+            cup = 0.011 * (1 - tt) ** 1.1 + 0.0012       # hollow front, behind the rim line
+            ring = []
+            for k in range(seg):
+                th = 2 * math.pi * k / seg
+                s = math.sin(th)
+                q = p + across * (hw * math.cos(th)) - nrm * (back * s if s >= 0 else cup * (-s))
+                if t <= 0.0:
+                    # weld: drop this point onto the skull along -up, then sink it into the head
+                    loc, nn, _i, _d = bvh.ray_cast(q + up * 0.06, -up, 0.2)
+                    if loc is not None:
+                        q = loc - up * (0.003 + (-t) * 0.06)
+                ring.append(bm.verts.new(q))
+            rings.append(ring)
+            ring_t.append(t)
+        tip_p, tip_d = spine(1.0)
+        tip = bm.verts.new(tip_p)
+        faces = []
         pink, dark = S.swatch_u("ear_inner"), 0.47
         face_u = {}
-        for i in range(rows - 1):
-            for k in range(3):
-                f = bm.faces.new((grid_f[i][k], grid_f[i][k + 1], grid_f[i + 1][k + 1], grid_f[i + 1][k]))
-                face_u[f] = pink if (k == 1 and i < rows - 2) else dark
-                b = bm.faces.new((grid_b[i][k + 1], grid_b[i][k], grid_b[i + 1][k], grid_b[i + 1][k + 1]))
-                face_u[b] = dark
-            for (a, c) in ((0, 0), (3, 3)):
-                e = bm.faces.new((grid_b[i][a], grid_f[i][a], grid_f[i + 1][a], grid_b[i + 1][a]))
-                face_u[e] = dark
-        bot = bm.faces.new(list(reversed(grid_f[0])) + grid_b[0])
-        face_u[bot] = dark
-        top = bm.faces.new(grid_f[-1] + list(reversed(grid_b[-1])))
-        face_u[top] = dark
-        bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
-        bm.faces.ensure_lookup_table()
+        for i in range(len(rings) - 1):
+            tm = (ring_t[i] + ring_t[i + 1]) / 2
+            for k in range(seg):
+                k2 = (k + 1) % seg
+                f = bm.faces.new((rings[i][k], rings[i][k2], rings[i + 1][k2], rings[i + 1][k]))
+                th = 2 * math.pi * (k + 0.5) / seg
+                if tm < 0.0:
+                    u = coat_u(f.calc_center_median())    # buried root: the head's coat colour
+                elif math.sin(th) < -0.35 and 0.12 < tm < 0.84:
+                    u = pink                              # inside of the cup
+                else:
+                    u = dark
+                face_u[f] = u
+                faces.append(f)
+        for k in range(seg):
+            f = bm.faces.new((rings[-1][k], rings[-1][(k + 1) % seg], tip))
+            face_u[f] = dark
+            faces.append(f)
+        f = bm.faces.new(list(reversed(rings[0])))
+        face_u[f] = coat_u(f.calc_center_median())
+        faces.append(f)
+        bmesh.ops.recalc_face_normals(bm, faces=faces)
+        # per-vertex weights: root on the head, blending into the ear bone over the lowest quarter
+        ear_w = {}
+        for ring, t in zip(rings, ring_t):
+            w = smoothstep(0.0, 0.26, t)
+            for v in ring:
+                ear_w[v] = w
+        ear_w[tip] = 1.0
+        bm.verts.index_update()
+        weights = [(v.index, ear_w[v]) for v in bm.verts]
         order = list(bm.faces)
         us = [face_u[f] for f in order]
         me = bpy.data.meshes.new(f"Ear_{side}")
@@ -406,11 +445,18 @@ def make_ears(bvh):
         bpy.context.collection.objects.link(ob)
         uv = me.uv_layers.new(name="UVMap")
         for poly in me.polygons:
-            poly.use_smooth = False
+            poly.use_smooth = True
             for li in poly.loop_indices:
                 uv.data[li].uv = (us[poly.index], 0.5)
+        g_ear = ob.vertex_groups.new(name=f"Ear_{side}")
+        g_head = ob.vertex_groups.new(name="Head")
+        for vi, w in weights:
+            if w > 1e-4:
+                g_ear.add([vi], w, "REPLACE")
+            if w < 1 - 1e-4:
+                g_head.add([vi], 1 - w, "REPLACE")
         parts.append(ob)
-        bones[side] = (tuple(base), tuple(spine_pts[-1]))
+        bones[side] = (tuple(base - up * 0.004), tuple(tip_p))
     return parts, bones
 
 
