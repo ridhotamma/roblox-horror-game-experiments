@@ -1,8 +1,9 @@
 --!strict
 -- HouseDoors: hinged, openable doors for the imported ClassicHouse model.
 --
--- Setup: import out/ClassicHouse.roblox.glb, run out/ClassicHouse.roblox.lua once (collision + LOD),
--- then put this Script inside the imported ClassicHouse model.
+-- Setup: import out/ClassicHouse.textured.glb (Scale Unit: Stud; the file is in studs, 4.5 per metre), run
+-- roblox/HouseSetup.lua once from the command bar (scale check + collision), then put this Script inside the model.
+-- (The untextured out/ClassicHouse.roblox.glb is in metres: import it with Scale Unit Stud and scale the model x4.5.)
 --
 -- Each door is the MeshParts whose names start with its prefix ("FrontDoor", "FrontDoorPanel",
 -- "FrontDoorStatic1" ...). They are anchored and rotated together about the hinge with TweenService.
@@ -20,8 +21,8 @@ type DoorConfig = { prefix: string, width: number, hingeZ: number, openAngle: nu
 
 -- Sizes in model metres (classic_house.json); the script measures the import scale from the door width.
 local DOORS: { DoorConfig } = {
-	{ prefix = "FrontDoor", width = 0.93, hingeZ = -0.025, openAngle = 90, label = "Front door" },
-	{ prefix = "BackDoor", width = 0.89, hingeZ = 0.025, openAngle = -90, label = "Back door" },
+	{ prefix = "FrontDoor", width = 1.11, hingeZ = -0.025, openAngle = 90, label = "Front door" },
+	{ prefix = "BackDoor", width = 1.09, hingeZ = 0.025, openAngle = -90, label = "Back door" },
 }
 local OPEN_INFO = TweenInfo.new(1.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 local CLOSE_INFO = TweenInfo.new(0.45, Enum.EasingStyle.Quad, Enum.EasingDirection.In)

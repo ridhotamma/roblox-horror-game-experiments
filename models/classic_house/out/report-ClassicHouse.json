@@ -1,38 +1,38 @@
 {
  "name": "ClassicHouse",
  "title": "Classic cottage house",
- "triangles": 7668,
- "parts": 504,
+ "triangles": 7680,
+ "parts": 505,
  "size": [
   10.95,
   7.686621138202026,
-  11.657687070287523
+  12.057687070287523
  ],
  "results": [
   {
    "id": "budget",
    "status": "pass",
-   "msg": "7668 triangles (budget 16000)"
+   "msg": "7680 triangles (budget 16000)"
   },
   {
    "id": "performance",
    "status": "pass",
-   "msg": "7668 triangles, 15620 GPU vertices (2.04 per triangle: hard edges split vertices, smoothed parts share them), 503 parts → 14 Roblox MeshParts / draw calls (12 merged groups of static parts); small detail: LampKitchenGlobe 80, LampBedroom 80, CoffeeBowl 80, Kettle 80 triangles under ~10 px at 200 px tall (71% of the model)"
+   "msg": "7680 triangles, 15644 GPU vertices (2.04 per triangle: hard edges split vertices, smoothed parts share them), 504 parts → 14 Roblox MeshParts / draw calls (12 merged groups of static parts); small detail: LampKitchenGlobe 80, LampBedroom 80, CoffeeBowl 80, Kettle 80 triangles under ~10 px at 200 px tall (72% of the model)"
   },
   {
    "id": "performance",
    "status": "warn",
-   "msg": "71% of the triangles are under ~10 px when the model is 200 px tall on screen — budget spent on detail nobody sees; lower segments / detail on RidgeCap, ChimneyFlue, AtticFrameL, AtticFrameR, or drop the tiniest parts"
+   "msg": "72% of the triangles are under ~10 px when the model is 200 px tall on screen — budget spent on detail nobody sees; lower segments / detail on RidgeCap, ChimneyFlue, AtticFrameL, AtticFrameR, or drop the tiniest parts"
   },
   {
    "id": "lod",
    "status": "pass",
-   "msg": "LOD version: 7668 → 2208 triangles (29%), silhouette kept 100% / 99% / 100% (front / side / top), detail dropped: ChimneyFlue, AtticFrameL, AtticFrameR, AtticGlassL, AtticGlassR, AtticMullVL, AtticMullVR, AtticMullHL, AtticMullHR, LampDiningCanopy, LampDiningCord, LampDiningShade, LampLivingCanopy, LampLivingCord, LampLivingShade, LampKitchenCanopy, LampKitchenCord, LampKitchenGlobe, LampBedroom, ColBaseInL, ColBaseInR, ColCapInL, ColCapInR, ColBaseOutL, ColBaseOutR, ColCapOutL, ColCapOutR, FrontCasingHead, FrontDoorGlass, FrontDoorPanel, FrontKnobOut, FrontKnobIn, FrontMullH1L, FrontMullH1R, FrontMullH2L, FrontMullH2R, ShutterRailOutL, ShutterRailOutR, ShutterRailInL, ShutterRailInR, SideMullHL, SideMullHR, BackMullHL, BackMullHR, BackCasingHead, BackThreshold, BackDoorPanelTop, BackDoorPanelBottom, BackKnobOut, BackKnobIn, Firebox, SofaLeg1, SofaLeg2, SofaLeg3, SofaLeg4, SofaArmL, SofaArmR, SofaCushion1, SofaCushion2, SofaCushion3, ArmchairLeg1, ArmchairLeg2, ArmchairLeg3, ArmchairLeg4, ArmchairBase, ArmchairBack, ArmchairArmL, ArmchairArmR, ArmchairCushion1, CoffeeTableLeg1, CoffeeTableLeg2, CoffeeTableLeg3, CoffeeTableLeg4, CoffeeBowl, FloorLampBase, FloorLampShade, BookcaseFireTop, BookcaseFireBottom, BookcaseFireShelf1, BookcaseFireShelf2, BookcaseFireShelf3, BookcaseFireBook0_0, BookcaseFireBook0_1, BookcaseFireBook0_2, BookcaseFireBook0_3, BookcaseFireBook0_4, BookcaseFireBook0_5, BookcaseFireBook0_6, BookcaseFireBook0_7, BookcaseFireBook0_8, BookcaseFireBook0_9, BookcaseFireBook0_10, BookcaseFireBook0_11, BookcaseFireBook0_12, BookcaseFireBook0_13, BookcaseFireBook1_0, BookcaseFireBook1_1, BookcaseFireBook1_2, BookcaseFireBook1_3, BookcaseFireBook1_4, BookcaseFireBook1_5, BookcaseFireBook1_6, BookcaseFireBook1_7, BookcaseFireBook1_8, BookcaseFireBook1_9, BookcaseFireBook1_10, BookcaseFireBook1_11, BookcaseFireBook1_12, BookcaseFireBook1_13, BookcaseFireBook2_0, BookcaseFireBook2_1, BookcaseFireBook2_2, BookcaseFireBook2_3, BookcaseFireBook2_4, BookcaseFireBook2_5, BookcaseFireBook2_6, BookcaseFireBook2_7, BookcaseFireBook2_8, BookcaseFireBook2_9, BookcaseFireBook3_0, BookcaseFireBook3_1, BookcaseFireBook3_2, BookcaseFireBook3_3, BookcaseFireBook3_4, BookcaseFireBook3_5, BookcaseFireBook3_6, BookcaseFireBook3_7, BookcaseFireBook3_8, BookcaseFireBook3_9, BookcaseFireBook3_10, BookcaseFireBook3_11, BookcaseFireBook3_12, BookcaseWallTop, BookcaseWallBottom, BookcaseWallShelf1, BookcaseWallShelf2, BookcaseWallShelf3, BookcaseWallBook0_0, BookcaseWallBook0_1, BookcaseWallBook0_2, BookcaseWallBook0_3, BookcaseWallBook0_4, BookcaseWallBook0_5, BookcaseWallBook0_6, BookcaseWallBook0_7, BookcaseWallBook0_8, BookcaseWallBook0_9, BookcaseWallBook0_10, BookcaseWallBook0_11, BookcaseWallBook0_12, BookcaseWallBook0_13, BookcaseWallBook1_0, BookcaseWallBook1_1, BookcaseWallBook1_2, BookcaseWallBook1_3, BookcaseWallBook1_4, BookcaseWallBook1_5, BookcaseWallBook1_6, BookcaseWallBook1_7, BookcaseWallBook1_8, BookcaseWallBook1_9, BookcaseWallBook1_10, BookcaseWallBook1_11, BookcaseWallBook1_12, BookcaseWallBook2_0, BookcaseWallBook2_1, BookcaseWallBook2_2, BookcaseWallBook2_3, BookcaseWallBook2_4, BookcaseWallBook2_5, BookcaseWallBook2_6, BookcaseWallBook2_7, BookcaseWallBook2_8, BookcaseWallBook3_0, BookcaseWallBook3_1, BookcaseWallBook3_2, BookcaseWallBook3_3, BookcaseWallBook3_4, BookcaseWallBook3_5, BookcaseWallBook3_6, BookcaseWallBook3_7, BookcaseWallBook3_8, BookcaseWallBook3_9, BookcaseWallBook3_10, BookcaseWallBook3_11, BookcaseWallBook3_12, Log1, Log2, MantelClock, MantelClockFace, Candle1Holder, Candle1, Candle2Holder, Candle2, PaintingFireFrame, PaintingFireCanvas, PaintingHallFrame, PaintingHallCanvas, DiningTableLeg1, DiningTableLeg2, DiningTableLeg3, DiningTableLeg4, DiningChair1Leg1, DiningChair1Leg2, DiningChair1Leg3, DiningChair1Leg4, DiningChair1Seat, DiningChair1PostL, DiningChair1PostR, DiningChair1Back, DiningChair2Leg1, DiningChair2Leg2, DiningChair2Leg3, DiningChair2Leg4, DiningChair2Seat, DiningChair2PostL, DiningChair2PostR, DiningChair2Back, DiningChair3Leg1, DiningChair3Leg2, DiningChair3Leg3, DiningChair3Leg4, DiningChair3Seat, DiningChair3PostL, DiningChair3PostR, DiningChair3Back, DiningChair4Leg1, DiningChair4Leg2, DiningChair4Leg3, DiningChair4Leg4, DiningChair4Seat, DiningChair4PostL, DiningChair4PostR, DiningChair4Back, DiningVase, SideboardLeg1, SideboardLeg2, SideboardLeg3, SideboardLeg4, SideboardDoorL, SideboardDoorM, SideboardDoorR, SideboardLampBase, SideboardLampStem, SideboardLampShade, SideboardVase, RadioGrille, RadioDialPanel, CabDoor1, CabDrawer1, CabHandle1, CabDoor2, CabDrawer2, CabHandle2, CabDoor3, CabDrawer3, CabHandle3, CabDoor4, CabDrawer4, CabHandle4, SinkRim, SinkBasin, FaucetStem, FaucetSpout, Canister1, Canister2, Canister3, Range, RangeBackguard, RangeOvenDoor, RangeOvenHandle, RangeControls, Burner1, Burner2, Burner3, Burner4, Kettle, WallCabDoorL, WallCabDoorR, FridgeHandle, FridgeBadge, KitchenTableLeg1, KitchenTableLeg2, KitchenTableLeg3, KitchenTableLeg4, KitchenChair1Leg1, KitchenChair1Leg2, KitchenChair1Leg3, KitchenChair1Leg4, KitchenChair1Seat, KitchenChair1PostL, KitchenChair1PostR, KitchenChair1Back, KitchenChair2Leg1, KitchenChair2Leg2, KitchenChair2Leg3, KitchenChair2Leg4, KitchenChair2Seat, KitchenChair2PostL, KitchenChair2PostR, KitchenChair2Back, KitchenCurtain, BedLeg1, BedLeg2, BedLeg3, BedLeg4, PillowA, PillowB, Nightstand1Body, Nightstand1Drawer, BedLamp1Base, BedLamp1Stem, BedLamp1Shade, Nightstand2Body, Nightstand2Drawer, BedLamp2Base, BedLamp2Stem, BedLamp2Shade, MirrorFrame, MirrorGlass, MirrorPostA, MirrorPostB, WardrobeKnobL, WardrobeKnobR, PaintingBedFrame, PaintingBedCanvas; Roblox: a one-mesh Simple stand-in (1 draw call at distance) for the LodController"
+   "msg": "LOD version: 7680 → 2244 triangles (29%), silhouette kept 100% / 100% / 100% (front / side / top), detail dropped: ChimneyFlue, AtticFrameL, AtticFrameR, AtticGlassL, AtticGlassR, AtticMullVL, AtticMullVR, AtticMullHL, AtticMullHR, LampDiningCanopy, LampDiningCord, LampDiningShade, LampLivingCanopy, LampLivingCord, LampLivingShade, LampKitchenCanopy, LampKitchenCord, LampKitchenGlobe, LampBedroom, ColBaseInL, ColBaseInR, ColCapInL, ColCapInR, ColBaseOutL, ColBaseOutR, ColCapOutL, ColCapOutR, FrontDoorGlass, FrontDoorPanel, FrontKnobOut, FrontKnobIn, FrontMullH1L, FrontMullH1R, FrontMullH2L, FrontMullH2R, ShutterRailOutL, ShutterRailOutR, ShutterRailInL, ShutterRailInR, SideMullHL, SideMullHR, BackMullHL, BackMullHR, BackDoorPanelTop, BackDoorPanelBottom, BackKnobOut, BackKnobIn, Firebox, SofaLeg1, SofaLeg2, SofaLeg3, SofaLeg4, SofaArmL, SofaArmR, SofaCushion1, SofaCushion2, SofaCushion3, ArmchairLeg1, ArmchairLeg2, ArmchairLeg3, ArmchairLeg4, ArmchairBase, ArmchairBack, ArmchairArmL, ArmchairArmR, ArmchairCushion1, CoffeeTableLeg1, CoffeeTableLeg2, CoffeeTableLeg3, CoffeeTableLeg4, CoffeeTableShelf, CoffeeBowl, FloorLampBase, FloorLampShade, BookcaseFireTop, BookcaseFireBottom, BookcaseFireShelf1, BookcaseFireShelf2, BookcaseFireShelf3, BookcaseFireBook0_0, BookcaseFireBook0_1, BookcaseFireBook0_2, BookcaseFireBook0_3, BookcaseFireBook0_4, BookcaseFireBook0_5, BookcaseFireBook0_6, BookcaseFireBook0_7, BookcaseFireBook0_8, BookcaseFireBook0_9, BookcaseFireBook0_10, BookcaseFireBook0_11, BookcaseFireBook0_12, BookcaseFireBook0_13, BookcaseFireBook1_0, BookcaseFireBook1_1, BookcaseFireBook1_2, BookcaseFireBook1_3, BookcaseFireBook1_4, BookcaseFireBook1_5, BookcaseFireBook1_6, BookcaseFireBook1_7, BookcaseFireBook1_8, BookcaseFireBook1_9, BookcaseFireBook1_10, BookcaseFireBook1_11, BookcaseFireBook1_12, BookcaseFireBook1_13, BookcaseFireBook2_0, BookcaseFireBook2_1, BookcaseFireBook2_2, BookcaseFireBook2_3, BookcaseFireBook2_4, BookcaseFireBook2_5, BookcaseFireBook2_6, BookcaseFireBook2_7, BookcaseFireBook2_8, BookcaseFireBook2_9, BookcaseFireBook3_0, BookcaseFireBook3_1, BookcaseFireBook3_2, BookcaseFireBook3_3, BookcaseFireBook3_4, BookcaseFireBook3_5, BookcaseFireBook3_6, BookcaseFireBook3_7, BookcaseFireBook3_8, BookcaseFireBook3_9, BookcaseFireBook3_10, BookcaseFireBook3_11, BookcaseFireBook3_12, BookcaseWallTop, BookcaseWallBottom, BookcaseWallShelf1, BookcaseWallShelf2, BookcaseWallShelf3, BookcaseWallBook0_0, BookcaseWallBook0_1, BookcaseWallBook0_2, BookcaseWallBook0_3, BookcaseWallBook0_4, BookcaseWallBook0_5, BookcaseWallBook0_6, BookcaseWallBook0_7, BookcaseWallBook0_8, BookcaseWallBook0_9, BookcaseWallBook0_10, BookcaseWallBook0_11, BookcaseWallBook0_12, BookcaseWallBook0_13, BookcaseWallBook1_0, BookcaseWallBook1_1, BookcaseWallBook1_2, BookcaseWallBook1_3, BookcaseWallBook1_4, BookcaseWallBook1_5, BookcaseWallBook1_6, BookcaseWallBook1_7, BookcaseWallBook1_8, BookcaseWallBook1_9, BookcaseWallBook1_10, BookcaseWallBook1_11, BookcaseWallBook1_12, BookcaseWallBook2_0, BookcaseWallBook2_1, BookcaseWallBook2_2, BookcaseWallBook2_3, BookcaseWallBook2_4, BookcaseWallBook2_5, BookcaseWallBook2_6, BookcaseWallBook2_7, BookcaseWallBook2_8, BookcaseWallBook3_0, BookcaseWallBook3_1, BookcaseWallBook3_2, BookcaseWallBook3_3, BookcaseWallBook3_4, BookcaseWallBook3_5, BookcaseWallBook3_6, BookcaseWallBook3_7, BookcaseWallBook3_8, BookcaseWallBook3_9, BookcaseWallBook3_10, BookcaseWallBook3_11, BookcaseWallBook3_12, Log1, Log2, MantelClock, MantelClockFace, Candle1Holder, Candle1, Candle2Holder, Candle2, PaintingFireFrame, PaintingFireCanvas, PaintingHallFrame, PaintingHallCanvas, DiningTableLeg1, DiningTableLeg2, DiningTableLeg3, DiningTableLeg4, DiningChair1Leg1, DiningChair1Leg2, DiningChair1Leg3, DiningChair1Leg4, DiningChair1Seat, DiningChair1PostL, DiningChair1PostR, DiningChair1Back, DiningChair2Leg1, DiningChair2Leg2, DiningChair2Leg3, DiningChair2Leg4, DiningChair2Seat, DiningChair2PostL, DiningChair2PostR, DiningChair2Back, DiningChair3Leg1, DiningChair3Leg2, DiningChair3Leg3, DiningChair3Leg4, DiningChair3Seat, DiningChair3PostL, DiningChair3PostR, DiningChair3Back, DiningChair4Leg1, DiningChair4Leg2, DiningChair4Leg3, DiningChair4Leg4, DiningChair4Seat, DiningChair4PostL, DiningChair4PostR, DiningChair4Back, DiningVase, SideboardLeg1, SideboardLeg2, SideboardLeg3, SideboardLeg4, SideboardDoorL, SideboardDoorM, SideboardDoorR, SideboardLampBase, SideboardLampStem, SideboardLampShade, SideboardVase, RadioGrille, RadioDialPanel, CabDoor1, CabDrawer1, CabHandle1, CabDoor2, CabDrawer2, CabHandle2, CabDoor3, CabDrawer3, CabHandle3, CabDoor4, CabDrawer4, CabHandle4, SinkRim, SinkBasin, FaucetStem, FaucetSpout, Canister1, Canister2, Canister3, Range, RangeBackguard, RangeOvenDoor, RangeOvenHandle, RangeControls, Burner1, Burner2, Burner3, Burner4, Kettle, WallCabDoorL, WallCabDoorR, FridgeHandle, FridgeBadge, KitchenTableLeg1, KitchenTableLeg2, KitchenTableLeg3, KitchenTableLeg4, KitchenChair1Leg1, KitchenChair1Leg2, KitchenChair1Leg3, KitchenChair1Leg4, KitchenChair1Seat, KitchenChair1PostL, KitchenChair1PostR, KitchenChair1Back, KitchenChair2Leg1, KitchenChair2Leg2, KitchenChair2Leg3, KitchenChair2Leg4, KitchenChair2Seat, KitchenChair2PostL, KitchenChair2PostR, KitchenChair2Back, KitchenCurtain, BedLeg1, BedLeg2, BedLeg3, BedLeg4, PillowA, PillowB, Nightstand1Body, Nightstand1Drawer, BedLamp1Base, BedLamp1Stem, BedLamp1Shade, Nightstand2Body, Nightstand2Drawer, BedLamp2Base, BedLamp2Stem, BedLamp2Shade, MirrorFrame, MirrorGlass, MirrorPostA, MirrorPostB, WardrobeKnobL, WardrobeKnobR, PaintingBedFrame, PaintingBedCanvas; Roblox: a one-mesh Simple stand-in (1 draw call at distance) for the LodController"
   },
   {
    "id": "geometry",
    "status": "pass",
-   "msg": "503 parts watertight, outward-facing, consistently wound, no degenerate or sliver triangles, no self-intersections"
+   "msg": "504 parts watertight, outward-facing, consistently wound, no degenerate or sliver triangles, no self-intersections"
   },
   {
    "id": "z-fighting",
@@ -62,7 +62,7 @@
   {
    "id": "anim:FrontDoorOpen",
    "status": "pass",
-   "msg": "moves (largest displacement 1.317 m)"
+   "msg": "moves (largest displacement 1.571 m)"
   },
   {
    "id": "anim:FrontDoorOpen",
@@ -77,7 +77,7 @@
   {
    "id": "anim:FrontDoorClose",
    "status": "pass",
-   "msg": "moves (largest displacement 1.317 m)"
+   "msg": "moves (largest displacement 1.571 m)"
   },
   {
    "id": "anim:FrontDoorClose",
@@ -92,7 +92,7 @@
   {
    "id": "anim:BackDoorOpen",
    "status": "pass",
-   "msg": "moves (largest displacement 1.261 m)"
+   "msg": "moves (largest displacement 1.543 m)"
   },
   {
    "id": "anim:BackDoorOpen",
@@ -107,7 +107,7 @@
   {
    "id": "anim:BackDoorClose",
    "status": "pass",
-   "msg": "moves (largest displacement 1.261 m)"
+   "msg": "moves (largest displacement 1.543 m)"
   },
   {
    "id": "anim:BackDoorClose",

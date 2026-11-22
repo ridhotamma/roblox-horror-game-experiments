@@ -219,14 +219,14 @@ module.exports = function addInterior(parts, r3) {
   box('WallCabinet', [1.05, 0.77, 0.33], [3.625, F + 1.745, -3.685], 'enamel', { collision: 'box' });
   box('WallCabDoorL', [0.49, 0.71, 0.04], [3.36, F + 1.745, -3.51], 'enamelDoor');
   box('WallCabDoorR', [0.49, 0.71, 0.04], [3.89, F + 1.745, -3.51], 'enamelDoor');
-  // Rounded fridge on the right wall, door facing -x.
-  box('Fridge', [0.7, 1.6, 0.75], [4.6, F + 0.8, -2.725], 'enamel', { chamfer: 0.06, collision: 'box' });
-  box('FridgeHandle', [0.05, 0.3, 0.05], [4.23, F + 1.1, -2.45], 'steel', { material: { metalness: 0.7, roughness: 0.35 } });
-  box('FridgeBadge', [0.04, 0.05, 0.2], [4.25, F + 1.45, -2.725], 'steelDark');
-  // Kitchen table with a gingham cloth and two chairs.
-  clothTable('KitchenTable', 2.6, -1.9, 0.9, 0.75, 'gingham');
-  chair('KitchenChair1', 2.6, -1.25, '-z', 'woodLight');
-  chair('KitchenChair2', 2.6, -2.55, '+z', 'woodLight');
+  // Rounded fridge on the right wall, door facing -x; set forward of the range so the oven stays reachable.
+  box('Fridge', [0.7, 1.6, 0.75], [4.6, F + 0.8, -1.65], 'enamel', { chamfer: 0.06, collision: 'box' });
+  box('FridgeHandle', [0.05, 0.3, 0.05], [4.23, F + 1.1, -1.375], 'steel', { material: { metalness: 0.7, roughness: 0.35 } });
+  box('FridgeBadge', [0.04, 0.05, 0.2], [4.25, F + 1.45, -1.65], 'steelDark');
+  // Kitchen table with a gingham cloth and two chairs at the ends, leaving a walkway along the counters.
+  clothTable('KitchenTable', 2.6, -1.95, 0.9, 0.75, 'gingham');
+  chair('KitchenChair1', 1.92, -1.95, '+x', 'woodLight');
+  chair('KitchenChair2', 3.28, -1.95, '-x', 'woodLight');
   // Cafe curtain over the lower half of the sink window.
   box('KitchenCurtain', [0.79, 0.4, 0.06], [2.6, F + 1.35, -3.81], 'gingham');
 

@@ -52,9 +52,10 @@ const BACK_WIN_X = [-2.6, 2.6];
 const GW = 0.79;                    // glass / opening width
 const winOpen = x => [r3(x - GW / 2), r3(x + GW / 2), GY0, GY1];
 
-// Doors: front opening x -0.47..0.47, back opening x 0.75..1.65 (clear of the centre partition).
-const FD = { x0: -0.47, x1: 0.47, top: 2.59 };
-const BD = { x0: 0.75, x1: 1.65, top: 2.57 };
+// Doors: front opening x -0.56..0.56, back opening x 0.70..1.80 (clear of the centre partition).
+// Widened past real-world size (0.94 / 0.90 m) so a Roblox avatar and its camera fit: >= 5 studs at 4.5 studs/m.
+const FD = { x0: -0.56, x1: 0.56, top: 2.59 };
+const BD = { x0: 0.7, x1: 1.8, top: 2.57 };
 
 wall('WallFront', 'x', -W / 2, W / 2, ZI, D / 2, WALL_BOTTOM, WALL_TOP,
   [winOpen(-3.85), winOpen(-2.95), [FD.x0, FD.x1, WALL_BOTTOM, FD.top], winOpen(2.95), winOpen(3.85)], 'wall');
@@ -118,20 +119,20 @@ parts.push({
 });
 
 // ---- front door: casing with sidelights, threshold, hinged door -------------
-box('FrontCasingL', [0.49, 2.35, 0.04], [-0.705, 1.645, 4.0], 'trim', { mirror: 'x' });
-box('FrontCasingHead', [0.92, 0.24, 0.04], [0, 2.70, 4.0], 'trim');
-box('SidelightL', [0.26, 1.8, 0.06], [-0.68, 1.55, 4.005], 'glass', { mirror: 'x' });
-box('FrontThreshold', [0.94, 0.05, 0.27], [0, 0.455, 3.985], 'oak', { collision: 'box' });
+box('FrontCasingL', [0.49, 2.35, 0.04], [-0.795, 1.645, 4.0], 'trim', { mirror: 'x' });
+box('FrontCasingHead', [1.10, 0.24, 0.04], [0, 2.70, 4.0], 'trim');
+box('SidelightL', [0.26, 1.8, 0.06], [-0.77, 1.55, 4.005], 'glass', { mirror: 'x' });
+box('FrontThreshold', [1.12, 0.05, 0.27], [0, 0.455, 3.985], 'oak', { collision: 'box' });
 
 const brass = { color: 'brass', material: { metalness: 0.7, roughness: 0.35 }, collision: 'none' };
-// Door 0.93 x 2.10 in a 0.94 opening; hinged on the left jamb at the inside face, swings inward.
-box('FrontDoor', [0.93, 2.10, 0.05], [-0.005, 1.535, 3.955], 'door', {
+// Door 1.11 x 2.10 in a 1.12 opening; hinged on the left jamb at the inside face, swings inward.
+box('FrontDoor', [1.11, 2.10, 0.05], [-0.005, 1.535, 3.955], 'door', {
   pivot: [FD.x0, 1.535, 3.93], collision: 'box', note: 'hinge: left jamb, inside face; +Y opens inward',
 });
-box('FrontDoorGlass', [0.5, 0.6, 0.06], [-0.005, 2.1, 3.955], 'glass', { parent: 'FrontDoor' });
-box('FrontDoorPanel', [0.6, 0.7, 0.07], [-0.005, 0.95, 3.955], 'doorDark', { parent: 'FrontDoor', collision: 'none' });
-parts.push({ name: 'FrontKnobOut', shape: 'sphere', radius: 0.035, detail: 0, at: [0.36, 1.45, 4.005], parent: 'FrontDoor', ...brass });
-parts.push({ name: 'FrontKnobIn', shape: 'sphere', radius: 0.035, detail: 0, at: [0.36, 1.45, 3.905], parent: 'FrontDoor', ...brass });
+box('FrontDoorGlass', [0.6, 0.6, 0.06], [-0.005, 2.1, 3.955], 'glass', { parent: 'FrontDoor' });
+box('FrontDoorPanel', [0.72, 0.7, 0.07], [-0.005, 0.95, 3.955], 'doorDark', { parent: 'FrontDoor', collision: 'none' });
+parts.push({ name: 'FrontKnobOut', shape: 'sphere', radius: 0.035, detail: 0, at: [0.45, 1.45, 4.005], parent: 'FrontDoor', ...brass });
+parts.push({ name: 'FrontKnobIn', shape: 'sphere', radius: 0.035, detail: 0, at: [0.45, 1.45, 3.905], parent: 'FrontDoor', ...brass });
 
 // ---- windows (frames, mullions and shutters outside; glass through the wall) -
 const pairX = -3.4;
@@ -171,18 +172,20 @@ box('BackMullVL', [0.05, 1.47, 0.06], [-2.6, WIN_Y, BZ - 0.025], 'trim', { mirro
 box('BackMullHL', [0.77, 0.05, 0.06], [-2.6, WIN_Y + 0.15, BZ - 0.02], 'trim', { mirror: 'x', collision: 'none' });
 box('BackSillL', [1.07, 0.07, 0.13], [-2.6, 1.33, BZ - 0.055], 'trim', { mirror: 'x' });
 box('BackHeadL', [1.07, 0.1, 0.07], [-2.6, 2.99, BZ - 0.025], 'trim', { mirror: 'x' });
-box('BackCasingL', [0.11, 2.24, 0.04], [0.705, 1.59, BZ], 'trim');
-box('BackCasingR', [0.11, 2.24, 0.04], [1.695, 1.59, BZ], 'trim');
-box('BackCasingHead', [0.88, 0.15, 0.04], [1.2, 2.635, BZ], 'trim');
-box('BackThreshold', [0.9, 0.05, 0.27], [1.2, 0.455, -3.985], 'oak', { collision: 'box' });
-box('BackDoor', [0.89, 2.08, 0.05], [1.195, 1.525, -3.955], 'backdoor', {
-  pivot: [BD.x0, 1.525, -3.93], collision: 'box', note: 'hinge: left jamb seen from inside... x 0.75, inside face; -Y opens inward',
+box('BackCasingL', [0.11, 2.24, 0.04], [0.655, 1.59, BZ], 'trim');
+box('BackCasingR', [0.11, 2.24, 0.04], [1.845, 1.59, BZ], 'trim');
+box('BackCasingHead', [1.08, 0.15, 0.04], [1.25, 2.635, BZ], 'trim');
+box('BackThreshold', [1.1, 0.05, 0.27], [1.25, 0.455, -3.985], 'oak', { collision: 'box' });
+box('BackDoor', [1.09, 2.08, 0.05], [1.245, 1.525, -3.955], 'backdoor', {
+  pivot: [BD.x0, 1.525, -3.93], collision: 'box', note: 'hinge: x 0.70 jamb, inside face; -Y opens inward',
 });
-box('BackDoorPanelTop', [0.6, 0.75, 0.07], [1.195, 2.0, -3.955], 'backdoorDark', { parent: 'BackDoor', collision: 'none' });
-box('BackDoorPanelBottom', [0.6, 0.75, 0.07], [1.195, 1.0, -3.955], 'backdoorDark', { parent: 'BackDoor', collision: 'none' });
-parts.push({ name: 'BackKnobOut', shape: 'sphere', radius: 0.035, detail: 0, at: [1.56, 1.45, -4.005], parent: 'BackDoor', ...brass });
-parts.push({ name: 'BackKnobIn', shape: 'sphere', radius: 0.035, detail: 0, at: [1.56, 1.45, -3.905], parent: 'BackDoor', ...brass });
-box('BackStep', [1.3, 0.44, 0.8], [1.2, 0.22, -4.5], 'concrete', { collision: 'box' });
+box('BackDoorPanelTop', [0.72, 0.75, 0.07], [1.245, 2.0, -3.955], 'backdoorDark', { parent: 'BackDoor', collision: 'none' });
+box('BackDoorPanelBottom', [0.72, 0.75, 0.07], [1.245, 1.0, -3.955], 'backdoorDark', { parent: 'BackDoor', collision: 'none' });
+parts.push({ name: 'BackKnobOut', shape: 'sphere', radius: 0.035, detail: 0, at: [1.70, 1.45, -4.005], parent: 'BackDoor', ...brass });
+parts.push({ name: 'BackKnobIn', shape: 'sphere', radius: 0.035, detail: 0, at: [1.70, 1.45, -3.905], parent: 'BackDoor', ...brass });
+// Two 0.22 m risers (~1 stud each at 4.5 studs/m) so players walk up instead of jumping a 2-stud block.
+box('BackStep', [1.5, 0.44, 0.8], [1.25, 0.22, -4.5], 'concrete', { collision: 'box' });
+box('BackStep2', [1.5, 0.22, 0.4], [1.25, 0.11, -5.1], 'concrete', { collision: 'box' });
 
 // ---- interior ----------------------------------------------------------------
 // Floor 0.47, ceiling 3.28 (2.8 m clear). Attic above the ceiling stays closed.
@@ -190,14 +193,14 @@ box('Floor', [2 * XI, 0.07, 2 * ZI], [0, 0.435, 0], 'floor', { collision: 'box' 
 box('Ceiling', [2 * XI, 0.12, 2 * ZI], [0, 3.34, 0], 'ceiling', { collision: 'box' });
 // Partitions: living room at the front (z > -0.75), two back rooms split at x = 0.
 const PY0 = 0.46, PY1 = 3.29, DOOR_TOP = 2.55;
-wall('PartitionMid', 'x', -XI, XI, -0.85, -0.75, PY0, PY1, [[-2.95, -2.05, PY0, DOOR_TOP], [1.05, 1.95, PY0, DOOR_TOP]], 'interior');
+wall('PartitionMid', 'x', -XI, XI, -0.85, -0.75, PY0, PY1, [[-3.0, -1.8, PY0, DOOR_TOP], [0.8, 2.0, PY0, DOOR_TOP]], 'interior');
 wall('PartitionBack', 'z', -ZI, -0.85, -0.05, 0.05, PY0, PY1, [], 'interior');
-// Doorway casings (living-room side) so the openings read from across the room.
-for (const [tag, x] of [['L', -2.5], ['R', 1.5]]) {
+// Interior doorways 1.2 m wide (5.4 studs at 4.5 studs/m). Doorway casings (living-room side) so the openings read from across the room.
+for (const [tag, x] of [['L', -2.4], ['R', 1.4]]) {
   // jambs straddle the opening edge (no shared planes), head sits 1 cm below the lintel bottom
-  box(`DoorwayJambA${tag}`, [0.08, r3(DOOR_TOP - 0.01 - 0.47), 0.14], [r3(x - 0.47), r3((0.47 + DOOR_TOP - 0.01) / 2), -0.80], 'trim', { collision: 'none' });
-  box(`DoorwayJambB${tag}`, [0.08, r3(DOOR_TOP - 0.01 - 0.47), 0.14], [r3(x + 0.47), r3((0.47 + DOOR_TOP - 0.01) / 2), -0.80], 'trim', { collision: 'none' });
-  box(`DoorwayHead${tag}`, [1.06, 0.1, 0.14], [x, r3(DOOR_TOP + 0.04), -0.80], 'trim', { collision: 'none' });
+  box(`DoorwayJambA${tag}`, [0.08, r3(DOOR_TOP - 0.01 - 0.47), 0.14], [r3(x - 0.62), r3((0.47 + DOOR_TOP - 0.01) / 2), -0.80], 'trim', { collision: 'none' });
+  box(`DoorwayJambB${tag}`, [0.08, r3(DOOR_TOP - 0.01 - 0.47), 0.14], [r3(x + 0.62), r3((0.47 + DOOR_TOP - 0.01) / 2), -0.80], 'trim', { collision: 'none' });
+  box(`DoorwayHead${tag}`, [1.36, 0.1, 0.14], [x, r3(DOOR_TOP + 0.04), -0.80], 'trim', { collision: 'none' });
 }
 // Brick fireplace on the living-room side of the partition, under the chimney.
 box('Hearth', [1.6, 0.08, 0.57], [3.9, 0.49, -0.485], 'cap', { collision: 'box' });

@@ -54,7 +54,7 @@ BY_NAME = [
     (r"^(Floor)$", "wood_floor"), (r"^Ceiling$", "plaster_ceiling"), (r"^Rug$", "rug"), (r"^Carpet$", "carpet"),
     (r"^Linoleum$", "linoleum"), (r"^(Roof|PorchRoof)$", "shingles"),
     (r"^(Chimney|FireplaceBody|ChimneyBreast)$", "brick"),
-    (r"^(Foundation|Stoop|Step1|Step2|BackStep)$", "concrete"),
+    (r"^(Foundation|Stoop|Step1|Step2|BackStep|BackStep2)$", "concrete"),
     (r"^Sofa(Base|Back|Arm[LR]|Cushion\d)$", "fabric_green"), (r"^Armchair(Base|Back|Arm[LR]|Cushion\d)$", "fabric_rose"),
     (r"^DiningTableCloth$", "linen"), (r"^(KitchenTableCloth|KitchenCurtain)$", "gingham"),
     (r"^Blanket$", "quilt"), (r"^(Mattress|Pillow[AB])$", "linen"),
