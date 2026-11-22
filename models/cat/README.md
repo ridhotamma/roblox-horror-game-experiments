@@ -1,44 +1,72 @@
 # Tuxedo Cat — low-poly, rigged, animated
 
-Built in Blender 5.3 through the Blender MCP bridge. A stylized tuxedo cat with a
+A stylised tuxedo cat built in Blender 5.3 from measured photo references, with a
 25-bone rig and four game-ready clips: **Idle**, **Walk**, **Run**, **Jump**.
 
 ![hero](out/cat_hero.png)
+
+| Front | Head | Side |
+|---|---|---|
+| ![front](out/cat_front.png) | ![head](out/cat_head.png) | ![side](out/cat_side.png) |
 
 ## Specs
 
 | | |
 |---|---|
-| Bounds | 0.25 m wide × 0.82 m long × 0.50 m tall (tail up) |
-| Shoulder height | ~0.33 m |
-| Nose-to-tail-base | ~0.57 m |
-| Triangles | 5,252 (4,500 body + 752 details) |
-| Vertices | 2,668 |
-| Materials | 7, no textures — the tuxedo markings are vertex colours (`COLOR_0`) |
-| Rig | 25 bones: `Root` + 24 deform bones |
+| Bounds (rest pose) | 0.16 m wide × 0.76 m long × 0.47 m tall (tail up) |
+| Shoulder height | ~0.32 m |
+| Nose to tail base | ~0.57 m |
+| Triangles | 12,210 (9,454 fur body + 2,756 face details) |
+| Vertices | 6,151 |
+| Materials | 7, no textures; the tuxedo markings are vertex colours (`COLOR_0`) |
+| Rig | 25 bones: `Root` + 24 deform bones, at most 4 influences per vertex |
 | Frame rate | 24 fps |
 | Forward | −Y in Blender, +Z in glTF |
 
-The body is a voxel-unioned, decimated mesh (legs, tail, paws and toes merged into
-one continuous surface), with explicit low-poly ears, eyes, nose, mouth and whiskers.
-The rig is a simple FK chain, skinned with automatic weights plus rigid weights for
-the head details.
+## Anatomy (v3, from references)
+
+The v3 rebuild compares the cat against openly licensed photos and a skeleton (see
+`refs/sources.txt`). The measured landmarks are in `blender/cat_spec.py`.
+
+- **Hind legs bend like a cat's.** The femur runs down and *forward* to the knee, and the
+  tibia runs down and *back* to a high hock (heel). The old build had a backward knee,
+  like a dog's.
+- **Torso:** a deep ribcage whose floor is at elbow height, then a narrower waist,
+  a tucked belly, rounded haunches and a slight rise over the shoulder blades.
+- **Head:** carried above the back on a neck that rises at about 40°. It has wide
+  cheeks, a short muzzle with two whisker pads and a chin, and a nose bridge.
+- **Eyes:** large and forward-facing (20° outward), set about one eye-width apart.
+  Each has a dark rim, a gold iris, a vertical slit pupil and a catch light.
+- **Ears:** large, with wide bases, cupped and pink inside, leaning outward from the
+  corners of the skull.
+- **Paws:** compact and round, about 5 cm long (they were about 9 cm before).
+- **Tail:** keeps its thickness to a rounded tip.
+- **Markings:** a classic tuxedo. The cap and ears are black. The white areas are an
+  inverted-V blaze between the eyes, the muzzle and chin, the throat and chest bib
+  (front only, not a collar), a belly strip, front socks to the wrist and white
+  hind feet.
+
+The body is a single metaball-sculpted surface (no leg-to-body seams). It is
+voxel-remeshed, retopologised with Quadriflow to about 4,700 quads and smooth-shaded.
+The face parts (eyes, nose, mouth, whiskers, ears) are placed by ray-casting onto the
+skin, so they follow the head shape.
 
 ## Animations
 
 | Clip | Frames | Duration | Loop | What it shows |
 |---|---|---|---|---|
 | `Idle` | 1–97 | 4.0 s | yes | breathing, weight shift, slow head look, tail sway, ear flicks |
-| `Walk` | 1–25 | 1.0 s | yes | four-beat lateral walk, in place |
+| `Walk` | 1–25 | 1.0 s | yes | four-beat lateral walk, in place; knee and hock fold on the hind swing |
 | `Run` | 1–17 | 0.667 s | yes | bounding gallop with suspension, in place |
 | `Jump` | 1–40 | 1.625 s | no | crouch → launch → tuck at apex → land → recover |
 
-- Loops are authored with the last frame equal to the first; the GLB clips start at
-  `t = 0` and loop exactly (`Idle` 4.0 s, `Walk` 1.0 s, `Run` 0.6667 s).
-- A per-frame ground-contact pass raises the root just enough to keep the lowest
-  vertex at `z = 0`. The jump carries its vertical motion on the `Root` bone.
-- `Walk` and `Run` have no forward translation, so a gameplay controller can move
-  the character.
+- Loops are authored with the last frame equal to the first, and the GLB clips start
+  at `t = 0`.
+- A per-frame ground-contact pass keeps the paws on the floor for Idle and Walk and for
+  the grounded frames of Jump. Run keeps its suspension. The jump carries its vertical
+  motion on the `Root` bone.
+- `Walk` and `Run` have no forward translation, so a gameplay controller moves the cat.
+- Bone names and roll conventions are unchanged from the earlier builds.
 
 ## Files
 
@@ -46,60 +74,61 @@ the head details.
 |---|---|
 | `out/Cat.blend` | final scene, `Idle` active; all clips are in the Action editor and stashed in NLA tracks |
 | `out/Cat.glb` | main asset: skinned mesh + 4 animations, metres, vertex colours |
-| `out/Cat.roblox.glb` | same asset pre-scaled to 4.5 studs per metre (3.70 studs long, 2.24 tall) |
+| `out/Cat.roblox.glb` | same asset pre-scaled to 4.5 studs per metre (about 3.4 studs long, 2.1 tall) |
 | `out/Cat.fbx` | same rig and clips for DCC/FBX pipelines |
-| `out/preview_idle.mp4` | 640×640 preview |
-| `out/preview_walk.mp4` | 640×640 preview |
-| `out/preview_run.mp4` | 640×640 preview |
-| `out/preview_jump.mp4` | 640×640 preview |
-| `out/preview_all.mp4` | combined showcase (idle, walk ×2, run ×3, jump) |
-| `out/cat_hero.png` | hero render |
-| `out/cat_side.png` | orthographic side view |
+| `out/preview_*.mp4` | 640×640 previews per clip; `preview_all.mp4` is the combined showcase |
+| `out/cat_hero.png`, `cat_front.png`, `cat_side.png`, `cat_rear.png`, `cat_head.png` | stills |
 | `out/strip_*.png` | 8-frame review sheets per clip |
-| `blender/*.py` | full build → rig → animate → export pipeline |
-| `refs/` | measurement reference and licence |
+| `blender/cat_spec.py` | measured anatomy, eye/ear placement, marking shapes, colours |
+| `refs/sources.txt` | reference photos, authors, licences and what each was used for |
 
 ## Using it
 
-**Blender:** open `out/Cat.blend`, select `CatRig`, and pick an action in the
-Dope Sheet → Action Editor. The scene is set to the Idle clip; press Space to play.
-Frame range is 1–97 at 24 fps.
+**Blender:** open `out/Cat.blend`, select `CatRig`, and pick an action in
+Dope Sheet → Action Editor.
 
-**glTF / three.js / Godot / Unity:** import `out/Cat.glb`. It contains one skinned
-mesh, one skin and four named animations. The mesh uses vertex colours, so use a
-material that supports `COLOR_0` (three.js does by default).
+**glTF / three.js / Godot / Unity:** import `out/Cat.glb`. It has one skinned mesh,
+one skin and four named animations. The mesh uses vertex colours, so use a material
+that supports `COLOR_0` (three.js does by default).
 
 **Roblox:** import `out/Cat.roblox.glb` with the 3D Importer. It is pre-scaled to
-**4.5 studs per metre** (the same scale as this repo's house and tree), so the cat is
-about **3.70 studs long** and **2.24 studs tall** — no manual scaling needed. If you
-prefer real-world metres, use `out/Cat.glb` instead. The `Jump` clip already contains
-the vertical root motion. Use `CollisionFidelity = Box` for the body and disable
-collision on the whiskers/eyes if your importer splits them out.
-
-## Notes / limits
-
-- Low-poly style with smooth-by-polygon normals; no textures, UV maps or blend shapes.
-- The rig is FK-only (no IK controls). Paws are counter-rotated so they stay level,
-  and the root is ground-clamped per frame.
-- The tuxedo pattern is baked into a point colour attribute; if your engine ignores
-  vertex colours, the cat falls back to the material base colour.
+**4.5 studs per metre**, the same scale as this repo's house and tree. Use
+`CollisionFidelity = Box`. The whiskers are thin geometry, so turn off collision on
+them if your importer splits them out.
 
 ## Rebuild
 
-The pipeline is scripted for Blender 5.3. Run the files in order from Blender's
-Text Editor or via the MCP bridge:
+The pipeline runs headless (it does not touch a live Blender session):
 
-1. `blender/01_build.py` — body, head details, vertex colours, studio; saves `cat_stage1.blend`
-2. `blender/02_rig.py` — armature, automatic weights, accessory weights, test pose; saves `cat_stage2.blend`
-3. `blender/03_anim.py` — builds the four actions, ground-clamps them, saves `cat_stage3.blend`
-4. `blender/06_export.py` — fixes accessory vertex colours, saves `out/Cat.blend`, exports GLB/FBX
-5. `blender/09_roblox_export.py` — exports `out/Cat.roblox.glb` at 4.5 studs/m
-6. `blender/08_video.py` / `blender/04_strips.py` — preview renders (optional)
+```powershell
+& "C:\Program Files\Blender Foundation\Blender 5.3\blender.exe" -b models/cat/out/Cat.blend --python models/cat/blender/15_build_v3.py -- --review
+```
 
-`01_build.py` / `02_rig.py` / `03_anim.py` contain hard-coded absolute paths for this
-workspace; change `OUT` if you move the project.
+```powershell
+& "C:\Program Files\Blender Foundation\Blender 5.3\blender.exe" -b models/cat/blender/cat_v3_mesh.blend --python models/cat/blender/16_rig_anim_v3.py
+```
 
-## Reference
+```powershell
+& "C:\Program Files\Blender Foundation\Blender 5.3\blender.exe" -b --factory-startup --python models/cat/blender/08_video.py
+```
 
-`refs/cat_side.jpg` — “Domestic cat in Poland 1.jpg”, Wikimedia Commons, CC BY-SA 4.0.
-Used for proportions and silhouette only; the model, colours and animation are original.
+1. `15_build_v3.py` reuses the studio and materials from `Cat.blend` and replaces the cat
+   with the v3 body and face parts. It saves `blender/cat_v3_mesh.blend`; `--review`
+   also renders check shots.
+2. `16_rig_anim_v3.py` builds the rig, skins the cat, generates the four clips,
+   ground-clamps them, saves `out/Cat.blend` and exports GLB, FBX and the Roblox GLB.
+3. `08_video.py` renders the stills and the PNG sequences. Encode the sequences with
+   ffmpeg (`-framerate 24 -i video_frames/<Clip>/%04d.png`). `04_strips.py` +
+   `05_make_strips.py` make the review sheets.
+
+Scripts `01`–`03`, `06`, `07`, `09`–`14` are earlier pipelines, kept for reference and
+superseded by `15`/`16`.
+
+## Notes / limits
+
+- Smooth-shaded low-poly; no textures, UV maps or blend shapes.
+- The colour boundaries are per-vertex, so they are soft rather than razor-sharp.
+- FK-only rig (no IK). Paws are counter-rotated to stay level and the root is
+  ground-clamped per frame, so paws can slide slightly during stance.
+- To change proportions, edit `blender/cat_spec.py` and rerun steps 1–3. The rig is
+  built from the same landmarks, so the bones follow the mesh automatically.

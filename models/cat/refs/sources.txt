@@ -1,9 +1,31 @@
-﻿Reference images used for proportions (not traced for textures or design copying).
+﻿Reference images used for proportions and markings only (not traced, no textures copied).
+The .jpg files are git-ignored; re-download them from the URLs below.
 
 refs/cat_side.jpg
-  "Domestic cat in Poland 1.jpg"
-  Wikimedia Commons, CC BY-SA 4.0
+  "Domestic cat in Poland 1.jpg" - Wikimedia Commons, CC BY-SA 4.0
   https://commons.wikimedia.org/wiki/File:Domestic_cat_in_Poland_1.jpg
+  Used for: standing tuxedo cat, overall length vs. shoulder height, tail carriage.
 
-Measured: side profile, standing cat. Nose-to-tail-base ~0.57 m, shoulder height ~0.30 m,
-tail ~0.30 m. The model follows those proportions with a slightly stylised, chunkier body.
+refs/cat_skeleton.jpg
+  "Felis catus skeleton noBG.jpg" - Kirill Tsukanov, Wikimedia Commons, CC BY-SA 4.0
+  https://commons.wikimedia.org/wiki/File:Felis_catus_skeleton_noBG.jpg
+  Used for: joint layout - femur runs down and forward to the knee, tibia down and back to a
+  high hock, elbow at the floor of the ribcage, neck rising ~40 degrees, skull length.
+
+refs/cat_face.jpg
+  "Cat at daybreak 2017 (33161279970) (cropped).jpg" - Susanne Nilsson, Wikimedia Commons, CC BY-SA 2.0
+  https://commons.wikimedia.org/wiki/File:Cat_at_daybreak_2017_(33161279970)_(cropped).jpg
+  Used for: head width (~0.45-0.5 x shoulder height), eye size and spacing, ear size and
+  placement, whisker pads, round compact paws, white bib and socks.
+
+refs/cat_standing_street.jpg
+  "Stray cat standing in the street.JPG" - Tokumeigakarinoaoshima, Wikimedia Commons, CC0
+  https://commons.wikimedia.org/wiki/File:Stray_cat_standing_in_the_street.JPG
+  Used for: black-and-white facial mask (black cap and ears, white blaze, muzzle, chest).
+
+refs/cat_bicolour_stray.jpg
+  "Hungry stray cat (Unsplash).jpg" - Bing Han, Wikimedia Commons, CC0
+  https://commons.wikimedia.org/wiki/File:Hungry_stray_cat_(Unsplash).jpg
+  Used for: bicolour body markings, socks on the hind feet.
+
+The measured numbers live in blender/cat_spec.py.

@@ -64,3 +64,24 @@ scene.render.resolution_y = 900
 scene.render.filepath = os.path.join(R, "cat_side.png")
 bpy.ops.render.render(write_still=True)
 print("SIDE_DONE")
+
+# rear view (the blocked-leg angle) and head close-up
+cam.data.type = 'PERSP'
+cam.data.lens = 70
+scene.render.resolution_x = 900
+scene.render.resolution_y = 1100
+cam.location = (0.0, 1.18, 0.40)
+cam.rotation_euler = (Vector((0.0, 0.03, 0.22)) - Vector(cam.location)).to_track_quat('-Z', 'Y').to_euler()
+scene.render.filepath = os.path.join(R, "cat_rear.png")
+bpy.ops.render.render(write_still=True)
+print("REAR_DONE")
+
+cam.data.type = 'ORTHO'
+cam.data.ortho_scale = 0.30
+scene.render.resolution_x = 850
+scene.render.resolution_y = 850
+cam.location = (0.34, -0.70, 0.47)
+cam.rotation_euler = (Vector((0.0, -0.29, 0.37)) - Vector(cam.location)).to_track_quat('-Z', 'Y').to_euler()
+scene.render.filepath = os.path.join(R, "cat_head.png")
+bpy.ops.render.render(write_still=True)
+print("HEAD_DONE")

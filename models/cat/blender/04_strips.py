@@ -6,7 +6,7 @@ from mathutils import Vector
 OUT = r"C:\Users\ridho\kerjaan\roblox-horror-game-experiments\models\cat"
 SRC = os.path.join(OUT, "out", "strip_src")
 os.makedirs(SRC, exist_ok=True)
-bpy.ops.wm.open_mainfile(filepath=os.path.join(OUT, "blender", "cat_stage3.blend"))
+bpy.ops.wm.open_mainfile(filepath=os.path.join(OUT, "out", "Cat.blend"))
 scene = bpy.context.scene
 arm = bpy.data.objects["CatRig"]
 cam = bpy.data.objects["Camera"]
